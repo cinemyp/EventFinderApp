@@ -22,11 +22,16 @@
         <Style x:Key="MenuItemText">
             <Setter Property="Control.Foreground" Value="#212121"/>
             <Setter Property="Control.FontWeight" Value="Bold"/>
-            <Setter Property="Control.Height" Value="15"/>
+            <Setter Property="Control.FontSize" Value="14"/>
+            <Setter Property="Control.Height" Value="20"/>
             <Setter Property="Control.Margin" Value="10 5"/>
             <Setter Property="Control.VerticalAlignment" Value="Center"/>
         </Style>
 
+        <Style x:Key="MenuItem">
+            <Setter Property="Control.Height" Value="45"/>
+        </Style>
+        
         <Storyboard x:Key="MenuOpen">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
                 <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
@@ -39,7 +44,7 @@
                 <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
-
+    
     </Window.Resources>
 
     <Window.Triggers>
@@ -154,7 +159,7 @@
             </Grid>
         </Grid>
         <!-- Menu Content -->
-        <Grid Background="#FFFFFF" x:Name="GridMenu" Width="250" Height="933" HorizontalAlignment="Left">
+        <Grid Background="#FFFFFF" x:Name="GridMenu" Width="0" Height="933" HorizontalAlignment="Left">
             <Grid.RowDefinitions>
                 <RowDefinition Height="60"/>
                 <RowDefinition/>
@@ -167,28 +172,30 @@
                 </Button>
                 <TextBlock VerticalAlignment="Center" Foreground="#212121" HorizontalAlignment="Right" Margin="0 0 15 0" Text="Иваново"/>
             </Grid>
-            <ListBox Grid.Row="1" x:Name="FilterType">
-                <ListBoxItem>
+            
+            <StackPanel Grid.Row="1" x:Name="FilterType">
+                <StackPanel Style="{StaticResource MenuItem}" Orientation="Horizontal">
                     <TextBlock Style="{StaticResource MenuItemText}">Все</TextBlock>
-                </ListBoxItem>
-                <ListBoxItem>
+                </StackPanel>
+                <StackPanel Style="{StaticResource MenuItem}" Orientation="Horizontal">
                     <TextBlock Style="{StaticResource MenuItemText}">Кино</TextBlock>
-                </ListBoxItem>
-                <ListBoxItem>
+                </StackPanel>
+                <StackPanel Style="{StaticResource MenuItem}" Orientation="Horizontal">
                     <TextBlock Style="{StaticResource MenuItemText}">Театр</TextBlock>
-                </ListBoxItem>
-                <ListBoxItem>
+                </StackPanel>
+                <StackPanel Style="{StaticResource MenuItem}" Orientation="Horizontal">
                     <TextBlock Style="{StaticResource MenuItemText}">Концерты</TextBlock>
-                </ListBoxItem>
-            </ListBox>
-            <ListBox x:Name="Footer" Grid.Row="2" VerticalAlignment="Bottom" Margin="0 0 0 35">
-                <ListBoxItem>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel x:Name="Footer" Grid.Row="2" VerticalAlignment="Bottom" Margin="0 0 0 35">
+                <StackPanel Style="{StaticResource MenuItem}" Orientation="Horizontal">
                     <TextBlock Style="{StaticResource MenuItemText}"><materialDesign:PackIcon Margin="0 0 15 0"  Kind="Favorite"/>Избранное</TextBlock>
-                </ListBoxItem>
-                <ListBoxItem x:Name="SignIn" MouseDown="SignIn_MouseDown">
+                </StackPanel>
+                <StackPanel x:Name="SignIn" MouseDown="SignIn_MouseDown" Style="{StaticResource MenuItem}" Orientation="Horizontal">
                     <TextBlock Style="{StaticResource MenuItemText}"><materialDesign:PackIcon Margin="0 0 15 0"  Kind="Login"/>Войти</TextBlock>
-                </ListBoxItem>
-            </ListBox>
+                </StackPanel>
+            </StackPanel>
 
         </Grid>
     </Grid>
