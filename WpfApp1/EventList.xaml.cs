@@ -16,28 +16,21 @@ using System.Windows.Shapes;
 namespace WpfApp1
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для EventList.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class EventList : Page
     {
-        public MainWindow()
+        public EventList()
         {
             InitializeComponent();
         }
+        
 
-        private void ButtonMinimizeWindow_Click(object sender, RoutedEventArgs e)
+        private void SignIn_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            WindowState = WindowState.Minimized;
-        }
+            Login login = new Login();
+            login.Show();
 
-        private void ButtonCloseWindow_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
-
-        private void Header_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            this.DragMove();
         }
     }
 }
