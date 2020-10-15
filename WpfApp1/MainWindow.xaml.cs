@@ -39,5 +39,11 @@ namespace WpfApp1
         {
             this.DragMove();
         }
+
+        private void SignIn_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Login login = new Login();
+            login.Show();
+        }
     }
 }

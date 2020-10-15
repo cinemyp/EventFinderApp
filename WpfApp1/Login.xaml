@@ -32,13 +32,13 @@
             <StackPanel x:Name="WindowButtons" Margin="0" HorizontalAlignment="Right" VerticalAlignment="Top" Orientation="Horizontal" Grid.Column="1">
                 <Button x:Name="ButtonMinimizeWindow"
                             Click="ButtonMinimizeWindow_Click"
-                            Width="45" Height="45" BorderBrush="Transparent" Background="{x:Null}">
+                            Width="45" Height="45">
                     <materialDesign:PackIcon HorizontalAlignment="Center" Kind="WindowMinimize"/>
                 </Button>
 
                 <Button x:Name="ButtonCloseWindow"
                             Click="ButtonCloseWindow_Click"
-                            Width="45" Height="45" BorderBrush="Transparent" Background="{x:Null}">
+                            Width="45" Height="45">
                     <materialDesign:PackIcon HorizontalAlignment="Center" Kind="WindowClose" />
                 </Button>
             </StackPanel>
@@ -54,12 +54,12 @@
             
             <StackPanel Grid.Row="0" Margin="0 15">
                 <TextBlock Text="Login"/>
-                <TextBox BorderBrush="#3F51B5"/>
+                <TextBox />
             </StackPanel>
             
             <StackPanel Grid.Row="1" Margin="0 15">
                 <TextBlock Text="Password"/>
-                <PasswordBox BorderBrush="#3F51B5"/>
+                <PasswordBox/>
             </StackPanel>
             
             <Grid Grid.Row="2" VerticalAlignment="Bottom">
@@ -67,8 +67,8 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button BorderBrush="Transparent" Background="#3F51B5" x:Name="SignIn" Content="Sign in" Margin="0 0 15 0"/>
-                <Button BorderBrush="Transparent" Background="#3F51B5" x:Name="SignOn" Grid.Column="1" Content="Sign on" Margin="15 0 0 0"/>
+                <Button x:Name="SignIn" Content="Sign in" Margin="0 0 15 0"/>
+                <Button x:Name="SignOn" Grid.Column="1" Content="Sign on" Margin="15 0 0 0"/>
             </Grid>
             
         </Grid>
