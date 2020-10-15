@@ -44,6 +44,7 @@ namespace WpfApp1
         {
             Login login = new Login();
             login.Show();
+
         }
     }
 }

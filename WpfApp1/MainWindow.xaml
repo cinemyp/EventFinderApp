@@ -44,7 +44,7 @@
                 <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
-
+    
     </Window.Resources>
 
     <Window.Triggers>
