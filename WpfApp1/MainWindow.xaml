@@ -137,14 +137,16 @@
                         </ListBox.ItemsPanel>
                         <ListBox.ItemTemplate>
                             <ItemContainerTemplate>
-                                <Border Background="#FFFFFF" Margin="5" BorderThickness="1" BorderBrush="DarkGray" Height="300" Width="250">
-                                    <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left">
+                                <Border  Background="#FFFFFF" Margin="5" BorderThickness="1" BorderBrush="DarkGray" Height="300" Width="250"
+                                         MouseDown="StackPanel_MouseDown">
+                                    <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" >
                                         <!--    Возможно нужно будет поменять название биндингов на другие, пока так    -->
                                         <Image Source="{Binding EventImage}"/>
                                         <TextBlock Grid.Row="1" Text="{Binding EventTitle}"/>
                                     </StackPanel>
 
                                 </Border>
+                               
                             </ItemContainerTemplate>
                         </ListBox.ItemTemplate>
                         <!--  Здесь в ItemSource будем добавлять данные  -->

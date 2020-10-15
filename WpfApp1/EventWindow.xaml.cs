@@ -10,21 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace WpfApp1
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для EventWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class EventWindow : Window
     {
-        public MainWindow()
+        public EventWindow()
         {
             InitializeComponent();
         }
-
         private void ButtonMinimizeWindow_Click(object sender, RoutedEventArgs e)
         {
             WindowState = WindowState.Minimized;
@@ -38,19 +36,6 @@ namespace WpfApp1
         private void Header_MouseDown(object sender, MouseButtonEventArgs e)
         {
             this.DragMove();
-        }
-
-        private void SignIn_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            Login login = new Login();
-            login.Show();
-
-        }
-
-        private void StackPanel_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            EventWindow ew = new EventWindow();
-            ew.Show();
         }
     }
 }
