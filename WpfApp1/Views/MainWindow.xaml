@@ -128,7 +128,7 @@
             <!-- Content -->
             <Grid x:Name="Content" Grid.Row="2">
                 <StackPanel  Background="Gainsboro">
-                    <ListBox>
+                    <ListBox ItemsSource="{Binding Events}">
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <WrapPanel HorizontalAlignment="Center" Orientation="Horizontal"/>
@@ -141,8 +141,8 @@
                                          MouseDown="StackPanel_MouseDown">
                                     <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" >
                                         <!--    Возможно нужно будет поменять название биндингов на другие, пока так    -->
-                                        <Image Source="{Binding EventImage}"/>
-                                        <TextBlock Grid.Row="1" Text="{Binding EventTitle}"/>
+                                        <Image Source="{Binding Path=Poster}" Stretch="Fill"/>
+                                        <TextBlock Grid.Row="1" Text="{Binding Path=Title}"/>
                                     </StackPanel>
 
                                 </Border>
@@ -150,10 +150,7 @@
                             </ItemContainerTemplate>
                         </ListBox.ItemTemplate>
                         <!--  Здесь в ItemSource будем добавлять данные  -->
-                        <ListItem/>
-                        <ListItem/>
-                        <ListItem/>
-                        <ListItem/>
+                        
 
                     </ListBox>
 

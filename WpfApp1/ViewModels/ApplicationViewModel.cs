@@ -13,13 +13,13 @@ namespace WpfApp1
     public class ApplicationViewModel : INotifyPropertyChanged
     {
         EventFinderContext db;
-        IEnumerable<Event> Events { get; set; }
+        public ObservableCollection<Event> Events { get; set; }
 
         public ApplicationViewModel()
         {
             db = new EventFinderContext();
             db.Event.Load();
-            Events = db.Event.Local.ToBindingList();
+            Events = new ObservableCollection<Event>(db.Event.Local.ToList());
         }
 
 
