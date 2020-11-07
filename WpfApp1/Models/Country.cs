@@ -1,4 +1,4 @@
-namespace WpfApp1.Models
+namespace WpfApp1
 {
     using System;
     using System.Collections.Generic;
