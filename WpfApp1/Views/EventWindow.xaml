@@ -50,11 +50,12 @@
                     <ColumnDefinition Width="0.7*"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <!--<Image Grid.Column="0"/>-->
-                <TextBlock Margin="10" FontSize="32">Image</TextBlock>
+                <!-- Здесь сделать листбокс, чтобы сделать привязку по данным -->
+                <Image Grid.Column="0" Margin="10" Source="{Binding Path=Poster}"/>
+                <!--<TextBlock Margin="10" FontSize="32">Image</TextBlock>-->
                 <StackPanel Grid.Column="1">
-                    <TextBlock Margin="10" FontSize="32">Title</TextBlock>
-                    <TextBlock Margin="10" FontSize="24">Description bla bla bla</TextBlock>
+                    <TextBlock Margin="10" FontSize="32" Text="{Binding Path=Title}">Title</TextBlock>
+                    <TextBlock Margin="10" FontSize="24" Text="{Binding Path=Description}">Description bla bla bla</TextBlock>
                 </StackPanel>
             </Grid>
 

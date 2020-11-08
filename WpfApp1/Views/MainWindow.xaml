@@ -137,7 +137,7 @@
                         </ListBox.ItemsPanel>
                         <ListBox.ItemTemplate>
                             <ItemContainerTemplate>
-                                <Border  Background="#FFFFFF" Margin="5" BorderThickness="1" BorderBrush="DarkGray" Height="300" Width="250"
+                                <Border Background="#FFFFFF" Margin="5" BorderThickness="1" BorderBrush="DarkGray" Height="300" Width="250"
                                          MouseDown="StackPanel_MouseDown">
                                     <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" >
                                         <!--    Возможно нужно будет поменять название биндингов на другие, пока так    -->
