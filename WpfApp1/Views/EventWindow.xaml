@@ -50,7 +50,7 @@
                     <ColumnDefinition Width="0.7*"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <!-- Здесь сделать листбокс, чтобы сделать привязку по данным -->
+                <!-- Здесь сделать привязку по данным -->
                 <Image Grid.Column="0" Margin="10" Source="{Binding Path=Poster}"/>
                 <!--<TextBlock Margin="10" FontSize="32">Image</TextBlock>-->
                 <StackPanel Grid.Column="1">

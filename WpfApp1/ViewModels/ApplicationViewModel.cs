@@ -42,12 +42,13 @@ namespace WpfApp1
                         string title = obj.ToString();
                         if(title.Length > 0)
                         {
-                            Event ev = db.Event.Local.ToList().Find(e => e.Title == title);
+                            Event ev = Events.ToList().Find(e => e.Title == title);
                             EventWindow eventWindow = new EventWindow();
                         }
                     }));
             }
         }
+        
 
         #region PropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
