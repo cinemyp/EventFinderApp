@@ -1,15 +1,20 @@
-﻿<UserControl x:Class="WpfApp1.Views.EventPage"
+﻿<UserControl x:Class="WpfApp1.EventPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WpfApp1.Views"
+        xmlns:local="clr-namespace:WpfApp1"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Background="{DynamicResource MaterialDesignPaper}"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         d:DesignHeight="843"
         d:DesignWidth="1202">
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="Black"/>
+        </Style>
+    </UserControl.Resources>
     <Grid>
         <Grid Grid.Row="1" Background="Gainsboro">
             <Grid Margin="60 0">
@@ -18,11 +23,12 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <!-- Здесь сделать привязку по данным -->
-                <Image Grid.Column="0" Margin="10" Source="{Binding ElementName=CurrentEvent, Path=Poster}"/>
+                <!-- Сделать нормальный размер -->
+                <Image VerticalAlignment="Top" Grid.Column="0" Margin="10" Source="{Binding CurrentEvent.Poster}"/>
                 <!--<TextBlock Margin="10" FontSize="32">Image</TextBlock>-->
                 <StackPanel Grid.Column="1">
-                    <TextBlock Margin="10" FontSize="32" Text="{Binding ElementName=CurrentEvent, Path=Title}">Title</TextBlock>
-                    <TextBlock Margin="10" FontSize="24" Text="{Binding ElementName=CurrentEvent, Path=Description}">Description bla bla bla</TextBlock>
+                    <TextBlock Margin="10" FontSize="32" Text="{Binding CurrentEvent.Title}"/>
+                    <TextBlock Margin="10" FontSize="24" Text="{Binding CurrentEvent.Description}"/>
                 </StackPanel>
             </Grid>
 

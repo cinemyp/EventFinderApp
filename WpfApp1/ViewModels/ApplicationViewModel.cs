@@ -11,18 +11,7 @@ namespace WpfApp1
     {
         
         private IPageViewModel _currentPageViewModel;
-        private List<IPageViewModel> _pageViewModels;
-        public List<IPageViewModel> PageViewModels
-        {
-            get
-            {
-                if (_pageViewModels == null)
-                    _pageViewModels = new List<IPageViewModel>();
-
-                return _pageViewModels;
-            }
-        }
-
+        private IPageViewModel _previousPageViewModel;
         public IPageViewModel CurrentPageViewModel
         {
             get
@@ -44,15 +33,11 @@ namespace WpfApp1
         
         public ApplicationViewModel()
         {
-            PageViewModels.Add(new OverviewViewModel(this));
-            PageViewModels.Add(new EventViewModel());
-
-            CurrentPageViewModel = PageViewModels[0];
-            
+            CurrentPageViewModel = new OverviewViewModel(this);
         }
-        public void ChangePage()
+        public void OpenEvent(Event ev)
         {
-            CurrentPageViewModel = PageViewModels[1];
+            CurrentPageViewModel = new EventViewModel(ev);
         }
         #region PropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;

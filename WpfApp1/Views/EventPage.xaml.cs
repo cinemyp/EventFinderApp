@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WpfApp1.Views
+namespace WpfApp1
 {
     /// <summary>
     /// Логика взаимодействия для EventPage.xaml

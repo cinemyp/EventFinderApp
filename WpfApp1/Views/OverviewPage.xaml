@@ -9,7 +9,7 @@
       
     <Grid>
         <Grid x:Name="Content">
-            
+
             <StackPanel  Background="Gainsboro">
                 <ListBox ItemsSource="{Binding Events}">
                     <ListBox.ItemsPanel>

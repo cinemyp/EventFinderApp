@@ -13,15 +13,7 @@ namespace WpfApp1
         EventFinderContext db;
         IPageManager pm;
         public ObservableCollection<Event> Events { get; set; }
-        private Event currentEvent;
-        public Event CurrentEvent
-        {
-            get { return currentEvent; }
-            set
-            {
-                currentEvent = value;
-            }
-        }
+        
 
         private RelayCommand openEvent;
         public RelayCommand OpenEvent
@@ -34,10 +26,7 @@ namespace WpfApp1
                         string title = obj.ToString();
                         Event ev = Events.ToList().Find(e => e.Title == title);
                         if (ev != null)
-                        {
-                            CurrentEvent = ev;
-                            pm.ChangePage();
-                        }
+                            pm.OpenEvent(ev);
                     }
                 ));
             }
@@ -46,8 +35,10 @@ namespace WpfApp1
         {
             db = new EventFinderContext();
             Events = new ObservableCollection<Event>(db.Event.ToList());
+
             this.pm = pm;
         }
+
 
         #region PropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;

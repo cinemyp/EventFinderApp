@@ -47,6 +47,9 @@
         <DataTemplate DataType="{x:Type local:OverviewViewModel}">
             <local:OverviewPage/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type local:EventViewModel}">
+            <local:EventPage/>
+        </DataTemplate>
     </Window.Resources>
 
     <Window.Triggers>
