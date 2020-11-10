@@ -1,0 +1,42 @@
+﻿<UserControl x:Class="WpfApp1.OverviewPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfApp1"
+      mc:Ignorable="d" 
+      d:DesignHeight="843" d:DesignWidth="1202">
+      
+    <Grid>
+        <Grid x:Name="Content">
+            
+            <StackPanel  Background="Gainsboro">
+                <ListBox ItemsSource="{Binding Events}">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel HorizontalAlignment="Center" Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <ListBox.ItemTemplate>
+
+                        <DataTemplate>
+
+                            <Button Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBox}}, Path=DataContext.OpenEvent}" CommandParameter="{Binding Path=Title}"
+                                BorderBrush="Transparent" Background="Transparent" Foreground="Black" Padding="0" Width="250" Height="300"
+                                     >
+                                <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left">
+                                    <Image MaxHeight="280" Source="{Binding Path=Poster}" Stretch="Fill"/>
+                                    <TextBlock  Text="{Binding Path=Title}"/>
+                                </StackPanel>
+
+                            </Button>
+                        </DataTemplate>
+
+                    </ListBox.ItemTemplate>
+                    <!--  Здесь в ItemSource будем добавлять данные  -->
+
+                </ListBox>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

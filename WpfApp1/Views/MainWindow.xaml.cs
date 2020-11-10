@@ -26,8 +26,6 @@ namespace WpfApp1
             DataContext = new ApplicationViewModel();
         }
 
-        
-
         private void ButtonMinimizeWindow_Click(object sender, RoutedEventArgs e)
         {
             WindowState = WindowState.Minimized;
@@ -52,8 +50,7 @@ namespace WpfApp1
 
         private void StackPanel_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            EventWindow ew = new EventWindow();
-            ew.Show();
+            
         }
     }
 }

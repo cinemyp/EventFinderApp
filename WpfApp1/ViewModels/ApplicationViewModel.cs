@@ -1,55 +1,59 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Data.Entity;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+using WpfApp1.ViewModels;
+using WpfApp1.ViewModels.Interfaces;
 
 namespace WpfApp1
 {
-    public class ApplicationViewModel : INotifyPropertyChanged
+    public class ApplicationViewModel : INotifyPropertyChanged, IPageManager
     {
-        EventFinderContext db;
-        public ObservableCollection<Event> Events { get; set; }
-        private Event openedEvent;
-        public Event OpenedEvent
-        {
-            get { return openedEvent; }
-            set
-            {
-                OpenedEvent = value;
-                OnPropertyChanged("OpenedEvent");
-            }
-        }
-        public ApplicationViewModel()
-        {
-            db = new EventFinderContext();
-            db.Event.Load();
-            Events = new ObservableCollection<Event>(db.Event.Local.ToList());
-        }
-
-        private RelayCommand openEventCommand;
-        public RelayCommand OpenEventCommand
+        
+        private IPageViewModel _currentPageViewModel;
+        private List<IPageViewModel> _pageViewModels;
+        public List<IPageViewModel> PageViewModels
         {
             get
             {
-                return openEventCommand ??
-                    (openEventCommand = new RelayCommand(obj =>
-                    {
-                        string title = obj.ToString();
-                        if(title.Length > 0)
-                        {
-                            Event ev = Events.ToList().Find(e => e.Title == title);
-                            EventWindow eventWindow = new EventWindow();
-                        }
-                    }));
+                if (_pageViewModels == null)
+                    _pageViewModels = new List<IPageViewModel>();
+
+                return _pageViewModels;
+            }
+        }
+
+        public IPageViewModel CurrentPageViewModel
+        {
+            get
+            {
+                return _currentPageViewModel;
+            }
+            set
+            {
+                if (_currentPageViewModel != value)
+                {
+                    _currentPageViewModel = value;
+                    OnPropertyChanged("CurrentPageViewModel");
+                }
             }
         }
         
 
+        
+        
+        public ApplicationViewModel()
+        {
+            PageViewModels.Add(new OverviewViewModel(this));
+            PageViewModels.Add(new EventViewModel());
+
+            CurrentPageViewModel = PageViewModels[0];
+            
+        }
+        public void ChangePage()
+        {
+            CurrentPageViewModel = PageViewModels[1];
+        }
         #region PropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName]string prop = "")

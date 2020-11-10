@@ -12,7 +12,6 @@
         AllowsTransparency="False"
         ResizeMode="CanMinimize" Title="MainWindow" Height="933" Width="1202">
     <Window.Resources>
-
         <Style TargetType="TextBlock">
             <Setter Property="Foreground" Value="#FFFFFF"/>
         </Style>
@@ -44,7 +43,10 @@
                 <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
-    
+
+        <DataTemplate DataType="{x:Type local:OverviewViewModel}">
+            <local:OverviewPage/>
+        </DataTemplate>
     </Window.Resources>
 
     <Window.Triggers>
@@ -55,7 +57,7 @@
             <BeginStoryboard Storyboard="{StaticResource MenuClose}"></BeginStoryboard>
         </EventTrigger>
     </Window.Triggers>
-
+    
     <Grid>
         <!-- Main Window -->
         <Grid>
@@ -126,36 +128,7 @@
                 </ComboBox>
             </StackPanel>
             <!-- Content -->
-            <Grid x:Name="Content" Grid.Row="2">
-                <StackPanel  Background="Gainsboro">
-                    <ListBox ItemsSource="{Binding Events}">
-                        <ListBox.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <WrapPanel HorizontalAlignment="Center" Orientation="Horizontal"/>
-                            </ItemsPanelTemplate>
-
-                        </ListBox.ItemsPanel>
-                        <ListBox.ItemTemplate>
-                            <ItemContainerTemplate>
-                                <Border Background="#FFFFFF" Margin="5" BorderThickness="1" BorderBrush="DarkGray" Height="300" Width="250"
-                                         MouseDown="StackPanel_MouseDown">
-                                    <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" >
-                                        <!--    Возможно нужно будет поменять название биндингов на другие, пока так    -->
-                                        <Image Source="{Binding Path=Poster}" Stretch="Fill"/>
-                                        <TextBlock Grid.Row="1" Text="{Binding Path=Title}"/>
-                                    </StackPanel>
-
-                                </Border>
-                               
-                            </ItemContainerTemplate>
-                        </ListBox.ItemTemplate>
-                        <!--  Здесь в ItemSource будем добавлять данные  -->
-                        
-
-                    </ListBox>
-
-                </StackPanel>
-            </Grid>
+            <ContentControl Grid.Row="2" Content="{Binding CurrentPageViewModel}"/>
         </Grid>
         <!-- Menu Content -->
         <Grid Background="#FFFFFF" x:Name="GridMenu" Width="0" Height="933" HorizontalAlignment="Left">
