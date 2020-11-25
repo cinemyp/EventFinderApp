@@ -27,10 +27,24 @@ namespace WpfApp1
                 }
             }
         }
-        
 
-        
-        
+
+        private RelayCommand signIn;
+        public RelayCommand SignIn
+        {
+            get
+            {
+                return signIn ??
+                    (signIn = new RelayCommand(obj =>
+                    {
+                        Login login = new Login();
+                        login.Show();
+                        //TODO: брать отсюда данные и проверять на вход
+                    }
+                ));
+            }
+        }
+
         public ApplicationViewModel()
         {
             CurrentPageViewModel = new OverviewViewModel(this);

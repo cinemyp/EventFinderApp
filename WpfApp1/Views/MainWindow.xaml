@@ -29,6 +29,9 @@
 
         <Style x:Key="MenuItem">
             <Setter Property="Control.Height" Value="45"/>
+            <Setter Property="Control.Background" Value="Transparent"/>
+            <Setter Property="Control.BorderBrush" Value="Transparent"/>
+            <Setter Property="Control.HorizontalContentAlignment" Value="Left"/>
         </Style>
 
         <Storyboard x:Key="MenuOpen">
@@ -149,30 +152,39 @@
                 <TextBlock VerticalAlignment="Center" Foreground="#212121" HorizontalAlignment="Right" Margin="0 0 15 0" Text="Иваново"/>
             </Grid>
 
-            <StackPanel Grid.Row="1" x:Name="FilterType">
-                <StackPanel Style="{StaticResource MenuItem}" Orientation="Horizontal">
+            <Grid Height="160" Grid.Row="1" x:Name="FilterType" VerticalAlignment="Top" >
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Button Style="{StaticResource MenuItem}">
                     <TextBlock Style="{StaticResource MenuItemText}">Все</TextBlock>
-                </StackPanel>
-                <StackPanel Style="{StaticResource MenuItem}" Orientation="Horizontal">
-                    <TextBlock Style="{StaticResource MenuItemText}">Кино
-                    </TextBlock>
-                </StackPanel>
-                <StackPanel Style="{StaticResource MenuItem}" Orientation="Horizontal">
+                </Button>
+                <Button Grid.Row="1" Style="{StaticResource MenuItem}" >
+                    <TextBlock Style="{StaticResource MenuItemText}">Кино</TextBlock>
+                </Button>
+                <Button Grid.Row="2" Style="{StaticResource MenuItem}">
                     <TextBlock Style="{StaticResource MenuItemText}">Театр</TextBlock>
-                </StackPanel>
-                <StackPanel Style="{StaticResource MenuItem}" Orientation="Horizontal">
+                </Button>
+                <Button Grid.Row="3" Style="{StaticResource MenuItem}">
                     <TextBlock Style="{StaticResource MenuItemText}">Концерты</TextBlock>
-                </StackPanel>
-            </StackPanel>
+                </Button>
+            </Grid>
 
-            <StackPanel x:Name="Footer" Grid.Row="2" VerticalAlignment="Bottom" Margin="0 0 0 35">
-                <StackPanel Style="{StaticResource MenuItem}" Orientation="Horizontal">
+            <Grid x:Name="Footer" Grid.Row="2" VerticalAlignment="Bottom" Margin="0 0 0 35">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Button Grid.Row="0" Style="{StaticResource MenuItem}" >
                     <TextBlock Style="{StaticResource MenuItemText}"><materialDesign:PackIcon Margin="0 0 15 0"  Kind="Favorite"/>Избранное</TextBlock>
-                </StackPanel>
-                <StackPanel x:Name="SignIn" MouseDown="SignIn_MouseDown" Style="{StaticResource MenuItem}" Orientation="Horizontal">
+                </Button>
+                <Button Grid.Row="1" Style="{StaticResource MenuItem}" Command="{Binding SignIn}">
                     <TextBlock Style="{StaticResource MenuItemText}"><materialDesign:PackIcon Margin="0 0 15 0"  Kind="Login"/>Войти</TextBlock>
-                </StackPanel>
-            </StackPanel>
+                </Button>
+            </Grid>
 
         </Grid>
     </Grid>
