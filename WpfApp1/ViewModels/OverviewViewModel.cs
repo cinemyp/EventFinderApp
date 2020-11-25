@@ -5,12 +5,13 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using WpfApp1.ViewModels.Interfaces;
+using DAL;
 
 namespace WpfApp1
 {
     public class OverviewViewModel : INotifyPropertyChanged, IPageViewModel
     {
-        EventFinderContext db;
+        TransactionManager db;
         IPageManager pm;
         public ObservableCollection<Event> Events { get; set; }
         
@@ -33,8 +34,8 @@ namespace WpfApp1
         }
         public OverviewViewModel(IPageManager pm)
         {
-            db = new EventFinderContext();
-            Events = new ObservableCollection<Event>(db.Event.ToList());
+            db = new TransactionManager();
+            Events = new ObservableCollection<Event>(db.GetEvents());
 
             this.pm = pm;
         }

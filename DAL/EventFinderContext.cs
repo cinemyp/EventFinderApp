@@ -1,11 +1,11 @@
-namespace WpfApp1
+namespace DAL
 {
     using System;
     using System.Data.Entity;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
-    public partial class EventFinderContext : DbContext
+    partial class EventFinderContext : DbContext
     {
         public EventFinderContext()
             : base("name=EventFinderContext")

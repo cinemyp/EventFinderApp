@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using WpfApp1.ViewModels;
 using WpfApp1.ViewModels.Interfaces;
+using DAL;
 
 namespace WpfApp1
 {

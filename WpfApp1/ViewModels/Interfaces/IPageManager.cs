@@ -8,6 +8,6 @@ namespace WpfApp1.ViewModels.Interfaces
 {
     public interface IPageManager
     {
-        void OpenEvent(Event ev);
+        void OpenEvent(DAL.Event ev);
     }
 }
