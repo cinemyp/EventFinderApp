@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace WpfApp1
 {
+    public enum PageType { Overview, Event }
     public interface IPageViewModel
     {
+        PageType GetType();
     }
 }

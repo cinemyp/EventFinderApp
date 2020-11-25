@@ -28,6 +28,10 @@ namespace DAL
                 .Select(i => i.Session).FirstOrDefault().ToList();
         }
 
+        public List<Category> GetCategories()
+        {
+            return db.Category.ToList();
+        }
 
     }
 }

@@ -5,12 +5,15 @@ using System.Runtime.CompilerServices;
 using WpfApp1.ViewModels;
 using WpfApp1.ViewModels.Interfaces;
 using DAL;
+using System.Collections.ObjectModel;
 
 namespace WpfApp1
 {
+    
     public class ApplicationViewModel : INotifyPropertyChanged, IPageManager
     {
-        
+        TransactionManager tm;
+
         private IPageViewModel _currentPageViewModel;
         public IPageViewModel CurrentPageViewModel
         {
@@ -27,7 +30,29 @@ namespace WpfApp1
                 }
             }
         }
+        private OverviewViewModel OverviewViewModel;
 
+        public ObservableCollection<Category> Categories { get; set; }
+
+        private Category categoryFilter;
+        public Category CategoryFilter
+        {
+            get { return categoryFilter; }
+            set
+            {
+                categoryFilter = value;
+
+                if (CurrentPageViewModel.GetType() == PageType.Event)
+                    CurrentPageViewModel = new OverviewViewModel(tm, this);
+
+                OverviewViewModel.FilterByCategory(categoryFilter);
+
+                //TODO: Фильтрация
+                //если текущая вьюмодель эта, то создаем новую ивент вью модель 
+                //функция фильтрации
+                //возможно изменить интерфейс, хз как сделать обособленно
+            }
+        }
 
         private RelayCommand signIn;
         public RelayCommand SignIn
@@ -45,24 +70,15 @@ namespace WpfApp1
             }
         }
 
-        private RelayCommand filterEvents;
-        public RelayCommand FilterEvents
-        {
-            get
-            {
-                return filterEvents ??
-                    (filterEvents = new RelayCommand(obj =>
-                    {
-                        
-                    }
-                ));
-            }
-        }
 
         public ApplicationViewModel()
         {
-            CurrentPageViewModel = new OverviewViewModel(this);
+            tm = new TransactionManager();
+            OverviewViewModel = new OverviewViewModel(tm, this);
+            CurrentPageViewModel = OverviewViewModel;
+            Categories = new ObservableCollection<Category>(tm.GetCategories());
         }
+
         public void OpenEvent(Event ev)
         {
             CurrentPageViewModel = new EventViewModel(ev);

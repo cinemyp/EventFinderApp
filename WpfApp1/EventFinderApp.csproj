@@ -74,6 +74,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ViewModels\EventViewModel.cs" />
+    <Compile Include="ViewModels\Interfaces\IEventFilter.cs" />
     <Compile Include="ViewModels\Interfaces\IPageManager.cs" />
     <Compile Include="ViewModels\Interfaces\IPageViewModel.cs" />
     <Compile Include="ViewModels\OverviewViewModel.cs" />

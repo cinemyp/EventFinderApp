@@ -21,12 +21,16 @@ namespace WpfApp1
                 OnPropertyChanged("CurrentEvent");
             }
         }
-
+        
         public EventViewModel(Event ev)
         {
             CurrentEvent = ev;
         }
 
+        PageType IPageViewModel.GetType()
+        {
+            return PageType.Event;
+        }
         #region PropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName]string prop = "")
@@ -34,6 +38,8 @@ namespace WpfApp1
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
+
+
         #endregion
     }
 }

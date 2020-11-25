@@ -29,8 +29,7 @@
 
         <Style x:Key="MenuItem">
             <Setter Property="Control.Height" Value="45"/>
-            <Setter Property="Control.Background" Value="Transparent"/>
-            <Setter Property="Control.BorderBrush" Value="Transparent"/>
+            
             <Setter Property="Control.HorizontalContentAlignment" Value="Left"/>
         </Style>
 
@@ -62,6 +61,7 @@
         <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonCloseMenu">
             <BeginStoryboard Storyboard="{StaticResource MenuClose}"></BeginStoryboard>
         </EventTrigger>
+        
     </Window.Triggers>
     
     <Grid>
@@ -137,7 +137,7 @@
             <ContentControl Grid.Row="2" Content="{Binding CurrentPageViewModel}"/>
         </Grid>
         <!-- Menu Content -->
-        <Grid Background="#FFFFFF" x:Name="GridMenu" Width="0" Height="933" HorizontalAlignment="Left">
+        <Grid Background="#FFFFFF" x:Name="GridMenu" Width="250" Height="933" HorizontalAlignment="Left">
             <Grid.RowDefinitions>
                 <RowDefinition Height="60"/>
                 <RowDefinition/>
@@ -152,27 +152,23 @@
                 <TextBlock VerticalAlignment="Center" Foreground="#212121" HorizontalAlignment="Right" Margin="0 0 15 0" Text="Иваново"/>
             </Grid>
 
-            <Grid Height="160" Grid.Row="1" x:Name="FilterType" VerticalAlignment="Top" >
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <Button  Style="{StaticResource MenuItem}">
-                    <TextBlock Style="{StaticResource MenuItemText}">Все</TextBlock>
-                </Button>
-                <Button Grid.Row="1" Style="{StaticResource MenuItem}" >
-                    <TextBlock Style="{StaticResource MenuItemText}">Кино</TextBlock>
-                </Button>
-                <Button Grid.Row="2" Style="{StaticResource MenuItem}">
-                    <TextBlock Style="{StaticResource MenuItemText}">Театр</TextBlock>
-                </Button>
-                <Button Grid.Row="3" Style="{StaticResource MenuItem}">
-                    <TextBlock Style="{StaticResource MenuItemText}">Концерты</TextBlock>
-                </Button>
-            </Grid>
-
+            <ListBox Grid.Row="1" VerticalAlignment="Top" ItemsSource="{Binding Categories}" SelectedItem="{Binding CategoryFilter}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel x:Name="Filter" Orientation="Horizontal" Style="{StaticResource MenuItem}">
+                            <TextBlock Text="{Binding Path=Name}" Style="{StaticResource MenuItemText}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+                <ListBox.Triggers>
+                    <EventTrigger RoutedEvent="PreviewMouseDown">
+                        <EventTrigger.Actions>
+                            <BeginStoryboard Storyboard="{StaticResource MenuClose}"></BeginStoryboard>
+                        </EventTrigger.Actions>
+                    </EventTrigger>
+                </ListBox.Triggers>
+            </ListBox>
+            
             <Grid x:Name="Footer" Grid.Row="2" VerticalAlignment="Bottom" Margin="0 0 0 35">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
