@@ -159,7 +159,7 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <Button Style="{StaticResource MenuItem}">
+                <Button  Style="{StaticResource MenuItem}">
                     <TextBlock Style="{StaticResource MenuItemText}">Все</TextBlock>
                 </Button>
                 <Button Grid.Row="1" Style="{StaticResource MenuItem}" >

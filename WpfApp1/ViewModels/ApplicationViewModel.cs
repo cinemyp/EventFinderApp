@@ -11,7 +11,6 @@ namespace WpfApp1
     {
         
         private IPageViewModel _currentPageViewModel;
-        private IPageViewModel _previousPageViewModel;
         public IPageViewModel CurrentPageViewModel
         {
             get
@@ -40,6 +39,20 @@ namespace WpfApp1
                         Login login = new Login();
                         login.Show();
                         //TODO: брать отсюда данные и проверять на вход
+                    }
+                ));
+            }
+        }
+
+        private RelayCommand filterEvents;
+        public RelayCommand FilterEvents
+        {
+            get
+            {
+                return filterEvents ??
+                    (filterEvents = new RelayCommand(obj =>
+                    {
+                        
                     }
                 ));
             }
