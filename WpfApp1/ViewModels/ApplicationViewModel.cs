@@ -8,7 +8,6 @@ using WpfApp1.ViewModels.Interfaces;
 
 namespace WpfApp1
 {
-    
     public class ApplicationViewModel : INotifyPropertyChanged, IPageManager
     {
         TransactionManager tm;
@@ -30,6 +29,7 @@ namespace WpfApp1
             }
         }
         private OverviewViewModel OverviewViewModel;
+        public ObservableCollection<Date> Dates { get; set; }
 
         public ObservableCollection<CategoryModel> Categories { get; set; }
 
@@ -49,6 +49,26 @@ namespace WpfApp1
                 
                 //функция фильтрации
                 //возможно изменить интерфейс, хз как сделать обособленно
+            }
+        }
+
+        private Date dateFilter;
+        public Date DateFilter
+        {
+            get { return dateFilter; }
+            set
+            {
+                dateFilter = value;
+
+                //TODO: нужно убирать фильтр по дате наступления мероприятия, когда открыто какое-то мероприятие
+                //=> проверка не нужна
+                //оставил, пока не сделал
+                if (CurrentPageViewModel.GetType() == PageType.Event)
+                    CurrentPageViewModel = OverviewViewModel;
+
+                OverviewViewModel.FilterByDate(dateFilter);
+
+                OnPropertyChanged("DateFilter");
             }
         }
 
@@ -72,9 +92,10 @@ namespace WpfApp1
         public ApplicationViewModel()
         {
             tm = new TransactionManager();
+            Categories = new ObservableCollection<CategoryModel>(tm.GetCategories());
+            InitDateFilterContent();
             OverviewViewModel = new OverviewViewModel(tm, this);
             CurrentPageViewModel = OverviewViewModel;
-            Categories = new ObservableCollection<CategoryModel>(tm.GetCategories());
         }
 
         public void OpenEvent(EventModel ev)
@@ -83,6 +104,16 @@ namespace WpfApp1
             categoryFilter = null;
             OnPropertyChanged("CategoryFilter");
         }
+
+        private void InitDateFilterContent()
+        {
+            Dates = new ObservableCollection<Date>();
+            for(int i = 0; i < 7; i++)
+            {
+                Dates.Add(new Date((DateValue)i));
+            }
+        }
+
         #region PropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName]string prop = "")

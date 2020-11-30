@@ -111,35 +111,19 @@
             </Grid>
             <!-- Фильтр даты для фильтрации списка мероприятий-->
             <StackPanel x:Name="FilterDate" Grid.Row="1" Background="#FFFFFF">
-                <ComboBox HorizontalAlignment="Left" Width="300">
-                    <ComboBoxItem IsSelected="True">
-                        <TextBlock Style="{StaticResource CBIText}" Selector.IsSelected="True">ближайшее время</TextBlock>
-                    </ComboBoxItem>
-                    <ComboBoxItem>
-                        <TextBlock Style="{StaticResource CBIText}">сегодня</TextBlock>
-                    </ComboBoxItem>
-                    <ComboBoxItem>
-                        <TextBlock Style="{StaticResource CBIText}">завтра</TextBlock>
-                    </ComboBoxItem>
-                    <ComboBoxItem>
-                        <TextBlock Style="{StaticResource CBIText}">выходные</TextBlock>
-                    </ComboBoxItem>
-                    <ComboBoxItem>
-                        <TextBlock Style="{StaticResource CBIText}">неделя</TextBlock>
-                    </ComboBoxItem>
-                    <ComboBoxItem>
-                        <TextBlock Style="{StaticResource CBIText}">месяц</TextBlock>
-                    </ComboBoxItem>
-                    <ComboBoxItem>
-                        <TextBlock Style="{StaticResource CBIText}">выберите дату</TextBlock>
-                    </ComboBoxItem>
+                <ComboBox HorizontalAlignment="Left" HorizontalContentAlignment="Center" Width="300" ItemsSource="{Binding Dates}" SelectedItem="{Binding DateFilter}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=Name}" Style="{StaticResource CBIText}"></TextBlock>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
                 </ComboBox>
             </StackPanel>
             <!-- Content -->
             <ContentControl Grid.Row="2" Content="{Binding CurrentPageViewModel}"/>
         </Grid>
         <!-- Menu Content -->
-        <Grid Background="#FFFFFF" x:Name="GridMenu" Width="250" Height="933" HorizontalAlignment="Left">
+        <Grid Background="#FFFFFF" x:Name="GridMenu" Width="0" Height="933" HorizontalAlignment="Left">
             <Grid.RowDefinitions>
                 <RowDefinition Height="60"/>
                 <RowDefinition/>

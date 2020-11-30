@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WpfApp1.Models
 {
-    public class EventModel
+    public class EventModel : IEquatable<EventModel>
     {
         public int ID { get; set; }
 
@@ -38,6 +38,29 @@ namespace WpfApp1.Models
             RestrictionId = e.RestrictionId;
         }
 
+        public bool Equals(EventModel other)
+        {
+            //Check whether the compared object is null.
+            if (Object.ReferenceEquals(other, null)) return false;
+
+            //Check whether the compared object references the same data.
+            if (Object.ReferenceEquals(this, other)) return true;
+
+            //Check whether the products' properties are equal.
+            return ID.Equals(other.ID) && Title.Equals(other.Title);
+        }
+        public override int GetHashCode()
+        {
+
+            //Get hash code for the Name field if it is not null.
+            int hashProductName = Title == null ? 0 : Title.GetHashCode();
+
+            //Get hash code for the Code field.
+            int hashProductCode = ID.GetHashCode();
+
+            //Calculate the hash code for the product.
+            return hashProductName ^ hashProductCode;
+        }
         //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         //public virtual ICollection<EventsOrganizers> EventsOrganizers { get; set; }
 

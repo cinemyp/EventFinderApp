@@ -1,14 +1,10 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Data.Entity;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Windows;
 using WpfApp1.ViewModels.Interfaces;
-using DAL;
-using System.Windows.Documents;
-using System.Collections.Generic;
 using WpfApp1.Models;
+using System;
 
 namespace WpfApp1
 {
@@ -16,8 +12,6 @@ namespace WpfApp1
     {
         TransactionManager tm;
         IPageManager pm;
-
-        private List<EventModel> AllEvents;
 
         private ObservableCollection<EventModel> events;
         public ObservableCollection<EventModel> Events
@@ -30,7 +24,6 @@ namespace WpfApp1
             }
         }
         
-
         private RelayCommand openEvent;
         public RelayCommand OpenEvent
         {
@@ -50,8 +43,7 @@ namespace WpfApp1
         public OverviewViewModel(TransactionManager tm, IPageManager pm)
         {
             this.tm = tm;
-            AllEvents = tm.GetEvents();
-            Events = new ObservableCollection<EventModel>(AllEvents);
+            Events = new ObservableCollection<EventModel>(tm.GetEvents());
             this.pm = pm;
         }
 
@@ -61,12 +53,16 @@ namespace WpfApp1
             switch(category)
             {
                 case 1: //если мы выбрали категорию "Все", тк ни одно событие не имеет категорию "Все"
-                    Events = new ObservableCollection<EventModel>(AllEvents);
+                    Events = new ObservableCollection<EventModel>(tm.GetEvents());
                     break;
                 default:
-                    Events = new ObservableCollection<EventModel>(AllEvents.Where(e => e.CategoryId == category));
+                    Events = new ObservableCollection<EventModel>(tm.GetEvents().Where(e => e.CategoryId == category));
                     break;
             }
+        }
+        public void FilterByDate(Date d)
+        {
+            Events = new ObservableCollection<EventModel>(tm.GetEvents(d));
         }
 
         PageType IPageViewModel.GetType()

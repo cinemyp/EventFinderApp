@@ -76,10 +76,11 @@
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\City.cs" />
     <Compile Include="Models\Country.cs" />
+    <Compile Include="Models\Date.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\Session.cs" />
     <Compile Include="Models\Type.cs" />
-    <Compile Include="Util\TransactionManager.cs" />
+    <Compile Include="Models\TransactionManager.cs" />
     <Compile Include="ViewModels\EventViewModel.cs" />
     <Compile Include="ViewModels\Interfaces\IEventFilter.cs" />
     <Compile Include="ViewModels\Interfaces\IPageManager.cs" />
