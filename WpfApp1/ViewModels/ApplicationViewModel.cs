@@ -43,12 +43,11 @@ namespace WpfApp1
                 categoryFilter = value;
 
                 if (CurrentPageViewModel.GetType() == PageType.Event)
-                    CurrentPageViewModel = new OverviewViewModel(tm, this);
+                    CurrentPageViewModel = OverviewViewModel;
 
                 OverviewViewModel.FilterByCategory(categoryFilter);
-
-                //TODO: Фильтрация
-                //если текущая вьюмодель эта, то создаем новую ивент вью модель 
+                OnPropertyChanged("CategoryFilter");
+                
                 //функция фильтрации
                 //возможно изменить интерфейс, хз как сделать обособленно
             }
@@ -82,6 +81,8 @@ namespace WpfApp1
         public void OpenEvent(Event ev)
         {
             CurrentPageViewModel = new EventViewModel(ev);
+            categoryFilter = null;
+            OnPropertyChanged("CategoryFilter");
         }
         #region PropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;

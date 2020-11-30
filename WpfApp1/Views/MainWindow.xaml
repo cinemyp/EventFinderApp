@@ -73,7 +73,8 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <!-- Header -->
-            <Grid x:Name="Header" MouseDown="Header_MouseDown" Background="#3F51B5">
+            <Grid x:Name="Header" VerticalAlignment="Top" MouseDown="Header_MouseDown" Background="#3F51B5">
+
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="60"/>
                     <ColumnDefinition/>
@@ -106,6 +107,7 @@
                         <materialDesign:PackIcon HorizontalAlignment="Center" Kind="WindowClose"/>
                     </Button>
                 </StackPanel>
+
             </Grid>
             <!-- Фильтр даты для фильтрации списка мероприятий-->
             <StackPanel x:Name="FilterDate" Grid.Row="1" Background="#FFFFFF">
@@ -143,15 +145,17 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
+            <!-- Кнопка закрытия -->
             <Grid Grid.Row="0">
                 <Button x:Name="ButtonCloseMenu" HorizontalAlignment="Left"
                         Width="60" Height="60" 
                         BorderBrush="Transparent" Background="{x:Null}">
                     <materialDesign:PackIcon Foreground="#FF1B3861" Kind="ArrowLeft" />
                 </Button>
+                <!--Фильтр города-->
                 <TextBlock VerticalAlignment="Center" Foreground="#212121" HorizontalAlignment="Right" Margin="0 0 15 0" Text="Иваново"/>
             </Grid>
-
+            <!-- Фильтр по категории -->
             <ListBox Grid.Row="1" VerticalAlignment="Top" ItemsSource="{Binding Categories}" SelectedItem="{Binding CategoryFilter}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
