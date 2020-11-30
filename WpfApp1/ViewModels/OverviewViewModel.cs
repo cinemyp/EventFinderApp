@@ -8,6 +8,7 @@ using WpfApp1.ViewModels.Interfaces;
 using DAL;
 using System.Windows.Documents;
 using System.Collections.Generic;
+using WpfApp1.Models;
 
 namespace WpfApp1
 {
@@ -15,9 +16,11 @@ namespace WpfApp1
     {
         TransactionManager tm;
         IPageManager pm;
-        private List<Event> AllEvents;
-        private ObservableCollection<Event> events;
-        public ObservableCollection<Event> Events
+
+        private List<EventModel> AllEvents;
+
+        private ObservableCollection<EventModel> events;
+        public ObservableCollection<EventModel> Events
         {
             get { return events; }
             set
@@ -37,7 +40,7 @@ namespace WpfApp1
                     (openEvent = new RelayCommand(obj =>
                     {
                         string title = obj.ToString();
-                        Event ev = Events.ToList().Find(e => e.Title == title);
+                        EventModel ev = Events.ToList().Find(e => e.Title == title);
                         if (ev != null)
                             pm.OpenEvent(ev);
                     }
@@ -48,20 +51,20 @@ namespace WpfApp1
         {
             this.tm = tm;
             AllEvents = tm.GetEvents();
-            Events = new ObservableCollection<Event>(AllEvents);
+            Events = new ObservableCollection<EventModel>(AllEvents);
             this.pm = pm;
         }
 
-        public void FilterByCategory(Category c)
+        public void FilterByCategory(CategoryModel c)
         {
             int category = c.ID;
             switch(category)
             {
                 case 1: //если мы выбрали категорию "Все", тк ни одно событие не имеет категорию "Все"
-                    Events = new ObservableCollection<Event>(AllEvents);
+                    Events = new ObservableCollection<EventModel>(AllEvents);
                     break;
                 default:
-                    Events = new ObservableCollection<Event>(AllEvents.Where(e => e.CategoryId == category));
+                    Events = new ObservableCollection<EventModel>(AllEvents.Where(e => e.CategoryId == category));
                     break;
             }
         }

@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using WpfApp1.ViewModels;
-using WpfApp1.ViewModels.Interfaces;
-using DAL;
 using System.Collections.ObjectModel;
+using WpfApp1.Models;
+using WpfApp1.ViewModels.Interfaces;
 
 namespace WpfApp1
 {
@@ -32,10 +31,10 @@ namespace WpfApp1
         }
         private OverviewViewModel OverviewViewModel;
 
-        public ObservableCollection<Category> Categories { get; set; }
+        public ObservableCollection<CategoryModel> Categories { get; set; }
 
-        private Category categoryFilter;
-        public Category CategoryFilter
+        private CategoryModel categoryFilter;
+        public CategoryModel CategoryFilter
         {
             get { return categoryFilter; }
             set
@@ -75,10 +74,10 @@ namespace WpfApp1
             tm = new TransactionManager();
             OverviewViewModel = new OverviewViewModel(tm, this);
             CurrentPageViewModel = OverviewViewModel;
-            Categories = new ObservableCollection<Category>(tm.GetCategories());
+            Categories = new ObservableCollection<CategoryModel>(tm.GetCategories());
         }
 
-        public void OpenEvent(Event ev)
+        public void OpenEvent(EventModel ev)
         {
             CurrentPageViewModel = new EventViewModel(ev);
             categoryFilter = null;

@@ -1,18 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using DAL;
+using WpfApp1.Models;
 
 namespace WpfApp1
 {
     public class EventViewModel : IPageViewModel,INotifyPropertyChanged
     {
-        private Event currentEvent;
-        public Event CurrentEvent
+        private EventModel currentEvent;
+        public EventModel CurrentEvent
         {
             get { return currentEvent; }
             set
@@ -22,7 +20,7 @@ namespace WpfApp1
             }
         }
         
-        public EventViewModel(Event ev)
+        public EventViewModel(EventModel ev)
         {
             CurrentEvent = ev;
         }

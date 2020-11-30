@@ -5,7 +5,7 @@ namespace DAL
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
-    partial class EventFinderContext : DbContext
+    public partial class EventFinderContext : DbContext
     {
         public EventFinderContext()
             : base("name=EventFinderContext")

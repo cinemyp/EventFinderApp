@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DAL;
+using WpfApp1.Models;
 
-namespace DAL
+namespace WpfApp1
 {
     public class TransactionManager
     {
@@ -15,22 +17,24 @@ namespace DAL
             db = new EventFinderContext();
         }
 
-        public List<Event> GetEvents()
+        public List<EventModel> GetEvents()
         {
-            return db.Event.ToList();
+            return db.Event.ToList().Select(i => new EventModel(i)).ToList();
         }
 
-        public List<Session> GetSessions(int eventId)
+        public List<SessionModel> GetSessions(int eventId)
         {
             return db.Session.Join(db.EventsOrganizers, s => s.EventsOrganizersId, eo => eo.ID, (s, eo) => eo)
                 .Join(db.Event, eo => eo.EventId, e => e.ID, (eo, e) => eo)
                 .Where(i => i.EventId == eventId)
-                .Select(i => i.Session).FirstOrDefault().ToList();
+                .Select(i => i.Session)
+                .FirstOrDefault().ToList()
+                .Select(i => new SessionModel(i)).ToList();
         }
 
-        public List<Category> GetCategories()
+        public List<CategoryModel> GetCategories()
         {
-            return db.Category.ToList();
+            return db.Category.ToList().Select(i => new CategoryModel(i)).ToList();
         }
 
     }
