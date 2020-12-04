@@ -69,7 +69,7 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="60"/>
-                <RowDefinition Height="30"/>
+                <RowDefinition Height="{Binding FilterHeight}"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <!-- Header -->
@@ -109,16 +109,33 @@
                 </StackPanel>
 
             </Grid>
-            <!-- Фильтр даты для фильтрации списка мероприятий-->
-            <StackPanel x:Name="FilterDate" Grid.Row="1" Background="#FFFFFF">
-                <ComboBox HorizontalAlignment="Left" HorizontalContentAlignment="Center" Width="300" ItemsSource="{Binding Dates}" SelectedItem="{Binding DateFilter}">
-                    <ComboBox.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Path=Name}" Style="{StaticResource CBIText}"></TextBlock>
-                        </DataTemplate>
-                    </ComboBox.ItemTemplate>
-                </ComboBox>
-            </StackPanel>
+            <!-- Фильтры -->
+            <Grid  Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <!-- Фильтр даты для фильтрации списка мероприятий-->
+                <StackPanel Background="#FFFFFF">
+                    <ComboBox HorizontalAlignment="Left" HorizontalContentAlignment="Center" Width="300" ItemsSource="{Binding Dates}" SelectedItem="{Binding DateFilter}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=Name}" Style="{StaticResource CBIText}"></TextBlock>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </StackPanel>
+                <StackPanel Grid.Column="2" Background="#FFFFFF">
+                    <ComboBox HorizontalAlignment="Left" HorizontalContentAlignment="Center" Width="300" ItemsSource="{Binding Types}" SelectedItem="{Binding TypeFilter}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=Name}" Style="{StaticResource CBIText}"></TextBlock>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </StackPanel>
+            </Grid>
+            
             <!-- Content -->
             <ContentControl Grid.Row="2" Content="{Binding CurrentPageViewModel}"/>
         </Grid>

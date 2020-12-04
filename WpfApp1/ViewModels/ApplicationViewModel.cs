@@ -5,6 +5,8 @@ using System.Runtime.CompilerServices;
 using System.Collections.ObjectModel;
 using WpfApp1.Models;
 using WpfApp1.ViewModels.Interfaces;
+using System.Linq;
+using System.Reflection;
 
 namespace WpfApp1
 {
@@ -29,9 +31,21 @@ namespace WpfApp1
             }
         }
         private OverviewViewModel OverviewViewModel;
-        public ObservableCollection<Date> Dates { get; set; }
 
+        #region Фильтры
+        private int filterHeight;
+        public int FilterHeight
+        {
+            get { return filterHeight; }
+            set
+            {
+                filterHeight = value;
+                OnPropertyChanged("FilterHeight");
+            }
+        }
         public ObservableCollection<CategoryModel> Categories { get; set; }
+        public ObservableCollection<Date> Dates { get; set; }
+        public ObservableCollection<TypeModel> Types { get; set; }
 
         private CategoryModel categoryFilter;
         public CategoryModel CategoryFilter
@@ -46,9 +60,13 @@ namespace WpfApp1
 
                 OverviewViewModel.FilterByCategory(categoryFilter);
                 OnPropertyChanged("CategoryFilter");
-                
-                //функция фильтрации
-                //возможно изменить интерфейс, хз как сделать обособленно
+
+                dateFilter = Dates[0];
+                OnPropertyChanged("DateFilter");
+                typeFilter = Types[0];
+                OnPropertyChanged("TypeFilter");
+
+                HandleFilter(true);
             }
         }
 
@@ -60,17 +78,27 @@ namespace WpfApp1
             {
                 dateFilter = value;
 
-                //TODO: нужно убирать фильтр по дате наступления мероприятия, когда открыто какое-то мероприятие
-                //=> проверка не нужна
-                //оставил, пока не сделал
-                if (CurrentPageViewModel.GetType() == PageType.Event)
-                    CurrentPageViewModel = OverviewViewModel;
-
-                OverviewViewModel.FilterByDate(dateFilter);
+                OverviewViewModel.FilterByDate(categoryFilter.ID, dateFilter);
 
                 OnPropertyChanged("DateFilter");
+                typeFilter = Types[0];
+                OnPropertyChanged("TypeFilter");
             }
         }
+
+        private TypeModel typeFilter;
+        public TypeModel TypeFilter
+        {
+            get { return typeFilter; }
+            set
+            {
+                typeFilter = value;
+                OverviewViewModel.FilterByType(categoryFilter.ID, dateFilter, typeFilter.ID);
+                OnPropertyChanged("TypeFilter");
+            }
+        }
+        #endregion
+
 
         private RelayCommand signIn;
         public RelayCommand SignIn
@@ -94,15 +122,28 @@ namespace WpfApp1
             tm = new TransactionManager();
             Categories = new ObservableCollection<CategoryModel>(tm.GetCategories());
             InitDateFilterContent();
+            Types = new ObservableCollection<TypeModel>(tm.GetTypes());
             OverviewViewModel = new OverviewViewModel(tm, this);
             CurrentPageViewModel = OverviewViewModel;
+            InitContent();
+
+            HandleFilter(true);
         }
 
         public void OpenEvent(EventModel ev)
         {
             CurrentPageViewModel = new EventViewModel(ev);
+
             categoryFilter = null;
             OnPropertyChanged("CategoryFilter");
+
+            HandleFilter(false);
+        }
+
+        private void InitContent()
+        {
+            CategoryFilter = Categories[0];
+            DateFilter = Dates[0];
         }
 
         private void InitDateFilterContent()
@@ -112,6 +153,14 @@ namespace WpfApp1
             {
                 Dates.Add(new Date((DateValue)i));
             }
+        }
+
+        private void HandleFilter(bool isVisible)
+        {
+            if (isVisible)
+                FilterHeight = 30;
+            else
+                FilterHeight = 0;
         }
 
         #region PropertyChanged

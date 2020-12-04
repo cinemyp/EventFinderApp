@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using WpfApp1.ViewModels.Interfaces;
 using WpfApp1.Models;
 using System;
+using DAL;
 
 namespace WpfApp1
 {
@@ -23,7 +24,7 @@ namespace WpfApp1
                 OnPropertyChanged("Events");
             }
         }
-        
+
         private RelayCommand openEvent;
         public RelayCommand OpenEvent
         {
@@ -43,7 +44,7 @@ namespace WpfApp1
         public OverviewViewModel(TransactionManager tm, IPageManager pm)
         {
             this.tm = tm;
-            Events = new ObservableCollection<EventModel>(tm.GetEvents());
+            //Events = new ObservableCollection<EventModel>(tm.GetEvents());
             this.pm = pm;
         }
 
@@ -60,9 +61,22 @@ namespace WpfApp1
                     break;
             }
         }
-        public void FilterByDate(Date d)
+        public void FilterByDate(int categoryId, Date d)
         {
             Events = new ObservableCollection<EventModel>(tm.GetEvents(d));
+            
+            if(categoryId > 1)
+                Events = new ObservableCollection<EventModel>(Events.Where(e => e.CategoryId == categoryId));
+        }
+
+        public void FilterByType(int categoryId, Date d, int typeId)
+        {
+            Events = new ObservableCollection<EventModel>(tm.GetEvents(d));
+
+            if (categoryId > 1)
+                Events = new ObservableCollection<EventModel>(Events.Where(e => e.CategoryId == categoryId));
+            if (typeId > 1)
+                Events = new ObservableCollection<EventModel>(Events.Where(e => e.TypeId == typeId));
         }
 
         PageType IPageViewModel.GetType()

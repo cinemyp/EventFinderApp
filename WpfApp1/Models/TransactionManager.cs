@@ -36,6 +36,10 @@ namespace WpfApp1
         {
             return db.Category.ToList().Select(i => new CategoryModel(i)).ToList();
         }
+        public List<TypeModel> GetTypes()
+        {
+            return db.Type.ToList().Select(i => new TypeModel(i)).ToList();
+        }
 
         public List<EventModel> GetEvents(Date d)
         {
