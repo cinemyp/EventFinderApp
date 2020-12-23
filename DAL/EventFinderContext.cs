@@ -71,11 +71,6 @@ namespace DAL
                 .WithRequired(e => e.Event)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Event>()
-                .HasMany(e => e.User)
-                .WithMany(e => e.Event)
-                .Map(m => m.ToTable("UserEvent").MapLeftKey("EventId").MapRightKey("UserId"));
-
             modelBuilder.Entity<EventsOrganizers>()
                 .HasMany(e => e.Session)
                 .WithRequired(e => e.EventsOrganizers)
@@ -125,6 +120,11 @@ namespace DAL
             modelBuilder.Entity<User>()
                 .Property(e => e.Password)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<User>()
+                .HasMany(e => e.Session)
+                .WithMany(e => e.User)
+                .Map(m => m.ToTable("UsersSessions").MapLeftKey("UserId").MapRightKey("SessionId"));
         }
     }
 }

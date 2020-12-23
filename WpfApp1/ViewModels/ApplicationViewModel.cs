@@ -7,6 +7,7 @@ using WpfApp1.Models;
 using WpfApp1.ViewModels.Interfaces;
 using System.Linq;
 using System.Reflection;
+using System.Windows;
 
 namespace WpfApp1
 {
@@ -110,12 +111,19 @@ namespace WpfApp1
                     {
                         Login login = new Login();
                         login.Show();
+                        
                         //TODO: брать отсюда данные и проверять на вход
                     }
                 ));
             }
         }
 
+        private Visibility isLoggedVisibility;
+        public Visibility IsLoggedVisibility
+        {
+            get { return isLoggedVisibility; }
+            set { isLoggedVisibility = value; OnPropertyChanged("IsLoggedVisibility"); }
+        }
 
         public ApplicationViewModel()
         {

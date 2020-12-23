@@ -93,6 +93,32 @@ namespace WpfApp1
             }
         }
 
+        public bool SignIn(UserModel user)
+        {
+            return db.User.ToList()
+                .Where(i => i.Login == user.Login)
+                .Where(i => i.Password == user.Password)
+                .FirstOrDefault() == null ? false : true;
+        }
 
+        public bool SignOn(UserModel user)
+        {
+            bool isExist;
+            isExist = db.User.ToList()
+                .Where(i => i.Login == user.Login)
+                .Where(i => i.Password == user.Password)
+                .FirstOrDefault() == null ? false : true;
+            if (isExist)
+                return false;
+
+            db.User.Add(new User { Login = user.Login, Password = user.Password });
+
+            return true;
+        }
+
+        public User GetUser(int id)
+        {
+            return db.User.Find(id);
+        }
     }
 }

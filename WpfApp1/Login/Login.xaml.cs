@@ -11,17 +11,19 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WpfApp1.ViewModels.Interfaces;
 
 namespace WpfApp1
 {
     /// <summary>
     /// Логика взаимодействия для Login.xaml
     /// </summary>
-    public partial class Login : Window
+    public partial class Login : Window, ICloseable
     {
         public Login()
         {
             InitializeComponent();
+            DataContext = new LoginViewModel(this);
         }
 
         private void ButtonMinimizeWindow_Click(object sender, RoutedEventArgs e)

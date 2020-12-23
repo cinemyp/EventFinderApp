@@ -13,7 +13,6 @@ namespace DAL
         public Event()
         {
             EventsOrganizers = new HashSet<EventsOrganizers>();
-            User = new HashSet<User>();
         }
 
         public int ID { get; set; }
@@ -45,8 +44,5 @@ namespace DAL
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EventsOrganizers> EventsOrganizers { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<User> User { get; set; }
     }
 }

@@ -12,7 +12,7 @@ namespace DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User()
         {
-            Event = new HashSet<Event>();
+            Session = new HashSet<Session>();
         }
 
         public int ID { get; set; }
@@ -26,6 +26,6 @@ namespace DAL
         public string Password { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Event> Event { get; set; }
+        public virtual ICollection<Session> Session { get; set; }
     }
 }

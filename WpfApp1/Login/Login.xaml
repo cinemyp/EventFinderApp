@@ -67,8 +67,8 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button x:Name="SignIn" Content="Sign in" Margin="0 0 15 0"/>
-                <Button x:Name="SignOn" Grid.Column="1" Content="Sign on" Margin="15 0 0 0"/>
+                <Button x:Name="SignIn" Content="Sign in" Margin="0 0 15 0" Command="{Binding SignIn}"/>
+                <Button x:Name="SignOn" Grid.Column="1" Content="Sign on" Margin="15 0 0 0" Command="{Binding SignOn}"/>
             </Grid>
             
         </Grid>
