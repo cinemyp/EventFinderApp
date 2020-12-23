@@ -115,7 +115,7 @@ namespace DAL
 
             modelBuilder.Entity<User>()
                 .Property(e => e.Login)
-                .IsFixedLength();
+                .IsUnicode(false);
 
             modelBuilder.Entity<User>()
                 .Property(e => e.Password)

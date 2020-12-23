@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace WpfApp1
 {
-    public enum PageType { Overview, Event, Favourite }
-    public interface IPageViewModel
+    public interface IPasswordSupplier
     {
-        PageType GetType();
+        string GetPassword();
     }
 }

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace WpfApp1
 {
-    public enum PageType { Overview, Event, Favourite }
-    public interface IPageViewModel
+    public interface ILoginWindow
     {
-        PageType GetType();
+        void Close(bool? dialogResult = false);
+        string GetPassword();
     }
 }

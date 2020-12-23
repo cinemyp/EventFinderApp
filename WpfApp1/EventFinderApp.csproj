@@ -50,8 +50,12 @@
     <Reference Include="MaterialDesignThemes.Wpf, Version=3.2.0.1979, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignThemes.3.2.0\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
     </Reference>
+    <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -73,17 +77,24 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Login\ILoginWindow.cs" />
+    <Compile Include="Login\IPasswordSupplier.cs" />
     <Compile Include="Login\LoginViewModel.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\City.cs" />
     <Compile Include="Models\Country.cs" />
     <Compile Include="Models\Date.cs" />
     <Compile Include="Models\Event.cs" />
+    <Compile Include="Models\IDbCrud.cs" />
     <Compile Include="Models\Session.cs" />
     <Compile Include="Models\Type.cs" />
     <Compile Include="Models\TransactionManager.cs" />
     <Compile Include="Models\UserModel.cs" />
+    <Compile Include="Util\LoginModule.cs" />
+    <Compile Include="Util\NinjectRegistrations.cs" />
+    <Compile Include="Util\ServiceModule.cs" />
     <Compile Include="ViewModels\EventViewModel.cs" />
+    <Compile Include="ViewModels\FavouriteViewModel.cs" />
     <Compile Include="ViewModels\Interfaces\ICloseable.cs" />
     <Compile Include="ViewModels\Interfaces\IEventFilter.cs" />
     <Compile Include="ViewModels\Interfaces\IPageManager.cs" />
@@ -91,6 +102,9 @@
     <Compile Include="ViewModels\OverviewViewModel.cs" />
     <Compile Include="Views\EventPage.xaml.cs">
       <DependentUpon>EventPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FavouritePage.xaml.cs">
+      <DependentUpon>FavouritePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\OverviewPage.xaml.cs">
       <DependentUpon>OverviewPage.xaml</DependentUpon>
@@ -100,6 +114,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\EventPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FavouritePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Ninject;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +13,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WpfApp1.Models;
+using WpfApp1.Util;
 using WpfApp1.ViewModels.Interfaces;
 
 namespace WpfApp1
@@ -18,12 +22,13 @@ namespace WpfApp1
     /// <summary>
     /// Логика взаимодействия для Login.xaml
     /// </summary>
-    public partial class Login : Window, ICloseable
+    public partial class Login : Window, ILoginWindow
     {
-        public Login()
+        public Login(IDbCrud db)
         {
             InitializeComponent();
-            DataContext = new LoginViewModel(this);
+            
+            DataContext = new LoginViewModel(this, db);
         }
 
         private void ButtonMinimizeWindow_Click(object sender, RoutedEventArgs e)
@@ -39,6 +44,18 @@ namespace WpfApp1
         private void Header_MouseDown(object sender, MouseButtonEventArgs e)
         {
             this.DragMove();
+        }
+
+        public string GetPassword()
+        {
+            return pwdBox.Password;
+        }
+
+
+        public void Close(bool? dialogResult)
+        {
+            DialogResult = dialogResult;
+            this.Close();
         }
     }
 }

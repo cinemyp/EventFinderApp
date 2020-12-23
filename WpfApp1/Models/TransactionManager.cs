@@ -4,28 +4,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DAL;
+using DAL.Interfaces;
 using WpfApp1.Models;
 
 namespace WpfApp1
 {
-    public class TransactionManager
+    public class TransactionManager : IDbCrud
     {
-        EventFinderContext db;
+        IDbRepository db;
 
-        public TransactionManager()
+        public TransactionManager(IDbRepository repos)
         {
-            db = new EventFinderContext();
+            db = repos;
         }
 
         public List<EventModel> GetEvents()
         {
-            return db.Event.ToList().Select(i => new EventModel(i)).ToList();
+            return db.Events.GetAll().Select(i => new EventModel(i)).ToList();
         }
 
         public List<SessionModel> GetSessions(int eventId)
         {
-            return db.Session.Join(db.EventsOrganizers, s => s.EventsOrganizersId, eo => eo.ID, (s, eo) => eo)
-                .Join(db.Event, eo => eo.EventId, e => e.ID, (eo, e) => eo)
+            
+            return db.Sessions.GetAll().Join(db.EventsOrganizers.GetAll(), s => s.EventsOrganizersId, eo => eo.ID, (s, eo) => eo)
+                .Join(db.Events.GetAll(), eo => eo.EventId, e => e.ID, (eo, e) => eo)
                 .Where(i => i.EventId == eventId)
                 .Select(i => i.Session)
                 .FirstOrDefault().ToList()
@@ -34,11 +36,11 @@ namespace WpfApp1
 
         public List<CategoryModel> GetCategories()
         {
-            return db.Category.ToList().Select(i => new CategoryModel(i)).ToList();
+            return db.Categories.GetAll().Select(i => new CategoryModel(i)).ToList();
         }
         public List<TypeModel> GetTypes()
         {
-            return db.Type.ToList().Select(i => new TypeModel(i)).ToList();
+            return db.Types.GetAll().Select(i => new TypeModel(i)).ToList();
         }
 
         public List<EventModel> GetEvents(Date d)
@@ -48,43 +50,43 @@ namespace WpfApp1
             {
                 case DateValue.Soon:
                 default:
-                    return db.Event.ToList().Select(i => new EventModel(i)).ToList();
+                    return db.Events.GetAll().Select(i => new EventModel(i)).ToList();
                 case DateValue.Today:
-                    return db.Event.ToList()
-                        .Join(db.EventsOrganizers, e => e.ID, eo => eo.EventId, (e, eo) => eo)
-                        .Join(db.Session, e => e.ID, s => s.EventsOrganizersId, (eo, s) => s)
+                    return db.Events.GetAll()
+                        .Join(db.EventsOrganizers.GetAll(), e => e.ID, eo => eo.EventId, (e, eo) => eo)
+                        .Join(db.Sessions.GetAll(), e => e.ID, s => s.EventsOrganizersId, (eo, s) => s)
                         .Where(i => i.Date == DateTime.Today)
                         .Select(i => new EventModel(i.EventsOrganizers.Event))
                         .Distinct()
                         .ToList();
                 case DateValue.Tomorrow:
-                    return db.Event.ToList()
-                        .Join(db.EventsOrganizers, e => e.ID, eo => eo.EventId, (e, eo) => eo)
-                        .Join(db.Session, e => e.ID, s => s.EventsOrganizersId, (eo, s) => s)
+                    return db.Events.GetAll()
+                        .Join(db.EventsOrganizers.GetAll(), e => e.ID, eo => eo.EventId, (e, eo) => eo)
+                        .Join(db.Sessions.GetAll(), e => e.ID, s => s.EventsOrganizersId, (eo, s) => s)
                         .Where(i => i.Date == DateTime.Today.AddDays(1))
                         .Select(i => new EventModel(i.EventsOrganizers.Event))
                         .Distinct()
                         .ToList();
                 case DateValue.Weekend:
-                    return db.Event.ToList()
-                        .Join(db.EventsOrganizers, e => e.ID, eo => eo.EventId, (e, eo) => eo)
-                        .Join(db.Session, e => e.ID, s => s.EventsOrganizersId, (eo, s) => s)
+                    return db.Events.GetAll()
+                        .Join(db.EventsOrganizers.GetAll(), e => e.ID, eo => eo.EventId, (e, eo) => eo)
+                        .Join(db.Sessions.GetAll(), e => e.ID, s => s.EventsOrganizersId, (eo, s) => s)
                         .Where(i => (i.Date.DayOfWeek == DayOfWeek.Saturday || i.Date.DayOfWeek == DayOfWeek.Sunday) && (i.Date < DateTime.Today.AddDays(7)))
                         .Select(i => new EventModel(i.EventsOrganizers.Event))
                         .Distinct()
                         .ToList();
                 case DateValue.Week:
-                    return db.Event.ToList()
-                        .Join(db.EventsOrganizers, e => e.ID, eo => eo.EventId, (e, eo) => eo)
-                        .Join(db.Session, e => e.ID, s => s.EventsOrganizersId, (eo, s) => s)
+                    return db.Events.GetAll()
+                        .Join(db.EventsOrganizers.GetAll(), e => e.ID, eo => eo.EventId, (e, eo) => eo)
+                        .Join(db.Sessions.GetAll(), e => e.ID, s => s.EventsOrganizersId, (eo, s) => s)
                         .Where(i => i.Date <= DateTime.Today.AddDays(7))
                         .Select(i => new EventModel(i.EventsOrganizers.Event))
                         .Distinct()
                         .ToList();
                 case DateValue.Month:
-                    return db.Event.ToList() //TODO: разобраться с фильтром, добавляем 30 дней или все события только в этом месяце
-                        .Join(db.EventsOrganizers, e => e.ID, eo => eo.EventId, (e, eo) => eo)
-                        .Join(db.Session, e => e.ID, s => s.EventsOrganizersId, (eo, s) => s)
+                    return db.Events.GetAll() //TODO: разобраться с фильтром, добавляем 30 дней или все события только в этом месяце
+                        .Join(db.EventsOrganizers.GetAll(), e => e.ID, eo => eo.EventId, (e, eo) => eo)
+                        .Join(db.Sessions.GetAll(), e => e.ID, s => s.EventsOrganizersId, (eo, s) => s)
                         .Where(i => i.Date <= DateTime.Today.AddDays(30))
                         .Select(i => new EventModel(i.EventsOrganizers.Event))
                         .Distinct()
@@ -95,7 +97,7 @@ namespace WpfApp1
 
         public bool SignIn(UserModel user)
         {
-            return db.User.ToList()
+            return db.Users.GetAll()
                 .Where(i => i.Login == user.Login)
                 .Where(i => i.Password == user.Password)
                 .FirstOrDefault() == null ? false : true;
@@ -104,21 +106,26 @@ namespace WpfApp1
         public bool SignOn(UserModel user)
         {
             bool isExist;
-            isExist = db.User.ToList()
+            isExist = db.Users.GetAll()
                 .Where(i => i.Login == user.Login)
                 .Where(i => i.Password == user.Password)
                 .FirstOrDefault() == null ? false : true;
             if (isExist)
                 return false;
 
-            db.User.Add(new User { Login = user.Login, Password = user.Password });
-
+            db.Users.Create(new User { Login = user.Login, Password = user.Password });
+            Save();
             return true;
         }
 
         public User GetUser(int id)
         {
-            return db.User.Find(id);
+            return db.Users.GetItem(id);
+        }
+        public bool Save()
+        {
+            if (db.Save() > 0) return true;
+            return false;
         }
     }
 }

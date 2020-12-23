@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DAL.Repositories;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -12,10 +13,13 @@ namespace WpfApp1
 {
     public class LoginViewModel : INotifyPropertyChanged
     {
-        ICloseable window;
-        TransactionManager tm;
+        ILoginWindow window;
+        IDbCrud tm;
         public string LoginContent { get; set; }
-        public string PasswordContent { get; set; }
+        public string PasswordContent
+        {
+            get { return window.GetPassword(); }
+        }
 
         private RelayCommand signIn;
         public RelayCommand SignIn
@@ -28,7 +32,7 @@ namespace WpfApp1
                         bool result = tm.SignIn(new UserModel(LoginContent, PasswordContent));
 
                         if (result)
-                            window.Close();
+                            window.Close(true);
                         else
                         {
                             //TODO: создать сообщение о том, что успешно зашли
@@ -48,7 +52,7 @@ namespace WpfApp1
                         bool result = tm.SignOn(new UserModel(LoginContent, PasswordContent));
 
                         if (result)
-                            window.Close();
+                            window.Close(); //мы просто закрываем окно, и говорим, что не залогинились
                         else
                         {
 
@@ -58,9 +62,9 @@ namespace WpfApp1
             }
         }
 
-        public LoginViewModel(ICloseable window)
+        public LoginViewModel(ILoginWindow window, IDbCrud tm)
         {
-            tm = new TransactionManager();
+            this.tm = tm;
             this.window = window;
         }
 

@@ -8,12 +8,13 @@ using WpfApp1.ViewModels.Interfaces;
 using System.Linq;
 using System.Reflection;
 using System.Windows;
+using DAL.Repositories;
 
 namespace WpfApp1
 {
     public class ApplicationViewModel : INotifyPropertyChanged, IPageManager
     {
-        TransactionManager tm;
+        IDbCrud tm;
 
         private IPageViewModel _currentPageViewModel;
         public IPageViewModel CurrentPageViewModel
@@ -109,29 +110,45 @@ namespace WpfApp1
                 return signIn ??
                     (signIn = new RelayCommand(obj =>
                     {
-                        Login login = new Login();
-                        login.Show();
-                        
+                        Login login = new Login(tm);
+                        bool? result =  login.ShowDialog();
+                        if(result == true)
+                        {
+                            IsLogged = true;
+                        }
                         //TODO: брать отсюда данные и проверять на вход
                     }
                 ));
             }
         }
-
-        private Visibility isLoggedVisibility;
-        public Visibility IsLoggedVisibility
+        private RelayCommand signOut;
+        public RelayCommand SignOut
         {
-            get { return isLoggedVisibility; }
-            set { isLoggedVisibility = value; OnPropertyChanged("IsLoggedVisibility"); }
+            get
+            {
+                return signOut ??
+                    (signOut = new RelayCommand(obj =>
+                    {
+                        IsLogged = false;
+                    }
+                ));
+            }
         }
 
-        public ApplicationViewModel()
+        private bool isLogged;
+        public bool IsLogged
         {
-            tm = new TransactionManager();
+            get { return isLogged; }
+            set { isLogged = value; OnPropertyChanged("IsLogged"); }
+        }  
+
+        public ApplicationViewModel(IDbCrud crudServ)
+        {
+            tm = crudServ;
             Categories = new ObservableCollection<CategoryModel>(tm.GetCategories());
             InitDateFilterContent();
             Types = new ObservableCollection<TypeModel>(tm.GetTypes());
-            OverviewViewModel = new OverviewViewModel(tm, this);
+            OverviewViewModel = new OverviewViewModel(crudServ, this);
             CurrentPageViewModel = OverviewViewModel;
             InitContent();
 

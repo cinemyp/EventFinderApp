@@ -61,12 +61,22 @@
     <Compile Include="Entities\EventsOrganizers.cs" />
     <Compile Include="Entities\Organizer.cs" />
     <Compile Include="Entities\Place.cs" />
+    <Compile Include="Interfaces\IDbRepository.cs" />
+    <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Entities\RestrictionsByAges.cs" />
     <Compile Include="Entities\Session.cs" />
     <Compile Include="Entities\sysdiagrams.cs" />
     <Compile Include="Entities\Type.cs" />
     <Compile Include="Entities\User.cs" />
+    <Compile Include="Repositories\CategoryRepositorySQL.cs" />
+    <Compile Include="Repositories\DbRepositorySQL.cs" />
+    <Compile Include="Repositories\EventRepositorySQL.cs" />
+    <Compile Include="Repositories\EventsOrganizersRepositorySQL.cs" />
+    <Compile Include="Repositories\PlaceRepositorySQL.cs" />
+    <Compile Include="Repositories\SessionRepositorySQL.cs" />
+    <Compile Include="Repositories\TypeRepositorySQL.cs" />
+    <Compile Include="Repositories\UserRepositorySQL.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

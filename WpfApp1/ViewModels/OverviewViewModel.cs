@@ -11,7 +11,7 @@ namespace WpfApp1
 {
     public class OverviewViewModel : INotifyPropertyChanged, IPageViewModel
     {
-        TransactionManager tm;
+        IDbCrud tm;
         IPageManager pm;
 
         private ObservableCollection<EventModel> events;
@@ -41,7 +41,7 @@ namespace WpfApp1
                 ));
             }
         }
-        public OverviewViewModel(TransactionManager tm, IPageManager pm)
+        public OverviewViewModel(IDbCrud tm, IPageManager pm)
         {
             this.tm = tm;
             //Events = new ObservableCollection<EventModel>(tm.GetEvents());

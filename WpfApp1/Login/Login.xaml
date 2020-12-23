@@ -54,12 +54,12 @@
             
             <StackPanel Grid.Row="0" Margin="0 15">
                 <TextBlock Text="Login"/>
-                <TextBox />
+                <TextBox Text="{Binding LoginContent, Mode=OneWayToSource}"  />
             </StackPanel>
             
             <StackPanel Grid.Row="1" Margin="0 15">
                 <TextBlock Text="Password"/>
-                <PasswordBox/>
+                <PasswordBox x:Name="pwdBox"/>
             </StackPanel>
             
             <Grid Grid.Row="2" VerticalAlignment="Bottom">

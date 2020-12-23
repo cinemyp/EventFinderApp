@@ -18,11 +18,11 @@ namespace DAL
         public int ID { get; set; }
 
         [Required]
-        [StringLength(10)]
+        [StringLength(20)]
         public string Login { get; set; }
 
         [Required]
-        [StringLength(20)]
+        [StringLength(16)]
         public string Password { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
