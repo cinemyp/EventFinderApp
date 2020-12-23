@@ -24,6 +24,8 @@ namespace WpfApp1.Models
         public int CategoryId { get; set; }
 
         public int RestrictionId { get; set; }
+        public RestrictionsByAges Restriction { get; set; }
+        public Session Session { get; set; }
 
         public EventModel() { }
         public EventModel(Event e)
@@ -36,6 +38,20 @@ namespace WpfApp1.Models
             TypeId = e.TypeId;
             CategoryId = e.CategoryId;
             RestrictionId = e.RestrictionId;
+            Restriction = e.RestrictionsByAges;
+        }
+        public EventModel(Event e, Session s)
+        {
+            ID = e.ID;
+            Title = e.Title;
+            Description = e.Description;
+            Site = e.Site;
+            Poster = e.Poster;
+            TypeId = e.TypeId;
+            CategoryId = e.CategoryId;
+            RestrictionId = e.RestrictionId;
+            Restriction = e.RestrictionsByAges;
+            Session = s;
         }
 
         public bool Equals(EventModel other)
@@ -61,10 +77,5 @@ namespace WpfApp1.Models
             //Calculate the hash code for the product.
             return hashProductName ^ hashProductCode;
         }
-        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        //public virtual ICollection<EventsOrganizers> EventsOrganizers { get; set; }
-
-        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        //public virtual ICollection<User> User { get; set; }
     }
 }

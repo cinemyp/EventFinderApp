@@ -43,10 +43,11 @@ namespace WpfApp1
                 ));
             }
         }
-        public FavouriteViewModel(IDbCrud tm, IPageManager pm)
+        public FavouriteViewModel(IDbCrud tm, IPageManager pm, int userId)
         {
             this.tm = tm;
             this.pm = pm;
+            Events = new ObservableCollection<EventModel>(tm.GetUserSessions(userId));
         }
 
         PageType IPageViewModel.GetType()

@@ -9,6 +9,7 @@ using System.Linq;
 using System.Reflection;
 using System.Windows;
 using DAL.Repositories;
+using DAL;
 
 namespace WpfApp1
 {
@@ -34,6 +35,20 @@ namespace WpfApp1
         }
         private OverviewViewModel OverviewViewModel;
 
+        private RelayCommand openFavouritePage;
+        public RelayCommand OpenFavouritePage
+        {
+            get
+            {
+                return openFavouritePage ??
+                    (openFavouritePage = new RelayCommand(obj =>
+                    {
+                        ClearFilters();
+                        CurrentPageViewModel = new FavouriteViewModel(tm, this, LoggedUser.ID);
+                    }));
+            }
+        }
+
         #region Фильтры
         private int filterHeight;
         public int FilterHeight
@@ -57,7 +72,7 @@ namespace WpfApp1
             {
                 categoryFilter = value;
 
-                if (CurrentPageViewModel.GetType() == PageType.Event)
+                if (CurrentPageViewModel.GetType() != PageType.Overview)
                     CurrentPageViewModel = OverviewViewModel;
 
                 OverviewViewModel.FilterByCategory(categoryFilter);
@@ -101,7 +116,8 @@ namespace WpfApp1
         }
         #endregion
 
-
+        #region Логин
+        private UserModel LoggedUser;
         private RelayCommand signIn;
         public RelayCommand SignIn
         {
@@ -111,10 +127,11 @@ namespace WpfApp1
                     (signIn = new RelayCommand(obj =>
                     {
                         Login login = new Login(tm);
-                        bool? result =  login.ShowDialog();
+                        bool? result = login.ShowDialog();
                         if(result == true)
                         {
                             IsLogged = true;
+                            LoggedUser = new UserModel(tm.GetUser(login.GetLoggedUser().ID));
                         }
                         //TODO: брать отсюда данные и проверять на вход
                     }
@@ -140,8 +157,8 @@ namespace WpfApp1
         {
             get { return isLogged; }
             set { isLogged = value; OnPropertyChanged("IsLogged"); }
-        }  
-
+        }
+        #endregion
         public ApplicationViewModel(IDbCrud crudServ)
         {
             tm = crudServ;
@@ -159,10 +176,15 @@ namespace WpfApp1
         {
             CurrentPageViewModel = new EventViewModel(ev);
 
-            categoryFilter = null;
-            OnPropertyChanged("CategoryFilter");
+            ClearFilters();
 
             HandleFilter(false);
+        }
+
+        private void ClearFilters()
+        {
+            categoryFilter = null;
+            OnPropertyChanged("CategoryFilter");
         }
 
         private void InitContent()

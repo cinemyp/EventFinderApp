@@ -12,13 +12,13 @@ namespace WpfApp1.Models
         List<EventModel> GetEvents();
 
         List<SessionModel> GetSessions(int eventId);
-
+        List<EventModel> GetUserSessions(int userId);
         List<CategoryModel> GetCategories();
         List<TypeModel> GetTypes();
 
         List<EventModel> GetEvents(Date d);
 
-        bool SignIn(UserModel user);
+        UserModel SignIn(UserModel user);
 
         bool SignOn(UserModel user);
 

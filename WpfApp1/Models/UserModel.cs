@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,13 @@ namespace WpfApp1.Models
         {
             Login = login;
             Password = password;
+        }
+
+        public UserModel(User u)
+        {
+            ID = u.ID;
+            Login = u.Login;
+            Password = u.Password;
         }
     }
 }

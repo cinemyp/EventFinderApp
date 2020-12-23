@@ -1,4 +1,5 @@
-﻿using Ninject;
+﻿using DAL;
+using Ninject;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -24,6 +25,7 @@ namespace WpfApp1
     /// </summary>
     public partial class Login : Window, ILoginWindow
     {
+        UserModel loggedUser;
         public Login(IDbCrud db)
         {
             InitializeComponent();
@@ -50,12 +52,16 @@ namespace WpfApp1
         {
             return pwdBox.Password;
         }
-
-
-        public void Close(bool? dialogResult)
+        public void Close(UserModel user, bool? dialogResult)
         {
             DialogResult = dialogResult;
+            loggedUser = user;
             this.Close();
+        }
+
+        public UserModel GetLoggedUser()
+        {
+            return loggedUser;
         }
     }
 }

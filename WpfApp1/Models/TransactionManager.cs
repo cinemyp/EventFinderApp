@@ -95,12 +95,13 @@ namespace WpfApp1
             }
         }
 
-        public bool SignIn(UserModel user)
+        public UserModel SignIn(UserModel user)
         {
-            return db.Users.GetAll()
+            User u = db.Users.GetAll()
                 .Where(i => i.Login == user.Login)
                 .Where(i => i.Password == user.Password)
-                .FirstOrDefault() == null ? false : true;
+                .FirstOrDefault();
+            return new UserModel(u);
         }
 
         public bool SignOn(UserModel user)
@@ -126,6 +127,12 @@ namespace WpfApp1
         {
             if (db.Save() > 0) return true;
             return false;
+        }
+
+        public List<EventModel> GetUserSessions(int userId)
+        {
+            return db.Users.GetItem(userId).Session.Select(i => new EventModel(i.EventsOrganizers.Event, i)).ToList();
+            
         }
     }
 }

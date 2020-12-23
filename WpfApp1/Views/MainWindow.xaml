@@ -52,7 +52,9 @@
         <DataTemplate DataType="{x:Type local:EventViewModel}">
             <local:EventPage/>
         </DataTemplate>
-        
+        <DataTemplate DataType="{x:Type local:FavouriteViewModel}">
+            <local:FavouritePage/>
+        </DataTemplate>
     </Window.Resources>
 
     <Window.Triggers>
@@ -62,7 +64,9 @@
         <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonCloseMenu">
             <BeginStoryboard Storyboard="{StaticResource MenuClose}"></BeginStoryboard>
         </EventTrigger>
-        
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonOpenFavourite">
+            <BeginStoryboard Storyboard="{StaticResource MenuClose}"></BeginStoryboard>
+        </EventTrigger>
     </Window.Triggers>
     
     <Grid>
@@ -182,7 +186,9 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
 
-                <Button Grid.Row="0" Visibility="{Binding IsLogged, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="0 0 0 20" Height="45" HorizontalContentAlignment="Left" Background="White" BorderBrush="Transparent">
+                <Button x:Name="ButtonOpenFavourite" Grid.Row="0" Visibility="{Binding IsLogged, Converter={StaticResource BooleanToVisibilityConverter}}" 
+                        Margin="0 0 0 20" Height="45" HorizontalContentAlignment="Left" Background="White" BorderBrush="Transparent"
+                        Command="{Binding OpenFavouritePage}">
                     <TextBlock Style="{StaticResource MenuItemText}"><materialDesign:PackIcon Margin="0 0 15 0"  Kind="Favorite"/>Избранное</TextBlock>
                 </Button>
                 <Button Grid.Row="1" Visibility="{Binding IsLogged, Converter={StaticResource InverseBoolToVisConverter}}" Height="45" HorizontalContentAlignment="Left" Background="White" BorderBrush="Transparent" Command="{Binding SignIn}">

@@ -29,10 +29,10 @@ namespace WpfApp1
                 return signIn ??
                     (signIn = new RelayCommand(obj =>
                     {
-                        bool result = tm.SignIn(new UserModel(LoginContent, PasswordContent));
+                        UserModel result = tm.SignIn(new UserModel(LoginContent, PasswordContent));
 
-                        if (result)
-                            window.Close(true);
+                        if (result != null)
+                            window.Close(result, true);
                         else
                         {
                             //TODO: создать сообщение о том, что успешно зашли
