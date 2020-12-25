@@ -61,14 +61,16 @@ namespace WpfApp1
         private void CheckFavoriteSessions()
         {
             EventModel ev = CurrentEvent;
+            UserModel u = tm.GetUser(loggedUserId);
             foreach(SessionModel s in ev.Sessions)
             {
-                if (tm.GetUser(loggedUserId).Session.Select(i => i.ID == s.ID).Count() > 0)
-                    s.IsFavorite = true;
+                if (tm.GetUser(loggedUserId).Sessions.Where(i => i.ID == s.ID).FirstOrDefault() != null)
+                    s.IsFavourite = true;
                 else
-                    s.IsFavorite = false;
+                    s.IsFavourite = false;
             }
             CurrentEvent = ev;
+            OnPropertyChanged("CurrentEvent");
         }
 
         PageType IPageViewModel.GetType()

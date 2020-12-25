@@ -62,10 +62,11 @@
                             <TextBlock Grid.Column="1" Margin="20 0 0 0" Text="{Binding Date, Converter={StaticResource dateConverter}}"/>
                             <TextBlock Grid.Column="2" Margin="60 0 0 0" Text="{Binding Organizer.Name}"/>
                             <Button IsEnabled="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBox}}, Path=DataContext.IsLogged}" 
-                                    Foreground="{Binding IsFavorite, Converter={StaticResource btbcConverter}}" 
+                                    Foreground="{Binding IsFavourite, Converter={StaticResource btbcConverter}}"
                                     Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBox}}, Path=DataContext.ClickFavourite}" 
                                     CommandParameter="{Binding Path=ID}"
-                                    Width="30" Height="30" Padding="0" Background="Transparent" BorderBrush="Transparent">
+                                    Width="30" Height="30" Padding="0" Background="Transparent" BorderBrush="Transparent"
+                                    >
                                 <materialDesign:PackIcon  Width="30" Height="30" Kind="Favourite"/>
                                 
                             </Button>

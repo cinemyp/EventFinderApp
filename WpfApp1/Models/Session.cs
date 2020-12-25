@@ -17,7 +17,7 @@ namespace WpfApp1.Models
 
         public OrganizerModel Organizer { get; set; }
         public bool IsDone { get; set; }
-        public bool IsFavorite { get; set; }
+        public bool IsFavourite { get; set; }
         public SessionModel() { }
         public SessionModel(Session s)
         {
@@ -26,6 +26,7 @@ namespace WpfApp1.Models
             Date = s.Date;
             Organizer = new OrganizerModel(s.EventsOrganizers.Organizer);
             IsDone = DateTime.Now > Date ? true : false;
+            IsFavourite = false;
         }
     }
 }

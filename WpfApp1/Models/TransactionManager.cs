@@ -122,9 +122,9 @@ namespace WpfApp1
             return true;
         }
 
-        public User GetUser(int id)
+        public UserModel GetUser(int id)
         {
-            return db.Users.GetItem(id);
+            return new UserModel( db.Users.GetItem(id));
         }
         public bool Save()
         {

@@ -14,6 +14,7 @@ namespace WpfApp1.Models
         public string Login { get; set; }
 
         public string Password { get; set; }
+        public List<SessionModel> Sessions { get; set; }
 
         public UserModel()
         {
@@ -30,6 +31,7 @@ namespace WpfApp1.Models
             ID = u.ID;
             Login = u.Login;
             Password = u.Password;
+            Sessions = u.Session.Select(i => new SessionModel(i)).ToList();
         }
     }
 }

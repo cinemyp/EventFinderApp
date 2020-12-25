@@ -131,7 +131,7 @@ namespace WpfApp1
                         if(result == true)
                         {
                             IsLogged = true;
-                            LoggedUser = new UserModel(tm.GetUser(login.GetLoggedUser().ID));
+                            LoggedUser = tm.GetUser(login.GetLoggedUser().ID);
                             InitContent();
                         }
                         //TODO: брать отсюда данные и проверять на вход

@@ -17,7 +17,7 @@ namespace WpfApp1.Models
         List<EventModel> GetEvents(Date d);
         UserModel SignIn(UserModel user);
         bool SignOn(UserModel user);
-        User GetUser(int id);
+        UserModel GetUser(int id);
         bool MakeFavourite(int userId, int sessionId);
     }
 }
