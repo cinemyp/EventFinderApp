@@ -70,6 +70,7 @@
     <Compile Include="Entities\Type.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Repositories\CategoryRepositorySQL.cs" />
+    <Compile Include="Repositories\CityRepositorySQL.cs" />
     <Compile Include="Repositories\DbRepositorySQL.cs" />
     <Compile Include="Repositories\EventRepositorySQL.cs" />
     <Compile Include="Repositories\EventsOrganizersRepositorySQL.cs" />

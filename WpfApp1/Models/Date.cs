@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WpfApp1.Models
 {
-    public enum DateValue { Soon, Today, Tomorrow, Weekend, Week, Month, AnotherDay }
+    public enum DateValue { Soon, Today, Tomorrow, Weekend, Week, Month }
     public class Date
     {
         public string Name { 
@@ -26,8 +26,6 @@ namespace WpfApp1.Models
                         return "неделя";
                     case DateValue.Month:
                         return "месяц";
-                    case DateValue.AnotherDay:
-                        return "выбрать день";
                     default:
                         return string.Empty;
                 }

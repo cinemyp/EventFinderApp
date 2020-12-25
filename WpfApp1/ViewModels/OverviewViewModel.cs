@@ -48,30 +48,29 @@ namespace WpfApp1
             this.mvm = mvm;
         }
 
-        public void FilterByCategory(CategoryModel c)
+        public void GetAllEvents(int cityId, int categoryId)
         {
-            int category = c.ID;
-            switch(category)
+            switch(categoryId)
             {
                 case 1: //если мы выбрали категорию "Все", тк ни одно событие не имеет категорию "Все"
-                    Events = new ObservableCollection<EventModel>(tm.GetEvents());
+                    Events = new ObservableCollection<EventModel>(tm.GetEvents(cityId));
                     break;
                 default:
-                    Events = new ObservableCollection<EventModel>(tm.GetEvents().Where(e => e.CategoryId == category));
+                    Events = new ObservableCollection<EventModel>(tm.GetEvents(cityId).Where(e => e.CategoryId == categoryId));
                     break;
             }
         }
-        public void FilterByDate(int categoryId, Date d)
+        public void FilterByDate(int cityId, int categoryId, Date d)
         {
-            Events = new ObservableCollection<EventModel>(tm.GetEvents(d));
+            Events = new ObservableCollection<EventModel>(tm.GetEvents(cityId, d));
             
             if(categoryId > 1)
                 Events = new ObservableCollection<EventModel>(Events.Where(e => e.CategoryId == categoryId));
         }
 
-        public void FilterByType(int categoryId, Date d, int typeId)
+        public void FilterByType(int cityId, int categoryId, Date d, int typeId)
         {
-            Events = new ObservableCollection<EventModel>(tm.GetEvents(d));
+            Events = new ObservableCollection<EventModel>(tm.GetEvents(cityId, d));
 
             if (categoryId > 1)
                 Events = new ObservableCollection<EventModel>(Events.Where(e => e.CategoryId == categoryId));

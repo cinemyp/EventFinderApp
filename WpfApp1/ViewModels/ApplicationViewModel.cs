@@ -5,11 +5,6 @@ using System.Runtime.CompilerServices;
 using System.Collections.ObjectModel;
 using WpfApp1.Models;
 using WpfApp1.ViewModels.Interfaces;
-using System.Linq;
-using System.Reflection;
-using System.Windows;
-using DAL.Repositories;
-using DAL;
 
 namespace WpfApp1
 {
@@ -45,6 +40,20 @@ namespace WpfApp1
                     {
                         ClearFilters();
                         CurrentPageViewModel = new FavouriteViewModel(tm, this, LoggedUser.ID);
+                        DisplayFilters(false);
+                    }));
+            }
+        }
+
+        private RelayCommand makeReport;
+        public RelayCommand MakeReport
+        {
+            get
+            {
+                return makeReport ??
+                    (makeReport = new RelayCommand(obj =>
+                    {
+                        //TODO: сделать отчет и сохранить в пдф 
                     }));
             }
         }
@@ -63,7 +72,30 @@ namespace WpfApp1
         public ObservableCollection<CategoryModel> Categories { get; set; }
         public ObservableCollection<Date> Dates { get; set; }
         public ObservableCollection<TypeModel> Types { get; set; }
+        public ObservableCollection<CityModel> Cities { get; set; }
 
+        private CityModel cityFilter;
+        public CityModel CityFilter
+        {
+            get { return cityFilter; }
+            set
+            {
+                cityFilter = value;
+
+                if (CurrentPageViewModel.GetType() != PageType.Overview)
+                    CurrentPageViewModel = OverviewViewModel;
+
+                OverviewViewModel.GetAllEvents(cityFilter.ID, categoryFilter.ID);
+                OnPropertyChanged("CityFilter");
+
+                dateFilter = Dates[0];
+                OnPropertyChanged("DateFilter");
+                typeFilter = Types[0];
+                OnPropertyChanged("TypeFilter");
+
+                DisplayFilters(true);
+            }
+        }
         private CategoryModel categoryFilter;
         public CategoryModel CategoryFilter
         {
@@ -75,7 +107,7 @@ namespace WpfApp1
                 if (CurrentPageViewModel.GetType() != PageType.Overview)
                     CurrentPageViewModel = OverviewViewModel;
 
-                OverviewViewModel.FilterByCategory(categoryFilter);
+                OverviewViewModel.GetAllEvents(cityFilter.ID, categoryFilter.ID);
                 OnPropertyChanged("CategoryFilter");
 
                 dateFilter = Dates[0];
@@ -83,7 +115,7 @@ namespace WpfApp1
                 typeFilter = Types[0];
                 OnPropertyChanged("TypeFilter");
 
-                HandleFilter(true);
+                DisplayFilters(true);
             }
         }
 
@@ -95,7 +127,7 @@ namespace WpfApp1
             {
                 dateFilter = value;
 
-                OverviewViewModel.FilterByDate(categoryFilter.ID, dateFilter);
+                OverviewViewModel.FilterByDate(cityFilter.ID, categoryFilter.ID, dateFilter);
 
                 OnPropertyChanged("DateFilter");
                 typeFilter = Types[0];
@@ -110,7 +142,7 @@ namespace WpfApp1
             set
             {
                 typeFilter = value;
-                OverviewViewModel.FilterByType(categoryFilter.ID, dateFilter, typeFilter.ID);
+                OverviewViewModel.FilterByType(cityFilter.ID, categoryFilter.ID, dateFilter, typeFilter.ID);
                 OnPropertyChanged("TypeFilter");
             }
         }
@@ -133,6 +165,7 @@ namespace WpfApp1
                             IsLogged = true;
                             LoggedUser = tm.GetUser(login.GetLoggedUser().ID);
                             InitContent();
+                            NotificateUser();
                         }
                         //TODO: брать отсюда данные и проверять на вход
                     }
@@ -148,6 +181,7 @@ namespace WpfApp1
                     (signOut = new RelayCommand(obj =>
                     {
                         IsLogged = false;
+                        LoggedUser = null;
                     }
                 ));
             }
@@ -163,14 +197,15 @@ namespace WpfApp1
         public ApplicationViewModel(IDbCrud crudServ)
         {
             tm = crudServ;
-            Categories = new ObservableCollection<CategoryModel>(tm.GetCategories());
             InitDateFilterContent();
+            Cities = new ObservableCollection<CityModel>(tm.GetCities());
+            Categories = new ObservableCollection<CategoryModel>(tm.GetCategories());
             Types = new ObservableCollection<TypeModel>(tm.GetTypes());
             OverviewViewModel = new OverviewViewModel(crudServ, this);
             CurrentPageViewModel = OverviewViewModel;
             InitContent();
 
-            HandleFilter(true);
+            DisplayFilters(true);
         }
 
         public void OpenEvent(EventModel ev)
@@ -179,7 +214,7 @@ namespace WpfApp1
 
             ClearFilters();
 
-            HandleFilter(false);
+            DisplayFilters(false);
         }
 
         public int GetLoggedUserId()
@@ -195,7 +230,10 @@ namespace WpfApp1
 
         private void InitContent()
         {
-            CategoryFilter = Categories[0];
+            cityFilter = Cities[0];
+            categoryFilter = Categories[0];
+            OnPropertyChanged("CityFilter");
+            OnPropertyChanged("CategoryFilter");
             DateFilter = Dates[0];
         }
 
@@ -208,12 +246,22 @@ namespace WpfApp1
             }
         }
 
-        private void HandleFilter(bool isVisible)
+        private void DisplayFilters(bool isVisible)
         {
             if (isVisible)
                 FilterHeight = 30;
             else
                 FilterHeight = 0;
+        }
+
+        private void NotificateUser()
+        {
+            List<EventModel> todaysEvents = tm.GetTodaysEvent(LoggedUser.ID);
+            if (todaysEvents.Count == 0)
+                return;
+
+            NotificationWindow w = new NotificationWindow(todaysEvents);
+            w.Show();
         }
 
         #region PropertyChanged

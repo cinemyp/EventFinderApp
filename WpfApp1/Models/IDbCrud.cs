@@ -9,12 +9,14 @@ namespace WpfApp1.Models
 {
     public interface IDbCrud
     {
-        List<EventModel> GetEvents();
+        List<EventModel> GetEvents(int cityId);
         List<SessionModel> GetSessions(int eventId);
         List<EventModel> GetUserSessions(int userId);
+        List<EventModel> GetTodaysEvent(int userId);
         List<CategoryModel> GetCategories();
         List<TypeModel> GetTypes();
-        List<EventModel> GetEvents(Date d);
+        List<CityModel> GetCities();
+        List<EventModel> GetEvents(int cityId, Date d);
         UserModel SignIn(UserModel user);
         bool SignOn(UserModel user);
         UserModel GetUser(int id);

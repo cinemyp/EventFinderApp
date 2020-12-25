@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfApp1"
              mc:Ignorable="d" 
-             d:DesignHeight="843" d:DesignWidth="1202">
+             d:DesignHeight="873" d:DesignWidth="1202">
     <UserControl.Resources>
         <local:DateTimeToDateConverter x:Key="dateConverter"/>
     </UserControl.Resources>
@@ -19,7 +19,7 @@
 
                         <DataTemplate>
 
-                            <Button Visibility="{Binding Path=CurrentSession.IsDone, Converter={StaticResource InverseBoolToVisConverter}}" Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBox}}, Path=DataContext.OpenEvent}" CommandParameter="{Binding Path=Title}"
+                            <Button Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBox}}, Path=DataContext.OpenEvent}" CommandParameter="{Binding Path=Title}"
                                 BorderBrush="Transparent" Background="Transparent" Foreground="Black" Padding="0" Width="1200" Height="200"
                                      HorizontalContentAlignment="Left">
                                 <Grid>

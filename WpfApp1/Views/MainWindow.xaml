@@ -67,6 +67,12 @@
         <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonOpenFavourite">
             <BeginStoryboard Storyboard="{StaticResource MenuClose}"></BeginStoryboard>
         </EventTrigger>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonLogin">
+            <BeginStoryboard Storyboard="{StaticResource MenuClose}"></BeginStoryboard>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonLogout">
+            <BeginStoryboard Storyboard="{StaticResource MenuClose}"></BeginStoryboard>
+        </EventTrigger>
     </Window.Triggers>
     
     <Grid>
@@ -159,7 +165,13 @@
                     <materialDesign:PackIcon Foreground="#FF1B3861" Kind="ArrowLeft" />
                 </Button>
                 <!--Фильтр города-->
-                <TextBlock VerticalAlignment="Center" Foreground="#212121" HorizontalAlignment="Right" Margin="0 0 15 0" Text="Иваново"/>
+                <ComboBox VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 15 0" HorizontalContentAlignment="Center" Width="100" ItemsSource="{Binding Cities}" SelectedItem="{Binding CityFilter}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=Name}" Style="{StaticResource CBIText}"></TextBlock>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
             </Grid>
             <!-- Фильтр по категории -->
             <ListBox Grid.Row="1" VerticalAlignment="Top" ItemsSource="{Binding Categories}" SelectedItem="{Binding CategoryFilter}">
@@ -184,6 +196,7 @@
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
+                    <RowDefinition/>
                 </Grid.RowDefinitions>
 
                 <Button x:Name="ButtonOpenFavourite" Grid.Row="0" Visibility="{Binding IsLogged, Converter={StaticResource BooleanToVisibilityConverter}}" 
@@ -191,10 +204,13 @@
                         Command="{Binding OpenFavouritePage}">
                     <TextBlock Style="{StaticResource MenuItemText}"><materialDesign:PackIcon Margin="0 0 15 0"  Kind="Favorite"/>Избранное</TextBlock>
                 </Button>
-                <Button Grid.Row="1" Visibility="{Binding IsLogged, Converter={StaticResource InverseBoolToVisConverter}}" Height="45" HorizontalContentAlignment="Left" Background="White" BorderBrush="Transparent" Command="{Binding SignIn}">
+                <Button x:Name="ButtonReport" Margin="0 0 0 20" Grid.Row="1" Visibility="{Binding IsLogged, Converter={StaticResource BooleanToVisibilityConverter}}" Height="45" HorizontalContentAlignment="Left" Background="White" BorderBrush="Transparent" Command="{Binding MakeReport}">
+                    <TextBlock Style="{StaticResource MenuItemText}"><materialDesign:PackIcon Margin="0 0 15 0"  Kind="Report"/>Сделать отчет</TextBlock>
+                </Button>
+                <Button x:Name="ButtonLogin" Grid.Row="2" Visibility="{Binding IsLogged, Converter={StaticResource InverseBoolToVisConverter}}" Height="45" HorizontalContentAlignment="Left" Background="White" BorderBrush="Transparent" Command="{Binding SignIn}">
                     <TextBlock Style="{StaticResource MenuItemText}"><materialDesign:PackIcon Margin="0 0 15 0"  Kind="Login"/>Войти</TextBlock>
                 </Button>
-                <Button Visibility="{Binding IsLogged, Converter={StaticResource BooleanToVisibilityConverter}}" Grid.Row="2" Height="45" HorizontalContentAlignment="Left" Background="White" BorderBrush="Transparent" Command="{Binding SignOut}">
+                <Button x:Name="ButtonLogout" Visibility="{Binding IsLogged, Converter={StaticResource BooleanToVisibilityConverter}}" Grid.Row="3" Height="45" HorizontalContentAlignment="Left" Background="White" BorderBrush="Transparent" Command="{Binding SignOut}">
                     <TextBlock Style="{StaticResource MenuItemText}"><materialDesign:PackIcon Margin="0 0 15 0"  Kind="Logout"/>Выйти</TextBlock>
                 </Button>
             </Grid>

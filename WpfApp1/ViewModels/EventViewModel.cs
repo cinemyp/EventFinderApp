@@ -50,6 +50,7 @@ namespace WpfApp1
         public EventViewModel(EventModel ev, IDbCrud tm, IMainViewModel mvm)
         {
             CurrentEvent = ev;
+            CurrentEvent.Sessions = CurrentEvent.Sessions.Where(i => i.IsDone == false).OrderBy(i => i.Date).ToList();
             this.tm = tm;
             this.mvm = mvm;
             loggedUserId = mvm.GetLoggedUserId();
@@ -61,7 +62,6 @@ namespace WpfApp1
         private void CheckFavoriteSessions()
         {
             EventModel ev = CurrentEvent;
-            UserModel u = tm.GetUser(loggedUserId);
             foreach(SessionModel s in ev.Sessions)
             {
                 if (tm.GetUser(loggedUserId).Sessions.Where(i => i.ID == s.ID).FirstOrDefault() != null)

@@ -15,6 +15,7 @@ namespace DAL.Repositories
         private SessionRepositorySQL sessionRepository;
         private EventRepositorySQL eventRepository;
         private PlaceRepositorySQL placeRepository;
+        private CityRepositorySQL cityRepository;
         private EventsOrganizersRepositorySQL eventsOrganizersRepository;
         private CategoryRepositorySQL categoryRepository;
         private TypeRepositorySQL typeRepository;
@@ -62,6 +63,15 @@ namespace DAL.Repositories
                 return placeRepository;
             }
         }
+        public IRepository<City> Cities
+        {
+            get
+            {
+                if (cityRepository == null)
+                    cityRepository = new CityRepositorySQL(db);
+                return cityRepository;
+            }
+        }
 
         public IRepository<EventsOrganizers> EventsOrganizers
         {
@@ -92,6 +102,7 @@ namespace DAL.Repositories
                 return typeRepository;
             }
         }
+
 
         public int Save()
         {

@@ -18,9 +18,10 @@ namespace WpfApp1
             db = repos;
         }
 
-        public List<EventModel> GetEvents()
+        public List<EventModel> GetEvents(int cityId)
         {
-            return db.Events.GetAll().Select(i => new EventModel(i)).ToList();
+            return db.Events.GetAll().Select(i => new EventModel(i)).Where(i => i.Sessions.Where(s => s.Organizer.Place.CityId == cityId).Count() > 0)
+                .Where(i => i.Sessions.Where(s => s.IsDone == false).Count() > 0).ToList();
         }
 
         public List<SessionModel> GetSessions(int eventId)
@@ -43,16 +44,16 @@ namespace WpfApp1
             return db.Types.GetAll().Select(i => new TypeModel(i)).ToList();
         }
 
-        public List<EventModel> GetEvents(Date d)
+        public List<EventModel> GetEvents(int cityId, Date d)
         {
             DateValue value = d.Value;
             switch (value)
             {
                 case DateValue.Soon:
                 default:
-                    return db.Events.GetAll().Select(i => new EventModel(i)).ToList();
+                    return GetEvents(cityId);
                 case DateValue.Today:
-                    return db.Events.GetAll()
+                    return GetEvents(cityId)
                         .Join(db.EventsOrganizers.GetAll(), e => e.ID, eo => eo.EventId, (e, eo) => eo)
                         .Join(db.Sessions.GetAll(), e => e.ID, s => s.EventsOrganizersId, (eo, s) => s)
                         .Where(i => i.Date == DateTime.Today)
@@ -60,7 +61,7 @@ namespace WpfApp1
                         .Distinct()
                         .ToList();
                 case DateValue.Tomorrow:
-                    return db.Events.GetAll()
+                    return GetEvents(cityId)
                         .Join(db.EventsOrganizers.GetAll(), e => e.ID, eo => eo.EventId, (e, eo) => eo)
                         .Join(db.Sessions.GetAll(), e => e.ID, s => s.EventsOrganizersId, (eo, s) => s)
                         .Where(i => i.Date == DateTime.Today.AddDays(1))
@@ -68,7 +69,7 @@ namespace WpfApp1
                         .Distinct()
                         .ToList();
                 case DateValue.Weekend:
-                    return db.Events.GetAll()
+                    return GetEvents(cityId)
                         .Join(db.EventsOrganizers.GetAll(), e => e.ID, eo => eo.EventId, (e, eo) => eo)
                         .Join(db.Sessions.GetAll(), e => e.ID, s => s.EventsOrganizersId, (eo, s) => s)
                         .Where(i => (i.Date.DayOfWeek == DayOfWeek.Saturday || i.Date.DayOfWeek == DayOfWeek.Sunday) && (i.Date < DateTime.Today.AddDays(7)))
@@ -76,7 +77,7 @@ namespace WpfApp1
                         .Distinct()
                         .ToList();
                 case DateValue.Week:
-                    return db.Events.GetAll()
+                    return GetEvents(cityId)
                         .Join(db.EventsOrganizers.GetAll(), e => e.ID, eo => eo.EventId, (e, eo) => eo)
                         .Join(db.Sessions.GetAll(), e => e.ID, s => s.EventsOrganizersId, (eo, s) => s)
                         .Where(i => i.Date <= DateTime.Today.AddDays(7))
@@ -84,7 +85,7 @@ namespace WpfApp1
                         .Distinct()
                         .ToList();
                 case DateValue.Month:
-                    return db.Events.GetAll() //TODO: разобраться с фильтром, добавляем 30 дней или все события только в этом месяце
+                    return GetEvents(cityId) //TODO: разобраться с фильтром, добавляем 30 дней или все события только в этом месяце
                         .Join(db.EventsOrganizers.GetAll(), e => e.ID, eo => eo.EventId, (e, eo) => eo)
                         .Join(db.Sessions.GetAll(), e => e.ID, s => s.EventsOrganizersId, (eo, s) => s)
                         .Where(i => i.Date <= DateTime.Today.AddDays(30))
@@ -161,6 +162,16 @@ namespace WpfApp1
 
             Save();
             return result;
+        }
+
+        public List<EventModel> GetTodaysEvent(int userId)
+        {
+            return db.Users.GetItem(userId).Session.Select(i => new EventModel(i.EventsOrganizers.Event, new SessionModel(i))).Where(i => i.CurrentSession.Date.DayOfYear == DateTime.Now.DayOfYear).ToList();
+        }
+
+        public List<CityModel> GetCities()
+        {
+            return db.Cities.GetAll().Select(i => new CityModel(i)).ToList();
         }
     }
 }

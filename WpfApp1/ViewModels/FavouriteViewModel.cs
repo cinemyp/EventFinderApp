@@ -47,7 +47,7 @@ namespace WpfApp1
         {
             this.tm = tm;
             this.pm = pm;
-            Events = new ObservableCollection<EventModel>(tm.GetUserSessions(userId));
+            Events = new ObservableCollection<EventModel>(tm.GetUserSessions(userId).Where(i => i.CurrentSession.IsDone == false).OrderBy(i => i.CurrentSession.Date).ToList());
         }
 
         PageType IPageViewModel.GetType()

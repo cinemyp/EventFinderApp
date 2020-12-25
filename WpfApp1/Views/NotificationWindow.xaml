@@ -1,0 +1,81 @@
+﻿<Window x:Class="WpfApp1.NotificationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        WindowStyle="None"
+        AllowsTransparency="False"
+        ResizeMode="CanMinimize" Title="MainWindow" Height="500" Width="700">
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#FFFFFF"/>
+        </Style>
+        <Style x:Key="Events">
+            <Setter Property="Control.Foreground" Value="Black"/>
+            <Setter Property="Control.FontSize" Value="16"/>
+            <Setter Property="Control.FontWeight" Value="DemiBold"/>
+        </Style>
+        <local:DateTimeToDateConverter x:Key="dateConverter"/>
+    </Window.Resources>
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <!-- Header -->
+            <Grid x:Name="Header" VerticalAlignment="Top" MouseDown="Header_MouseDown" Background="#3F51B5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="120"/>
+                </Grid.ColumnDefinitions>
+                
+
+                <!-- Title -->
+                <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                    <TextBlock  FontSize="16" HorizontalAlignment="Center">Напоминание</TextBlock>
+                </StackPanel>
+
+                <!-- Window Buttons-->
+                <StackPanel x:Name="WindowButtons" Margin="0" HorizontalAlignment="Right" Orientation="Horizontal" Grid.Column="1">
+                    <Button x:Name="ButtonMinimizeWindow"
+                            Click="ButtonMinimizeWindow_Click"
+                            Width="45" Height="30">
+                        <materialDesign:PackIcon HorizontalAlignment="Center" Kind="WindowMinimize"/>
+                    </Button>
+
+                    <Button x:Name="ButtonCloseWindow"
+                            Click="ButtonCloseWindow_Click"
+                            Width="45" Height="30" >
+                        <materialDesign:PackIcon HorizontalAlignment="Center" Kind="WindowClose"/>
+                    </Button>
+                </StackPanel>
+
+            </Grid>
+            <StackPanel Margin="10" Grid.Row="1">
+                <TextBlock FontSize="18" FontWeight="DemiBold" Foreground="Black" Text="Сегодняшние мероприятия"/>
+                <ListBox ItemsSource="{Binding TodaysEvents}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Margin="15" >
+                                <TextBlock Style="{StaticResource Events}" Text="{Binding Path=Title}"/>
+                                <TextBlock Style="{StaticResource Events}" Foreground="Black" Text="{Binding Path=CurrentSession.Date, Converter={StaticResource dateConverter}}"/>
+                                <TextBlock Style="{StaticResource Events}" Foreground="Black" Text="{Binding Path=CurrentSession.Organizer.Name}"/>
+                                <TextBlock Style="{StaticResource Events}" Foreground="Black" Text="{Binding Path=CurrentSession.Organizer.Place.Address}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <TextBlock FontSize="18" FontWeight="DemiBold" Foreground="Black" Text="Не пропустите!"/>
+            </StackPanel>
+            
+            
+            
+        </Grid>
+    </Grid>
+</Window>

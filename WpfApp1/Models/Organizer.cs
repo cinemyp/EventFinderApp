@@ -25,6 +25,7 @@ namespace WpfApp1.Models
             Name = o.Name;
             Site = o.Site;
             PlaceId = o.PlaceId;
+            Place = new PlaceModel(o.Place);
         }
     }
 }

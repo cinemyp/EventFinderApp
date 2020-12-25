@@ -12,6 +12,7 @@ namespace DAL.Interfaces
         IRepository<Session> Sessions { get; }
         IRepository<Event> Events { get; }
         IRepository<Place> Places { get; }
+        IRepository<City> Cities { get; }
         IRepository<EventsOrganizers> EventsOrganizers { get; }
         IRepository<Category> Categories { get; }
         IRepository<Type> Types { get; }

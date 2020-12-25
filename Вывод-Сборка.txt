@@ -1,0 +1,9 @@
+﻿1>------ Перестроение всех файлов начато: проект: DAL, Конфигурация: Debug Any CPU ------
+1>  DAL -> D:\Source\WpfApp1\DAL\bin\Debug\DAL.dll
+2>------ Перестроение всех файлов начато: проект: EventFinderApp, Конфигурация: Debug Any CPU ------
+2>D:\Source\WpfApp1\WpfApp1\Views\FavouritePage.xaml(14,47,14,54): warning CS0108: '"FavouritePage.Content" скрывает наследуемый член "ContentControl.Content". Если скрытие было намеренным, используйте ключевое слово new.
+2>D:\Source\WpfApp1\WpfApp1\Views\OverviewPage.xaml(12,47,12,54): warning CS0108: '"OverviewPage.Content" скрывает наследуемый член "ContentControl.Content". Если скрытие было намеренным, используйте ключевое слово new.
+2>D:\Source\WpfApp1\WpfApp1\Views\OverviewPage.xaml(12,47,12,54): warning CS0108: '"OverviewPage.Content" скрывает наследуемый член "ContentControl.Content". Если скрытие было намеренным, используйте ключевое слово new.
+2>D:\Source\WpfApp1\WpfApp1\Views\FavouritePage.xaml(14,47,14,54): warning CS0108: '"FavouritePage.Content" скрывает наследуемый член "ContentControl.Content". Если скрытие было намеренным, используйте ключевое слово new.
+2>  EventFinderApp -> D:\Source\WpfApp1\WpfApp1\bin\Debug\WpfApp1.exe
+========== Перестроение всех проектов: успешно: 2, с ошибками: 0, пропущено: 0 ==========
