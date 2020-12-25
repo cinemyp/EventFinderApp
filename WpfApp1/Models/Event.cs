@@ -18,15 +18,16 @@ namespace WpfApp1.Models
         public string Site { get; set; }
 
         public byte[] Poster { get; set; }
-
+        public bool IsNew { get; set; }
         public int TypeId { get; set; }
 
         public int CategoryId { get; set; }
 
         public int RestrictionId { get; set; }
         public RestrictionsByAges Restriction { get; set; }
-        public Session Session { get; set; }
-
+        public SessionModel CurrentSession { get; set; }
+        public List<SessionModel> Sessions { get; set; }
+        
         public EventModel() { }
         public EventModel(Event e)
         {
@@ -35,23 +36,27 @@ namespace WpfApp1.Models
             Description = e.Description;
             Site = e.Site;
             Poster = e.Poster;
+            IsNew = e.IsNew;
             TypeId = e.TypeId;
             CategoryId = e.CategoryId;
             RestrictionId = e.RestrictionId;
             Restriction = e.RestrictionsByAges;
+            Sessions = e.EventsOrganizers.Select(i => i.Session).FirstOrDefault().Select(i => new SessionModel(i)).ToList();
         }
-        public EventModel(Event e, Session s)
+        public EventModel(Event e, SessionModel s)
         {
             ID = e.ID;
             Title = e.Title;
             Description = e.Description;
             Site = e.Site;
             Poster = e.Poster;
+            IsNew = e.IsNew;
             TypeId = e.TypeId;
             CategoryId = e.CategoryId;
             RestrictionId = e.RestrictionId;
             Restriction = e.RestrictionsByAges;
-            Session = s;
+            Sessions = e.EventsOrganizers.Select(i => i.Session).FirstOrDefault().Select(i => new SessionModel(i)).ToList();
+            CurrentSession = s;
         }
 
         public bool Equals(EventModel other)

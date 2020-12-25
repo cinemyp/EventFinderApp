@@ -14,7 +14,7 @@ namespace WpfApp1
     public class FavouriteViewModel : INotifyPropertyChanged, IPageViewModel
     {
         IDbCrud tm;
-        IPageManager pm;
+        IMainViewModel pm;
 
         private ObservableCollection<EventModel> events;
         public ObservableCollection<EventModel> Events
@@ -43,7 +43,7 @@ namespace WpfApp1
                 ));
             }
         }
-        public FavouriteViewModel(IDbCrud tm, IPageManager pm, int userId)
+        public FavouriteViewModel(IDbCrud tm, IMainViewModel pm, int userId)
         {
             this.tm = tm;
             this.pm = pm;

@@ -13,7 +13,7 @@ using DAL;
 
 namespace WpfApp1
 {
-    public class ApplicationViewModel : INotifyPropertyChanged, IPageManager
+    public class ApplicationViewModel : INotifyPropertyChanged, IMainViewModel
     {
         IDbCrud tm;
 
@@ -132,6 +132,7 @@ namespace WpfApp1
                         {
                             IsLogged = true;
                             LoggedUser = new UserModel(tm.GetUser(login.GetLoggedUser().ID));
+                            InitContent();
                         }
                         //TODO: брать отсюда данные и проверять на вход
                     }
@@ -156,7 +157,7 @@ namespace WpfApp1
         public bool IsLogged
         {
             get { return isLogged; }
-            set { isLogged = value; OnPropertyChanged("IsLogged"); }
+            set { isLogged = value;  ; OnPropertyChanged("IsLogged"); }
         }
         #endregion
         public ApplicationViewModel(IDbCrud crudServ)
@@ -174,11 +175,16 @@ namespace WpfApp1
 
         public void OpenEvent(EventModel ev)
         {
-            CurrentPageViewModel = new EventViewModel(ev);
+            CurrentPageViewModel = new EventViewModel(ev, tm, this);
 
             ClearFilters();
 
             HandleFilter(false);
+        }
+
+        public int GetLoggedUserId()
+        {
+            return LoggedUser == null ? -1 : LoggedUser.ID;
         }
 
         private void ClearFilters()
@@ -217,6 +223,7 @@ namespace WpfApp1
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
+
         #endregion
 
     }

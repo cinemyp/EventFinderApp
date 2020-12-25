@@ -29,7 +29,8 @@ namespace DAL
 
         [Column(TypeName = "image")]
         public byte[] Poster { get; set; }
-
+        
+        public bool IsNew { get; set; }
         public int TypeId { get; set; }
 
         public int CategoryId { get; set; }

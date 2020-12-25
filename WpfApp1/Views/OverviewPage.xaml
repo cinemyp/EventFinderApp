@@ -24,17 +24,21 @@
                             <Button Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBox}}, Path=DataContext.OpenEvent}" CommandParameter="{Binding Path=Title}"
                                 BorderBrush="Transparent" Background="Transparent" Foreground="Black" Padding="0" Width="250" Height="300"
                                      >
-                                <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left">
-                                    <Image MaxHeight="280" Source="{Binding Path=Poster}" Stretch="Fill"/>
-                                    <TextBlock  Text="{Binding Path=Title}"/>
-                                </StackPanel>
+                                <Grid>
+                                    <Image Visibility="{Binding Path=IsNew, Converter={StaticResource BooleanToVisibilityConverter}}" Width="60" Height="60" Source="../Images/new.png" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+                                    <StackPanel  VerticalAlignment="Top" HorizontalAlignment="Left" Panel.ZIndex="-99">
+                                        <Image  MaxHeight="280" Source="{Binding Path=Poster}" Stretch="Fill"/>
+                                        <TextBlock  Text="{Binding Path=Title}"/>
+
+                                    </StackPanel>
+                                </Grid>
+                                
 
                             </Button>
                         </DataTemplate>
 
                     </ListBox.ItemTemplate>
                     <!--  Здесь в ItemSource будем добавлять данные  -->
-
                 </ListBox>
             </StackPanel>
         </Grid>

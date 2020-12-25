@@ -6,17 +6,20 @@
              xmlns:local="clr-namespace:WpfApp1"
              mc:Ignorable="d" 
              d:DesignHeight="843" d:DesignWidth="1202">
+    <UserControl.Resources>
+        <local:DateTimeToDateConverter x:Key="dateConverter"/>
+    </UserControl.Resources>
     <Grid>
-        <Grid x:Name="Content">
+        <Grid x:Name="Content" Background="Gainsboro">
 
-            <StackPanel Background="Gainsboro">
+            <StackPanel Margin="15" Background="White">
                 <ListBox ItemsSource="{Binding Events}">
                    
                     <ListBox.ItemTemplate>
 
                         <DataTemplate>
 
-                            <Button Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBox}}, Path=DataContext.OpenEvent}" CommandParameter="{Binding Path=Title}"
+                            <Button Visibility="{Binding Path=CurrentSession.IsDone, Converter={StaticResource InverseBoolToVisConverter}}" Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBox}}, Path=DataContext.OpenEvent}" CommandParameter="{Binding Path=Title}"
                                 BorderBrush="Transparent" Background="Transparent" Foreground="Black" Padding="0" Width="1200" Height="200"
                                      HorizontalContentAlignment="Left">
                                 <Grid>
@@ -26,13 +29,19 @@
                                         <ColumnDefinition Width="200"/>
                                     </Grid.ColumnDefinitions>
                                     <Image Grid.Column="0" MaxHeight="200" Source="{Binding Path=Poster}" Stretch="Fill"/>
-                                    <StackPanel Margin="30 0 0 0" Grid.Column="1">
-                                        <TextBlock FontSize="20" Text="{Binding Path=Title}"/>
-                                        <StackPanel  Orientation="Horizontal">
-                                            <TextBlock FontSize="16" Text="+"/>
-                                            <TextBlock FontSize="16" Text="{Binding Path=Restriction.Age}"/>
+                                    <Grid Margin="30 0 0 0" Grid.Column="1">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Grid.Row="0" FontSize="20" Text="{Binding Path=Title}"/>
+                                        <StackPanel Grid.Row="1" Orientation="Horizontal">
+                                            <TextBlock FontSize="16" Foreground="Gray" Text="{Binding Path=Restriction.Age}"/>
+                                            <TextBlock FontSize="16" Foreground="Gray" Text="+"/>
                                         </StackPanel>
-                                    </StackPanel>
+                                        <TextBlock Grid.Row="2" VerticalAlignment="Bottom" FontSize="18" Text="{Binding Path=CurrentSession.Date, Converter={StaticResource dateConverter}}"/>
+                                    </Grid>
                                     <StackPanel Grid.Column="2">
                                         <TextBlock/>
                                     </StackPanel>

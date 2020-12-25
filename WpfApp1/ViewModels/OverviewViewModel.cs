@@ -12,7 +12,7 @@ namespace WpfApp1
     public class OverviewViewModel : INotifyPropertyChanged, IPageViewModel
     {
         IDbCrud tm;
-        IPageManager pm;
+        IMainViewModel mvm;
 
         private ObservableCollection<EventModel> events;
         public ObservableCollection<EventModel> Events
@@ -36,16 +36,16 @@ namespace WpfApp1
                         string title = obj.ToString();
                         EventModel ev = Events.ToList().Find(e => e.Title == title);
                         if (ev != null)
-                            pm.OpenEvent(ev);
+                            mvm.OpenEvent(ev);
                     }
                 ));
             }
         }
-        public OverviewViewModel(IDbCrud tm, IPageManager pm)
+        public OverviewViewModel(IDbCrud tm, IMainViewModel mvm)
         {
             this.tm = tm;
             //Events = new ObservableCollection<EventModel>(tm.GetEvents());
-            this.pm = pm;
+            this.mvm = mvm;
         }
 
         public void FilterByCategory(CategoryModel c)

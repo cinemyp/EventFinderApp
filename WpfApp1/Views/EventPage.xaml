@@ -14,10 +14,22 @@
         <Style TargetType="TextBlock">
             <Setter Property="Foreground" Value="Black"/>
         </Style>
+        <Style x:Key="SessionText">
+            <Setter Property="Control.Foreground" Value="Black"/>
+            <Setter Property="Control.FontSize" Value="16"/>
+            <Setter Property="Control.FontWeight" Value="DemiBold"/>
+        </Style>
+        <local:BoolToBrushColorConverter x:Key="btbcConverter"/>
+        <local:DateTimeToDateConverter x:Key="dateConverter"/>
     </UserControl.Resources>
-    <Grid>
-        <Grid Grid.Row="1" Background="Gainsboro">
-            <Grid Margin="60 0">
+    <Grid Background="Gainsboro">
+        <Grid Grid.Row="1" Margin="15" Background="White">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid Margin="60 0" Grid.Row="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.7*"/>
                     <ColumnDefinition/>
@@ -27,11 +39,42 @@
                 <Image VerticalAlignment="Top" Grid.Column="0" Margin="10" Source="{Binding CurrentEvent.Poster}"/>
                 <!--<TextBlock Margin="10" FontSize="32">Image</TextBlock>-->
                 <StackPanel Grid.Column="1">
-                    <TextBlock Margin="10" FontSize="32" Text="{Binding CurrentEvent.Title}"/>
+                    <StackPanel  Margin="10" Orientation="Horizontal">
+                        <TextBlock FontSize="32" Text="{Binding CurrentEvent.Title}"/>
+                        <TextBlock Margin="10 0 0 0" FontSize="18" Foreground="Gray" Text="{Binding CurrentEvent.Restriction.Age}" VerticalAlignment="Center"/>
+                        <TextBlock  FontSize="18" Foreground="Gray" Text="+" VerticalAlignment="Center"/>
+                    </StackPanel>
                     <TextBlock Margin="10" FontSize="24" Text="{Binding CurrentEvent.Description}" TextWrapping="Wrap"/>
+
                 </StackPanel>
             </Grid>
+            <TextBlock Grid.Row="1" Text="Расписание" FontSize="24" FontWeight="DemiBold" Margin="30 0 0 0"/>
+            <ListBox Grid.Row="2" ItemsSource="{Binding CurrentEvent.Sessions}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
 
+                        <Grid Visibility="{Binding IsDone, Converter={StaticResource InverseBoolToVisConverter}}" Style="{StaticResource SessionText}"  Margin="30 10 30 0" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="1" Margin="20 0 0 0" Text="{Binding Date, Converter={StaticResource dateConverter}}"/>
+                            <TextBlock Grid.Column="2" Margin="60 0 0 0" Text="{Binding Organizer.Name}"/>
+                            <Button IsEnabled="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBox}}, Path=DataContext.IsLogged}" 
+                                    Foreground="{Binding IsFavorite, Converter={StaticResource btbcConverter}}" 
+                                    Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBox}}, Path=DataContext.ClickFavourite}" 
+                                    CommandParameter="{Binding Path=ID}"
+                                    Width="30" Height="30" Padding="0" Background="Transparent" BorderBrush="Transparent">
+                                <materialDesign:PackIcon  Width="30" Height="30" Kind="Favourite"/>
+                                
+                            </Button>
+                        </Grid>
+
+
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
 
         </Grid>
     </Grid>

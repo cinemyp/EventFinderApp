@@ -106,6 +106,9 @@ namespace WpfApp1
 
         public bool SignOn(UserModel user)
         {
+            if (string.IsNullOrWhiteSpace(user.Login) || string.IsNullOrWhiteSpace(user.Password))
+                return false;
+
             bool isExist;
             isExist = db.Users.GetAll()
                 .Where(i => i.Login == user.Login)
@@ -131,8 +134,33 @@ namespace WpfApp1
 
         public List<EventModel> GetUserSessions(int userId)
         {
-            return db.Users.GetItem(userId).Session.Select(i => new EventModel(i.EventsOrganizers.Event, i)).ToList();
-            
+            return db.Users.GetItem(userId).Session.Select(i => new EventModel(i.EventsOrganizers.Event, new SessionModel(i))).ToList();
+        }
+        //Лучше конечно разбить на три функции, но мне впадлу
+        /// <summary>
+        /// Возвращает true, если добавили в избранное; false, если убрали из избранного
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="sessionId"></param>
+        /// <returns></returns>
+        public bool MakeFavourite(int userId, int sessionId)
+        {
+            User user = db.Users.GetItem(userId);
+            Session session = user.Session.FirstOrDefault(i => i.ID == sessionId);
+            bool result;
+            if (session != null)
+            {
+                user.Session.Remove(session);
+                result = false;
+            }
+            else
+            {
+                user.Session.Add(db.Sessions.GetItem(sessionId));
+                result = true;
+            }
+
+            Save();
+            return result;
         }
     }
 }

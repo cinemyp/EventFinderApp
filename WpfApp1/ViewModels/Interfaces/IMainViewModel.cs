@@ -7,8 +7,9 @@ using WpfApp1.Models;
 
 namespace WpfApp1.ViewModels.Interfaces
 {
-    public interface IPageManager
+    public interface IMainViewModel
     {
         void OpenEvent(EventModel ev);
+        int GetLoggedUserId();
     }
 }
