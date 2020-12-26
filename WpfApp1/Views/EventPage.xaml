@@ -45,14 +45,16 @@
                         <TextBlock  FontSize="18" Foreground="Gray" Text="+" VerticalAlignment="Center"/>
                     </StackPanel>
                     <TextBlock Margin="10" FontSize="24" Text="{Binding CurrentEvent.Description}" TextWrapping="Wrap"/>
-
+                    <TextBlock Margin="10" Grid.Column="3" FontSize="24">
+                        <Hyperlink NavigateUri="{Binding CurrentEvent.Site}" RequestNavigate="Hyperlink_RequestNavigate">Сайт мероприятия</Hyperlink>
+                    </TextBlock>
                 </StackPanel>
             </Grid>
+            
             <TextBlock Grid.Row="1" Text="Расписание" FontSize="24" FontWeight="DemiBold" Margin="30 0 0 0"/>
             <ListBox Grid.Row="2" ItemsSource="{Binding CurrentEvent.Sessions}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-
                         <Grid  Margin="30 10 30 0" >
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -60,7 +62,13 @@
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <TextBlock Grid.Column="1" Margin="20 0 0 0" Text="{Binding Date, Converter={StaticResource dateConverter}}"/>
-                            <TextBlock Grid.Column="2" Margin="60 0 0 0" Text="{Binding Organizer.Name}"/>
+                            
+                            <TextBlock Grid.Column="2" Margin="60 0 0 0">
+                                <Hyperlink  NavigateUri="{Binding Organizer.Site}"
+        RequestNavigate="Hyperlink_RequestNavigate">
+                                    <TextBlock Text="{Binding Organizer.Name}"/>
+                                </Hyperlink>
+                            </TextBlock>
                             <Button IsEnabled="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBox}}, Path=DataContext.IsLogged}" 
                                     Foreground="{Binding IsFavourite, Converter={StaticResource btbcConverter}}"
                                     Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBox}}, Path=DataContext.ClickFavourite}" 
@@ -70,6 +78,7 @@
                                 <materialDesign:PackIcon  Width="30" Height="30" Kind="Favourite"/>
                                 
                             </Button>
+                            
                         </Grid>
 
 

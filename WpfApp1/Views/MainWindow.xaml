@@ -9,8 +9,9 @@
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         mc:Ignorable="d"
         WindowStyle="None"
-        AllowsTransparency="False"
-        ResizeMode="CanMinimize" Title="MainWindow" Height="933" Width="1202">
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="CanResize" Title="MainWindow" MinHeight="640" MinWidth="980" Height="933" Width="1202">
     <Window.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="Foreground" Value="#FFFFFF"/>
@@ -151,7 +152,7 @@
             <ContentControl Grid.Row="2" Content="{Binding CurrentPageViewModel}"/>
         </Grid>
         <!-- Menu Content -->
-        <Grid Background="#FFFFFF" x:Name="GridMenu" Width="0" Height="933" HorizontalAlignment="Left">
+        <Grid Background="#FFFFFF" x:Name="GridMenu" Width="0" MaxHeight="933" HorizontalAlignment="Left">
             <Grid.RowDefinitions>
                 <RowDefinition Height="60"/>
                 <RowDefinition/>

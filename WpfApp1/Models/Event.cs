@@ -24,7 +24,7 @@ namespace WpfApp1.Models
         public int CategoryId { get; set; }
 
         public int RestrictionId { get; set; }
-        public RestrictionsByAges Restriction { get; set; }
+        public RestrictionsByAgesModel Restriction { get; set; }
         public SessionModel CurrentSession { get; set; }
         public List<SessionModel> Sessions { get; set; }
         
@@ -40,7 +40,7 @@ namespace WpfApp1.Models
             TypeId = e.TypeId;
             CategoryId = e.CategoryId;
             RestrictionId = e.RestrictionId;
-            Restriction = e.RestrictionsByAges;
+            Restriction = new RestrictionsByAgesModel(e.RestrictionsByAges);
             Sessions = e.EventsOrganizers.Select(i => i.Session).FirstOrDefault().Select(i => new SessionModel(i)).ToList();
         }
         public EventModel(Event e, SessionModel s)
@@ -54,7 +54,7 @@ namespace WpfApp1.Models
             TypeId = e.TypeId;
             CategoryId = e.CategoryId;
             RestrictionId = e.RestrictionId;
-            Restriction = e.RestrictionsByAges;
+            Restriction = new RestrictionsByAgesModel(e.RestrictionsByAges);
             Sessions = e.EventsOrganizers.Select(i => i.Session).FirstOrDefault().Select(i => new SessionModel(i)).ToList();
             CurrentSession = s;
         }
