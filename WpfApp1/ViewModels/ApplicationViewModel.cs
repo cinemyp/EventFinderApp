@@ -5,6 +5,8 @@ using System.Runtime.CompilerServices;
 using System.Collections.ObjectModel;
 using WpfApp1.Models;
 using WpfApp1.ViewModels.Interfaces;
+using DAL.Interfaces;
+using WpfApp1.ViewModels;
 
 namespace WpfApp1
 {
@@ -45,15 +47,17 @@ namespace WpfApp1
             }
         }
 
-        private RelayCommand makeReport;
-        public RelayCommand MakeReport
+        private RelayCommand openReportPage;
+        public RelayCommand OpenReportPage
         {
             get
             {
-                return makeReport ??
-                    (makeReport = new RelayCommand(obj =>
+                return openReportPage ??
+                    (openReportPage = new RelayCommand(obj =>
                     {
-                        //TODO: сделать отчет и сохранить в пдф 
+                        ClearFilters();
+                        CurrentPageViewModel = new ReportViewModel(tm, LoggedUser.ID);
+                        DisplayFilters(false);
                     }));
             }
         }
@@ -194,7 +198,7 @@ namespace WpfApp1
             set { isLogged = value;  ; OnPropertyChanged("IsLogged"); }
         }
         #endregion
-        public ApplicationViewModel(IDbCrud crudServ)
+        public ApplicationViewModel(IDbCrud crudServ, IReportRepository report)
         {
             tm = crudServ;
             InitDateFilterContent();

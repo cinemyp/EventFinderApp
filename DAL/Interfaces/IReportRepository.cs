@@ -1,4 +1,4 @@
-﻿
+﻿using DAL.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace DAL.Interfaces
 {
-    public interface IReportService
+    public interface IReportRepository
     {
-        List<DAL.Entities.ReportData> MonthlyReport(int userId);
+        ReportData MonthlyReport(int userId, int month);
     }
 }

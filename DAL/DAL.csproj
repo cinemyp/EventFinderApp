@@ -57,12 +57,13 @@
     <Compile Include="Entities\City.cs" />
     <Compile Include="Entities\Country.cs" />
     <Compile Include="Entities\Event.cs" />
-    <Compile Include="Entities\ReportData.cs" />
+    <Compile Include="Entities\Reports.cs" />
     <Compile Include="EventFinderContext.cs" />
     <Compile Include="Entities\EventsOrganizers.cs" />
     <Compile Include="Entities\Organizer.cs" />
     <Compile Include="Entities\Place.cs" />
     <Compile Include="Interfaces\IDbRepository.cs" />
+    <Compile Include="Interfaces\IReportRepository.cs" />
     <Compile Include="Interfaces\IReportService.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

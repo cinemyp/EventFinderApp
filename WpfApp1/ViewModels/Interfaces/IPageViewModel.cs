@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WpfApp1
 {
-    public enum PageType { Overview, Event, Favourite }
+    public enum PageType { Overview, Event, Favourite, Report }
     public interface IPageViewModel
     {
         PageType GetType();

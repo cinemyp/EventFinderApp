@@ -56,6 +56,9 @@
         <DataTemplate DataType="{x:Type local:FavouriteViewModel}">
             <local:FavouritePage/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type local:ReportViewModel}">
+            <local:ReportPage/>
+        </DataTemplate>
     </Window.Resources>
 
     <Window.Triggers>
@@ -66,6 +69,9 @@
             <BeginStoryboard Storyboard="{StaticResource MenuClose}"></BeginStoryboard>
         </EventTrigger>
         <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonOpenFavourite">
+            <BeginStoryboard Storyboard="{StaticResource MenuClose}"></BeginStoryboard>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonReport">
             <BeginStoryboard Storyboard="{StaticResource MenuClose}"></BeginStoryboard>
         </EventTrigger>
         <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonLogin">
@@ -205,7 +211,7 @@
                         Command="{Binding OpenFavouritePage}">
                     <TextBlock Style="{StaticResource MenuItemText}"><materialDesign:PackIcon Margin="0 0 15 0"  Kind="Favorite"/>Избранное</TextBlock>
                 </Button>
-                <Button x:Name="ButtonReport" Margin="0 0 0 20" Grid.Row="1" Visibility="{Binding IsLogged, Converter={StaticResource BooleanToVisibilityConverter}}" Height="45" HorizontalContentAlignment="Left" Background="White" BorderBrush="Transparent" Command="{Binding MakeReport}">
+                <Button x:Name="ButtonReport" Margin="0 0 0 20" Grid.Row="1" Visibility="{Binding IsLogged, Converter={StaticResource BooleanToVisibilityConverter}}" Height="45" HorizontalContentAlignment="Left" Background="White" BorderBrush="Transparent" Command="{Binding OpenReportPage}">
                     <TextBlock Style="{StaticResource MenuItemText}"><materialDesign:PackIcon Margin="0 0 15 0"  Kind="Report"/>Сделать отчет</TextBlock>
                 </Button>
                 <Button x:Name="ButtonLogin" Grid.Row="2" Visibility="{Binding IsLogged, Converter={StaticResource InverseBoolToVisConverter}}" Height="45" HorizontalContentAlignment="Left" Background="White" BorderBrush="Transparent" Command="{Binding SignIn}">

@@ -1,4 +1,6 @@
-﻿using Ninject.Modules;
+﻿using DAL.Interfaces;
+using DAL.Repositories;
+using Ninject.Modules;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +15,7 @@ namespace WpfApp1.Util
         public override void Load()
         {
             Bind<IDbCrud>().To<TransactionManager>();
+            Bind<IReportRepository>().To<ReportRepositorySQL>();
         }
     }
 }

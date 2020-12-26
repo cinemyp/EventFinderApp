@@ -1,4 +1,5 @@
-﻿using Ninject;
+﻿using DAL.Interfaces;
+using Ninject;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -32,8 +33,9 @@ namespace WpfApp1
             var kernel = new StandardKernel(new LoginModule(), new ServiceModule(connection), new NinjectRegistrations());
             
             IDbCrud crudServ = kernel.Get<IDbCrud>();
+            IReportRepository reportService = kernel.Get<IReportRepository>();
 
-            DataContext = new ApplicationViewModel(crudServ);
+            DataContext = new ApplicationViewModel(crudServ, reportService);
         }
 
         private void ButtonMinimizeWindow_Click(object sender, RoutedEventArgs e)

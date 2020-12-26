@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DAL;
 using DAL.Interfaces;
+using DAL.Repositories;
 using WpfApp1.Models;
 
 namespace WpfApp1
@@ -12,10 +13,12 @@ namespace WpfApp1
     public class TransactionManager : IDbCrud
     {
         IDbRepository db;
+        IReportRepository reports;
 
-        public TransactionManager(IDbRepository repos)
+        public TransactionManager(IDbRepository repos, IReportRepository reports)
         {
             db = repos;
+            this.reports = reports;
         }
 
         public List<EventModel> GetEvents(int cityId)
@@ -172,6 +175,20 @@ namespace WpfApp1
         public List<CityModel> GetCities()
         {
             return db.Cities.GetAll().Select(i => new CityModel(i)).ToList();
+        }
+
+        public ReportData MonthlyReport(int userId, int month)
+        {
+            var rep = reports.MonthlyReport(userId, month);
+            if (rep == null)
+                return null;
+            return new ReportData()
+            {
+                CountFavouriteEvents = rep.CountFavouriteEvents,
+                FavouriteCategory = rep.FavouriteCategory,
+                FavouriteType = rep.FavouriteType,
+                FavouriteEvents = rep.FavouriteEvents.Select(i => new EventModel(i.EventsOrganizers.Event, new SessionModel(i))).ToList()
+            };
         }
     }
 }

@@ -21,5 +21,6 @@ namespace WpfApp1.Models
         bool SignOn(UserModel user);
         UserModel GetUser(int id);
         bool MakeFavourite(int userId, int sessionId);
+        ReportData MonthlyReport(int userId, int month);
     }
 }

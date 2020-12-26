@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DAL.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,6 +17,7 @@ namespace DAL.Interfaces
         IRepository<EventsOrganizers> EventsOrganizers { get; }
         IRepository<Category> Categories { get; }
         IRepository<Type> Types { get; }
+        IReportRepository Reports { get; }
         int Save();
     }
 }

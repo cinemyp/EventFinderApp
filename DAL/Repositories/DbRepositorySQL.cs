@@ -1,4 +1,5 @@
-﻿using DAL.Interfaces;
+﻿using DAL.Entities;
+using DAL.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,7 @@ namespace DAL.Repositories
         private EventsOrganizersRepositorySQL eventsOrganizersRepository;
         private CategoryRepositorySQL categoryRepository;
         private TypeRepositorySQL typeRepository;
+        private ReportRepositorySQL reportRepository;
         public DbRepositorySQL()
         {
             db = new EventFinderContext();
@@ -103,6 +105,15 @@ namespace DAL.Repositories
             }
         }
 
+        public IReportRepository Reports
+        {
+            get
+            {
+                if (reportRepository == null)
+                    reportRepository = new ReportRepositorySQL(db);
+                return reportRepository;
+            }
+        }
 
         public int Save()
         {
