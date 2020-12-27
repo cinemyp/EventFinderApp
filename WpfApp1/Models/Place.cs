@@ -13,7 +13,6 @@ namespace WpfApp1.Models
 
         public string Address { get; set; }
 
-        public int CountryId { get; set; }
 
         public int CityId { get; set; }
 
@@ -25,7 +24,6 @@ namespace WpfApp1.Models
         {
             ID = p.ID;
             Address = p.Address;
-            CountryId = p.CountryId;
             CityId = p.CityId;
             City = p.City;
         }

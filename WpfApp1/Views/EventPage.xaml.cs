@@ -32,5 +32,11 @@ namespace WpfApp1
             Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
             e.Handled = true;
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Button b = sender as Button;
+            b.Foreground = b.Foreground == Brushes.Gainsboro ? Brushes.PaleVioletRed : Brushes.Gainsboro;
+        }
     }
 }

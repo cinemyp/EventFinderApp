@@ -14,7 +14,6 @@ namespace DAL
 
         public virtual DbSet<Category> Category { get; set; }
         public virtual DbSet<City> City { get; set; }
-        public virtual DbSet<Country> Country { get; set; }
         public virtual DbSet<Event> Event { get; set; }
         public virtual DbSet<EventsOrganizers> EventsOrganizers { get; set; }
         public virtual DbSet<Organizer> Organizer { get; set; }
@@ -45,14 +44,6 @@ namespace DAL
                 .WithRequired(e => e.City)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Country>()
-                .Property(e => e.Name)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Country>()
-                .HasMany(e => e.Place)
-                .WithRequired(e => e.Country)
-                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Event>()
                 .Property(e => e.Title)

@@ -186,6 +186,8 @@ namespace WpfApp1
                     {
                         IsLogged = false;
                         LoggedUser = null;
+                        if (CurrentPageViewModel.GetType() != PageType.Overview)
+                            CurrentPageViewModel = OverviewViewModel;
                     }
                 ));
             }
