@@ -31,7 +31,7 @@ namespace WpfApp1.Util
             doc1.Add(new Paragraph("Всего добавленных мероприятий: " + data.CountFavouriteEvents, normal));
             doc1.Add(new Paragraph("Любимая категория в этом месяце: " + data.FavouriteCategory, normal));
             doc1.Add(new Paragraph("Больше всего я ходил вместе " + data.FavouriteType.ToLower(), normal));
-            doc1.Add(new Paragraph("Посещенные мероприятия:", head));
+            doc1.Add(new Paragraph("Прошедшие избранные мероприятия:", head));
             foreach(var e in data.FavouriteEvents)
             {
                 doc1.Add(new Paragraph(e.Title + "          " + e.CurrentSession.Date.ToString("d"), normal));

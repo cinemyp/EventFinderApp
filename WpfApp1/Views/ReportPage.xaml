@@ -86,7 +86,7 @@
                         <TextBlock Margin="100 0 0 0" Style="{StaticResource MaterialDesignBody1TextBlock}" Text="{Binding Report.FavouriteType}"/>
                     </StackPanel>
                     <StackPanel Margin="0 20 0 0">
-                        <TextBlock Style="{StaticResource MaterialDesignBody1TextBlock}" Text="Посещенные мероприятия"/>
+                        <TextBlock Style="{StaticResource MaterialDesignBody1TextBlock}" Text="Прошедшие избранные мероприятия"/>
                         <ListBox ItemsSource="{Binding Report.FavouriteEvents}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
