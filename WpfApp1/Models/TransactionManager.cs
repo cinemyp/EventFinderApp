@@ -59,7 +59,7 @@ namespace WpfApp1
                     return GetEvents(cityId)
                         .Join(db.EventsOrganizers.GetAll(), e => e.ID, eo => eo.EventId, (e, eo) => eo)
                         .Join(db.Sessions.GetAll(), e => e.ID, s => s.EventsOrganizersId, (eo, s) => s)
-                        .Where(i => i.Date.DayOfYear == DateTime.Today.DayOfYear)
+                        .Where(i => i.Date >= DateTime.Today && i.Date < DateTime.Today.AddDays(1))
                         .Select(i => new EventModel(i.EventsOrganizers.Event))
                         .Distinct()
                         .ToList();
@@ -67,7 +67,7 @@ namespace WpfApp1
                     return GetEvents(cityId)
                         .Join(db.EventsOrganizers.GetAll(), e => e.ID, eo => eo.EventId, (e, eo) => eo)
                         .Join(db.Sessions.GetAll(), e => e.ID, s => s.EventsOrganizersId, (eo, s) => s)
-                        .Where(i => i.Date.DayOfYear == DateTime.Today.AddDays(1).DayOfYear)
+                        .Where(i => i.Date > DateTime.Today.AddDays(1) && i.Date < DateTime.Today.AddDays(2))
                         .Select(i => new EventModel(i.EventsOrganizers.Event))
                         .Distinct()
                         .ToList();
@@ -75,7 +75,7 @@ namespace WpfApp1
                     return GetEvents(cityId)
                         .Join(db.EventsOrganizers.GetAll(), e => e.ID, eo => eo.EventId, (e, eo) => eo)
                         .Join(db.Sessions.GetAll(), e => e.ID, s => s.EventsOrganizersId, (eo, s) => s)
-                        .Where(i => (i.Date.DayOfWeek == DayOfWeek.Saturday || i.Date.DayOfWeek == DayOfWeek.Sunday) && (i.Date.DayOfYear < DateTime.Today.AddDays(7).DayOfYear))
+                        .Where(i => (i.Date.DayOfWeek == DayOfWeek.Saturday || i.Date.DayOfWeek == DayOfWeek.Sunday) && (i.Date < DateTime.Today.AddDays(7)))
                         .Select(i => new EventModel(i.EventsOrganizers.Event))
                         .Distinct()
                         .ToList();
@@ -83,7 +83,7 @@ namespace WpfApp1
                     return GetEvents(cityId)
                         .Join(db.EventsOrganizers.GetAll(), e => e.ID, eo => eo.EventId, (e, eo) => eo)
                         .Join(db.Sessions.GetAll(), e => e.ID, s => s.EventsOrganizersId, (eo, s) => s)
-                        .Where(i => i.Date.DayOfYear <= DateTime.Today.AddDays(7).DayOfYear)
+                        .Where(i => i.Date <= DateTime.Today.AddDays(7))
                         .Select(i => new EventModel(i.EventsOrganizers.Event))
                         .Distinct()
                         .ToList();
@@ -91,7 +91,7 @@ namespace WpfApp1
                     return GetEvents(cityId) //TODO: разобраться с фильтром, добавляем 30 дней или все события только в этом месяце
                         .Join(db.EventsOrganizers.GetAll(), e => e.ID, eo => eo.EventId, (e, eo) => eo)
                         .Join(db.Sessions.GetAll(), e => e.ID, s => s.EventsOrganizersId, (eo, s) => s)
-                        .Where(i => i.Date.DayOfYear <= DateTime.Today.AddDays(30).DayOfYear)
+                        .Where(i => i.Date <= DateTime.Today.AddDays(30))
                         .Select(i => new EventModel(i.EventsOrganizers.Event))
                         .Distinct()
                         .ToList();

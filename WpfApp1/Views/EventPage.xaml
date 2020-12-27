@@ -23,69 +23,72 @@
         <local:DateTimeToDateConverter x:Key="dateConverter"/>
     </UserControl.Resources>
     <Grid Background="Gainsboro">
-        <Grid Grid.Row="1" Margin="15" Background="White">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition />
-            </Grid.RowDefinitions>
-            <Grid Margin="60 0" Grid.Row="0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.7*"/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <!-- Здесь сделать привязку по данным -->
-                <!-- Сделать нормальный размер -->
-                <Image VerticalAlignment="Top" Grid.Column="0" Margin="10" Source="{Binding CurrentEvent.Poster}"/>
-                <!--<TextBlock Margin="10" FontSize="32">Image</TextBlock>-->
-                <StackPanel Grid.Column="1">
-                    <StackPanel  Margin="10" Orientation="Horizontal">
-                        <TextBlock FontSize="32" Text="{Binding CurrentEvent.Title}"/>
-                        <TextBlock Margin="10 0 0 0" FontSize="18" Foreground="Gray" Text="{Binding CurrentEvent.Restriction.Age}" VerticalAlignment="Center"/>
-                        <TextBlock  FontSize="18" Foreground="Gray" Text="+" VerticalAlignment="Center"/>
-                    </StackPanel>
-                    <TextBlock Margin="10" FontSize="24" Text="{Binding CurrentEvent.Description}" TextWrapping="Wrap"/>
-                    <TextBlock Margin="10" Grid.Column="3" FontSize="24">
+        <ScrollViewer>
+            <Grid Grid.Row="1" Margin="15" Background="White">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid Margin="60 0" Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.7*"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <!-- Здесь сделать привязку по данным -->
+                    <!-- Сделать нормальный размер -->
+                    <Image VerticalAlignment="Top" Grid.Column="0" Margin="10" Source="{Binding CurrentEvent.Poster}"/>
+                    <!--<TextBlock Margin="10" FontSize="32">Image</TextBlock>-->
+                    <StackPanel Grid.Column="1">
+                        <StackPanel  Margin="10" Orientation="Horizontal">
+                            <TextBlock FontSize="32" Text="{Binding CurrentEvent.Title}"/>
+                            <TextBlock Margin="10 0 0 0" FontSize="18" Foreground="Gray" Text="{Binding CurrentEvent.Restriction.Age}" VerticalAlignment="Center"/>
+                            <TextBlock  FontSize="18" Foreground="Gray" Text="+" VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <TextBlock Margin="10" FontSize="24" Text="{Binding CurrentEvent.Description}" TextWrapping="Wrap"/>
+                        <TextBlock Margin="10" Grid.Column="3" FontSize="24">
                         <Hyperlink NavigateUri="{Binding CurrentEvent.Site}" RequestNavigate="Hyperlink_RequestNavigate">Сайт мероприятия</Hyperlink>
-                    </TextBlock>
-                </StackPanel>
-            </Grid>
-            
-            <TextBlock Grid.Row="1" Text="Расписание" FontSize="24" FontWeight="DemiBold" Margin="30 0 0 0"/>
-            <ListBox Grid.Row="2" ItemsSource="{Binding CurrentEvent.Sessions}">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <Grid  Margin="30 10 30 0" >
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Column="1" Margin="20 0 0 0" Text="{Binding Date, Converter={StaticResource dateConverter}}"/>
-                            
-                            <TextBlock Grid.Column="2" Margin="60 0 0 0">
+                        </TextBlock>
+                    </StackPanel>
+                </Grid>
+
+                <TextBlock Grid.Row="1" Text="Расписание" FontSize="24" FontWeight="DemiBold" Margin="30 0 0 0"/>
+                <ListBox Grid.Row="2" ItemsSource="{Binding CurrentEvent.Sessions}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid  Margin="30 10 30 0" >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="1" Margin="20 0 0 0" Text="{Binding Date, Converter={StaticResource dateConverter}}"/>
+
+                                <TextBlock Grid.Column="2" Margin="60 0 0 0">
                                 <Hyperlink  NavigateUri="{Binding Organizer.Site}"
         RequestNavigate="Hyperlink_RequestNavigate">
                                     <TextBlock Text="{Binding Organizer.Name}"/>
                                 </Hyperlink>
                             </TextBlock>
-                            <Button IsEnabled="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBox}}, Path=DataContext.IsLogged}" 
+                                <Button IsEnabled="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBox}}, Path=DataContext.IsLogged}" 
                                     Foreground="{Binding IsFavourite, Converter={StaticResource btbcConverter}}"
                                     Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBox}}, Path=DataContext.ClickFavourite}" 
                                     CommandParameter="{Binding Path=ID}"
                                     Width="30" Height="30" Padding="0" Background="Transparent" BorderBrush="Transparent"
                                     Click="Button_Click">
-                                <materialDesign:PackIcon  Width="30" Height="30" Kind="Favourite"/>
-                                
-                            </Button>
-                            
-                        </Grid>
+                                    <materialDesign:PackIcon  Width="30" Height="30" Kind="Favourite"/>
+
+                                </Button>
+
+                            </Grid>
 
 
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
 
-        </Grid>
+            </Grid>
+        </ScrollViewer>
+        
     </Grid>
 </UserControl>

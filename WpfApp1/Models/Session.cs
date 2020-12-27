@@ -25,7 +25,7 @@ namespace WpfApp1.Models
             EventsOrganizersId = s.EventsOrganizersId;
             Date = s.Date;
             Organizer = new OrganizerModel(s.EventsOrganizers.Organizer);
-            IsDone = DateTime.Now.DayOfYear > Date.DayOfYear ? true : false;
+            IsDone = DateTime.Now > Date ? true : false;
             IsFavourite = false;
         }
     }

@@ -88,7 +88,11 @@ namespace WpfApp1
 
                 if (CurrentPageViewModel.GetType() != PageType.Overview)
                     CurrentPageViewModel = OverviewViewModel;
-
+                if(categoryFilter == null)
+                {
+                    categoryFilter = Categories[0];
+                    OnPropertyChanged("CategoryFilter");
+                }    
                 OverviewViewModel.GetAllEvents(cityFilter.ID, categoryFilter.ID);
                 OnPropertyChanged("CityFilter");
 

@@ -17,7 +17,7 @@ namespace WpfApp1
         public int SelectedMonth
         {
             get { return selectedMonth; }
-            set { selectedMonth = value; Report = tm.MonthlyReport(LoggedUserId, SelectedMonth); }
+            set { selectedMonth = value; Report = tm.MonthlyReport(LoggedUserId, SelectedMonth + 1); }
         }
         public int LoggedUserId { get; set; }
 
@@ -30,7 +30,7 @@ namespace WpfApp1
                     (pdfSave = new RelayCommand(obj =>
                     {
                         Microsoft.Win32.SaveFileDialog s = new Microsoft.Win32.SaveFileDialog();
-                        string month = new DateTime(2020, selectedMonth, 1).ToString("MMMM");
+                        string month = new DateTime(2020, selectedMonth + 1, 1).ToString("MMMM");
                         s.FileName = "Отчет за " + month;
                         s.DefaultExt = ".pdf";
                         if (s.ShowDialog() == true)
