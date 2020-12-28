@@ -169,7 +169,7 @@ namespace WpfApp1
 
         public List<EventModel> GetTodaysEvent(int userId)
         {
-            return db.Users.GetItem(userId).Session.Select(i => new EventModel(i.EventsOrganizers.Event, new SessionModel(i))).Where(i => i.CurrentSession.Date.DayOfYear == DateTime.Now.DayOfYear).ToList();
+            return db.Users.GetItem(userId).Session.Select(i => new EventModel(i.EventsOrganizers.Event, new SessionModel(i))).Where(i => i.CurrentSession.Date >= DateTime.Now && i.CurrentSession.Date < DateTime.Today.AddDays(1)).ToList();
         }
 
         public List<CityModel> GetCities()

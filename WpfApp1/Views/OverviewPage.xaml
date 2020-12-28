@@ -9,7 +9,7 @@
       
     <Grid>
         <Grid x:Name="Content">
-
+            <ScrollViewer>
             <StackPanel Background="Gainsboro">
                 <ListBox ItemsSource="{Binding Events}">
                     <ListBox.ItemsPanel>
@@ -41,6 +41,7 @@
                     <!--  Здесь в ItemSource будем добавлять данные  -->
                 </ListBox>
             </StackPanel>
+            </ScrollViewer>
         </Grid>
     </Grid>
 </UserControl>

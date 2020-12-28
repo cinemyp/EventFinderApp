@@ -31,7 +31,7 @@ namespace WpfApp1
                     {
                         Microsoft.Win32.SaveFileDialog s = new Microsoft.Win32.SaveFileDialog();
                         string month = new DateTime(2020, selectedMonth + 1, 1).ToString("MMMM");
-                        s.FileName = "Отчет за " + month;
+                        s.FileName = "Статистика мероприятий за " + month;
                         s.DefaultExt = ".pdf";
                         if (s.ShowDialog() == true)
                             PdfHelper.GeneratePdf(s.FileName, Report, month);

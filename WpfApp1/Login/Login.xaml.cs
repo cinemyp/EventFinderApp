@@ -51,6 +51,7 @@ namespace WpfApp1
 
         public string GetPassword()
         {
+            
             return pwdBox.Password;
         }
         public void Close(UserModel user, bool? dialogResult)

@@ -11,7 +11,7 @@
         WindowStyle="None"
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
-        ResizeMode="CanResize" Title="MainWindow" MinHeight="640" MinWidth="980" Height="933" Width="1202">
+        ResizeMode="CanResizeWithGrip" Title="MainWindow" MinHeight="640" MinWidth="980" Height="933" Width="1202">
     <Window.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="Foreground" Value="#FFFFFF"/>
@@ -37,7 +37,7 @@
         <Storyboard x:Key="MenuOpen">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
                 <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="250"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="270"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Key="MenuClose">
@@ -211,8 +211,8 @@
                         Command="{Binding OpenFavouritePage}">
                     <TextBlock Style="{StaticResource MenuItemText}"><materialDesign:PackIcon Margin="0 0 15 0"  Kind="Favorite"/>Избранное</TextBlock>
                 </Button>
-                <Button x:Name="ButtonReport" Margin="0 0 0 20" Grid.Row="1" Visibility="{Binding IsLogged, Converter={StaticResource BooleanToVisibilityConverter}}" Height="45" HorizontalContentAlignment="Left" Background="White" BorderBrush="Transparent" Command="{Binding OpenReportPage}">
-                    <TextBlock Style="{StaticResource MenuItemText}"><materialDesign:PackIcon Margin="0 0 15 0"  Kind="Report"/>Сделать отчет</TextBlock>
+                <Button x:Name="ButtonReport" Margin="0 0 0 20" Grid.Row="1" Visibility="{Binding IsLogged, Converter={StaticResource BooleanToVisibilityConverter}}" Height="45"  HorizontalContentAlignment="Left" Background="White" BorderBrush="Transparent" Command="{Binding OpenReportPage}">
+                    <TextBlock Style="{StaticResource MenuItemText}"><materialDesign:PackIcon Margin="0 0 15 0"  Kind="Report"/>Статистика мероприятий</TextBlock>
                 </Button>
                 <Button x:Name="ButtonLogin" Grid.Row="2" Visibility="{Binding IsLogged, Converter={StaticResource InverseBoolToVisConverter}}" Height="45" HorizontalContentAlignment="Left" Background="White" BorderBrush="Transparent" Command="{Binding SignIn}">
                     <TextBlock Style="{StaticResource MenuItemText}"><materialDesign:PackIcon Margin="0 0 15 0"  Kind="Login"/>Войти</TextBlock>

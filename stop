@@ -1,0 +1,626 @@
+[33mcommit 9300a0d09841c150d72502857084739003d6e2aa[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: cinemyp <kiyamovtimur01@gmail.com>
+Date:   Mon Dec 28 01:00:46 2020 +0300
+
+    отчет поправил
+
+1	1	WpfApp1/Util/PdfHelper.cs
+1	1	WpfApp1/Views/ReportPage.xaml
+
+[33mcommit 5b73b898cd45b5813531dd23d87049a14186cd15[m
+Author: cinemyp <kiyamovtimur01@gmail.com>
+Date:   Mon Dec 28 00:05:00 2020 +0300
+
+    думал, что доделал, ага, обосрался только, но теперь точно все
+
+2	2	DAL/Repositories/ReportRepositorySQL.cs
+1	1	WpfApp1/Models/Session.cs
+5	5	WpfApp1/Models/TransactionManager.cs
+5	1	WpfApp1/ViewModels/ApplicationViewModel.cs
+2	2	WpfApp1/ViewModels/ReportViewModel.cs
+53	50	WpfApp1/Views/EventPage.xaml
+
+[33mcommit 2fe5323fcda0ccd6f7475976a419a8fed1b14688[m
+Author: cinemyp <kiyamovtimur01@gmail.com>
+Date:   Sun Dec 27 16:49:53 2020 +0300
+
+    доделал это дерьмо, осталось добавить данных в бд и обновить проект
+
+0	1	DAL/DAL.csproj
+0	27	DAL/Entities/Country.cs
+0	2	DAL/Entities/Place.cs
+0	9	DAL/EventFinderContext.cs
+2	3	WpfApp1/EventFinderApp.csproj
+0	25	WpfApp1/Models/Country.cs
+0	2	WpfApp1/Models/Place.cs
+5	5	WpfApp1/Models/TransactionManager.cs
+2	2	WpfApp1/Properties/Resources.Designer.cs
+1	1	WpfApp1/Properties/Settings.Designer.cs
+2	0	WpfApp1/ViewModels/ApplicationViewModel.cs
+1	1	WpfApp1/Views/EventPage.xaml
+6	0	WpfApp1/Views/EventPage.xaml.cs
+
+[33mcommit 7c95437b3b574566527592005eff474998f928eb[m
+Author: cinemyp <kiyamovtimur01@gmail.com>
+Date:   Sat Dec 26 22:26:15 2020 +0300
+
+    добавил бд в проект
+
+6	0	EventFinderApp.sln
+
+[33mcommit f65f92882d0fe0edc826ed676708ee9b64b46a79[m
+Author: cinemyp <kiyamovtimur01@gmail.com>
+Date:   Sat Dec 26 22:23:08 2020 +0300
+
+    сделал отчет
+
+2	1	DAL/DAL.csproj
+0	16	DAL/Entities/ReportData.cs
+16	0	DAL/Entities/Reports.cs
+3	1	DAL/Interfaces/IDbRepository.cs
+14	0	DAL/Interfaces/IReportRepository.cs
+3	2	DAL/Interfaces/IReportService.cs
+12	1	DAL/Repositories/DbRepositorySQL.cs
+44	2	DAL/Repositories/ReportRepositorySQL.cs
+12	0	WpfApp1/EventFinderApp.csproj
+1	0	WpfApp1/Models/IDbCrud.cs
+5	1	WpfApp1/Models/Report.cs
+18	1	WpfApp1/Models/TransactionManager.cs
+4	1	WpfApp1/Util/NinjectRegistrations.cs
+42	0	WpfApp1/Util/PdfHelper.cs
+10	6	WpfApp1/ViewModels/ApplicationViewModel.cs
+1	1	WpfApp1/ViewModels/Interfaces/IPageViewModel.cs
+77	0	WpfApp1/ViewModels/ReportViewModel.cs
+7	1	WpfApp1/Views/MainWindow.xaml
+4	2	WpfApp1/Views/MainWindow.xaml.cs
+113	0	WpfApp1/Views/ReportPage.xaml
+28	0	WpfApp1/Views/ReportPage.xaml.cs
+1	0	WpfApp1/packages.config
+
+[33mcommit a43d9a53a43800676d6282660a15e08ec2c90494[m
+Author: cinemyp <kiyamovtimur01@gmail.com>
+Date:   Sat Dec 26 17:18:03 2020 +0300
+
+    сделал переход на сайт
+
+3	0	DAL/DAL.csproj
+16	0	DAL/Entities/ReportData.cs
+13	0	DAL/Interfaces/IReportService.cs
+12	0	DAL/Repositories/ReportRepositorySQL.cs
+5	0	WpfApp1/EventFinderApp.csproj
+3	3	WpfApp1/Models/Event.cs
+12	0	WpfApp1/Models/Report.cs
+26	0	WpfApp1/Models/RestrictionsByAges.cs
+12	3	WpfApp1/Views/EventPage.xaml
+6	0	WpfApp1/Views/EventPage.xaml.cs
+4	3	WpfApp1/Views/MainWindow.xaml
+1	0	WpfApp1/packages.config
+
+[33mcommit 9f92014ddededf1e869201571b18e4d7ff13234d[m
+Author: cinemyp <kiyamovtimur01@gmail.com>
+Date:   Fri Dec 25 23:48:34 2020 +0300
+
+    добил фильтры, все работает, кроме сердечка, начал делать отчет
+
+1	0	DAL/DAL.csproj
+1	0	DAL/Interfaces/IDbRepository.cs
+44	0	DAL/Repositories/CityRepositorySQL.cs
+11	0	DAL/Repositories/DbRepositorySQL.cs
+8	6	WpfApp1/EventFinderApp.csproj
+1	0	WpfApp1/Login/Login.xaml.cs
+1	3	WpfApp1/Models/Date.cs
+4	2	WpfApp1/Models/IDbCrud.cs
+1	0	WpfApp1/Models/Organizer.cs
+2	2	WpfApp1/Models/Place.cs
+1	1	WpfApp1/Models/Session.cs
+20	9	WpfApp1/Models/TransactionManager.cs
+62	14	WpfApp1/ViewModels/ApplicationViewModel.cs
+1	1	WpfApp1/ViewModels/EventViewModel.cs
+1	1	WpfApp1/ViewModels/FavouriteViewModel.cs
+22	0	WpfApp1/ViewModels/NotificationViewModel.cs
+8	9	WpfApp1/ViewModels/OverviewViewModel.cs
+1	1	WpfApp1/Views/EventPage.xaml
+2	2	WpfApp1/Views/FavouritePage.xaml
+19	3	WpfApp1/Views/MainWindow.xaml
+81	0	WpfApp1/Views/NotificationWindow.xaml
+44	0	WpfApp1/Views/NotificationWindow.xaml.cs
+-	-	WpfApp1/Views/avatar.png
+-	-	WpfApp1/Views/new.png
+9	0	"\320\222\321\213\320\262\320\276\320\264-\320\241\320\261\320\276\321\200\320\272\320\260.txt"
+
+[33mcommit af4cadae337e15f7d7a2027d57988dc3af37766d[m
+Author: cinemyp <kiyamovtimur01@gmail.com>
+Date:   Fri Dec 25 19:54:26 2020 +0300
+
+    баг фикс
+
+1	1	WpfApp1/Models/IDbCrud.cs
+2	1	WpfApp1/Models/Session.cs
+2	2	WpfApp1/Models/TransactionManager.cs
+2	0	WpfApp1/Models/UserModel.cs
+1	1	WpfApp1/ViewModels/ApplicationViewModel.cs
+5	3	WpfApp1/ViewModels/EventViewModel.cs
+3	2	WpfApp1/Views/EventPage.xaml
+3	1	WpfApp1/Views/EventPage.xaml.cs
+
+[33mcommit de21795608b3df69f57e79137281ea0b396e0885[m
+Author: cinemyp <kiyamovtimur01@gmail.com>
+Date:   Fri Dec 25 18:52:07 2020 +0300
+
+    короче много че сделал, лень расписывать, осталось напоминание, отчет и пару фиксов
+
+2	1	DAL/Entities/Event.cs
+14	1	WpfApp1/EventFinderApp.csproj
+-	-	WpfApp1/Images/new.png
+10	5	WpfApp1/Models/Event.cs
+1	5	WpfApp1/Models/IDbCrud.cs
+30	0	WpfApp1/Models/Organizer.cs
+33	0	WpfApp1/Models/Place.cs
+5	0	WpfApp1/Models/Session.cs
+30	2	WpfApp1/Models/TransactionManager.cs
+25	0	WpfApp1/Util/BoolToBrushColorConverter.cs
+24	0	WpfApp1/Util/DateTimeToDateConverter.cs
+10	3	WpfApp1/ViewModels/ApplicationViewModel.cs
+48	2	WpfApp1/ViewModels/EventViewModel.cs
+2	2	WpfApp1/ViewModels/FavouriteViewModel.cs
+2	1	WpfApp1/ViewModels/Interfaces/{IPageManager.cs => IMainViewModel.cs}
+4	4	WpfApp1/ViewModels/OverviewViewModel.cs
+47	4	WpfApp1/Views/EventPage.xaml
+18	9	WpfApp1/Views/FavouritePage.xaml
+9	5	WpfApp1/Views/OverviewPage.xaml
+-	-	WpfApp1/Views/avatar.png
+-	-	WpfApp1/Views/new.png
+
+[33mcommit 1211caf7f690240b9521d3427ee6fe7f522c8628[m
+Author: cinemyp <kiyamovtimur01@gmail.com>
+Date:   Wed Dec 23 20:02:40 2020 +0300
+
+    создал Избранное, осталось сделать добавление
+
+3	2	WpfApp1/Login/ILoginWindow.cs
+10	4	WpfApp1/Login/Login.xaml.cs
+3	3	WpfApp1/Login/LoginViewModel.cs
+16	5	WpfApp1/Models/Event.cs
+2	2	WpfApp1/Models/IDbCrud.cs
+10	3	WpfApp1/Models/TransactionManager.cs
+9	1	WpfApp1/Models/UserModel.cs
+29	7	WpfApp1/ViewModels/ApplicationViewModel.cs
+2	1	WpfApp1/ViewModels/FavouriteViewModel.cs
+28	15	WpfApp1/Views/FavouritePage.xaml
+1	0	WpfApp1/Views/FavouritePage.xaml.cs
+9	3	WpfApp1/Views/MainWindow.xaml
+
+[33mcommit ebea104687af3275e17a5cc86439656cb6919d35[m
+Author: cinemyp <kiyamovtimur01@gmail.com>
+Date:   Wed Dec 23 18:26:24 2020 +0300
+
+    переделал все под репозитории, сделал unit of work, доделал авторизацию и регистрацию (остались надписи), начал делать избранное
+
+10	0	DAL/DAL.csproj
+2	2	DAL/Entities/User.cs
+1	1	DAL/EventFinderContext.cs
+20	0	DAL/Interfaces/IDbRepository.cs
+17	0	DAL/Interfaces/IRepository.cs
+44	0	DAL/Repositories/CategoryRepositorySQL.cs
+101	0	DAL/Repositories/DbRepositorySQL.cs
+44	0	DAL/Repositories/EventRepositorySQL.cs
+44	0	DAL/Repositories/EventsOrganizersRepositorySQL.cs
+44	0	DAL/Repositories/PlaceRepositorySQL.cs
+44	0	DAL/Repositories/SessionRepositorySQL.cs
+44	0	DAL/Repositories/TypeRepositorySQL.cs
+44	0	DAL/Repositories/UserRepositorySQL.cs
+3	1	WpfApp1/App.xaml.cs
+18	0	WpfApp1/EventFinderApp.csproj
+14	0	WpfApp1/Login/ILoginWindow.cs
+13	0	WpfApp1/Login/IPasswordSupplier.cs
+2	2	WpfApp1/Login/Login.xaml
+21	4	WpfApp1/Login/Login.xaml.cs
+12	8	WpfApp1/Login/LoginViewModel.cs
+27	0	WpfApp1/Models/IDbCrud.cs
+37	30	WpfApp1/Models/TransactionManager.cs
+17	0	WpfApp1/Util/LoginModule.cs
+18	0	WpfApp1/Util/NinjectRegistrations.cs
+25	0	WpfApp1/Util/ServiceModule.cs
+29	12	WpfApp1/ViewModels/ApplicationViewModel.cs
+69	0	WpfApp1/ViewModels/FavouriteViewModel.cs
+1	1	WpfApp1/ViewModels/Interfaces/IPageViewModel.cs
+2	2	WpfApp1/ViewModels/OverviewViewModel.cs
+38	0	WpfApp1/Views/FavouritePage.xaml
+27	0	WpfApp1/Views/FavouritePage.xaml.cs
+6	5	WpfApp1/Views/MainWindow.xaml
+12	2	WpfApp1/Views/MainWindow.xaml.cs
+1	0	WpfApp1/packages.config
+
+[33mcommit 0823a3960cbec498fd951fc85e63d01f005b21cc[m
+Author: cinemyp <kiyamovtimur01@gmail.com>
+Date:   Wed Dec 23 13:23:33 2020 +0300
+
+    добавил регистрацию, авторизацию, осталось переделать под репозитории
+
+7	7	DAL/App.config
+4	1	DAL/DAL.csproj
+0	4	DAL/Entities/Event.cs
+9	0	DAL/Entities/Session.cs
+2	2	DAL/Entities/User.cs
+5	5	DAL/EventFinderContext.cs
+1	0	DAL/packages.config
+6	1	WpfApp1/EventFinderApp.csproj
+-	-	WpfApp1/Images/avatar.png
+2	2	WpfApp1/Login/Login.xaml
+3	1	WpfApp1/Login/Login.xaml.cs
+78	0	WpfApp1/Login/LoginViewModel.cs
+26	0	WpfApp1/Models/TransactionManager.cs
+27	0	WpfApp1/Models/UserModel.cs
+8	0	WpfApp1/ViewModels/ApplicationViewModel.cs
+13	0	WpfApp1/ViewModels/Interfaces/ICloseable.cs
+10	5	WpfApp1/Views/MainWindow.xaml
+
+[33mcommit 8a61f3f0715505032447d90e575b67c7220e1ae0[m
+Author: cinemyp <kiyamovtimur01@gmail.com>
+Date:   Fri Dec 4 18:07:51 2020 +0300
+
+    доделал фильтры + фикс
+
+4	0	WpfApp1/Models/TransactionManager.cs
+60	11	WpfApp1/ViewModels/ApplicationViewModel.cs
+17	3	WpfApp1/ViewModels/OverviewViewModel.cs
+1	1	WpfApp1/Views/EventPage.xaml
+28	11	WpfApp1/Views/MainWindow.xaml
+
+[33mcommit 5c2617f93d300afbb354328bb5dbeff4a7ce0480[m
+Author: cinemyp <kiyamovtimur01@gmail.com>
+Date:   Mon Nov 30 17:00:33 2020 +0300
+
+    made date filter
+
+2	1	WpfApp1/EventFinderApp.csproj
+44	0	WpfApp1/Models/Date.cs
+24	1	WpfApp1/Models/Event.cs
+94	0	WpfApp1/Models/TransactionManager.cs
+0	41	WpfApp1/Util/TransactionManager.cs
+33	2	WpfApp1/ViewModels/ApplicationViewModel.cs
+8	12	WpfApp1/ViewModels/OverviewViewModel.cs
+1	1	WpfApp1/Views/EventPage.xaml
+7	23	WpfApp1/Views/MainWindow.xaml
+1	1	WpfApp1/Views/OverviewPage.xaml
+
+[33mcommit fab7467a16524ad857beba32120db7cd217c441e[m
+Author: cinemyp <kiyamovtimur01@gmail.com>
+Date:   Mon Nov 30 14:56:23 2020 +0300
+
+    made models, movet tm from DAL to app project
+
+0	1	DAL/DAL.csproj
+1	1	DAL/EventFinderContext.cs
+8	0	WpfApp1/EventFinderApp.csproj
+25	0	WpfApp1/Models/Category.cs
+25	0	WpfApp1/Models/City.cs
+25	0	WpfApp1/Models/Country.cs
+47	0	WpfApp1/Models/Event.cs
+26	0	WpfApp1/Models/Session.cs
+25	0	WpfApp1/Models/Type.cs
+11	7	{DAL => WpfApp1/Util}/TransactionManager.cs
+7	8	WpfApp1/ViewModels/ApplicationViewModel.cs
+5	7	WpfApp1/ViewModels/EventViewModel.cs
+3	2	WpfApp1/ViewModels/Interfaces/IEventFilter.cs
+2	1	WpfApp1/ViewModels/Interfaces/IPageManager.cs
+11	8	WpfApp1/ViewModels/OverviewViewModel.cs
+
+[33mcommit e27f42fdb3f63ecbc9d7eb2f16b4808a17bb8cee[m
+Author: cinemyp <kiyamovtimur01@gmail.com>
+Date:   Mon Nov 30 14:34:14 2020 +0300
+
+    a bit fixed
+
+5	4	WpfApp1/ViewModels/ApplicationViewModel.cs
+6	2	WpfApp1/Views/MainWindow.xaml
+
+[33mcommit 67b0c9f2b177a89538052320f5091b14629d945a[m
+Author: cinemyp <kiyamovtimur01@gmail.com>
+Date:   Wed Nov 25 19:32:07 2020 +0300
+
+    made filter by category
+
+4	0	DAL/TransactionManager.cs
+1	0	WpfApp1/EventFinderApp.csproj
+31	15	WpfApp1/ViewModels/ApplicationViewModel.cs
+7	1	WpfApp1/ViewModels/EventViewModel.cs
+16	0	WpfApp1/ViewModels/Interfaces/IEventFilter.cs
+2	0	WpfApp1/ViewModels/Interfaces/IPageViewModel.cs
+38	6	WpfApp1/ViewModels/OverviewViewModel.cs
+20	24	WpfApp1/Views/MainWindow.xaml
+
+[33mcommit a9f6bf1d4f8d728a642ab6edfd49212246994cc9[m[33m ([m[1;31morigin/DAL[m[33m, [m[1;32mDAL[m[33m)[m
+Author: cinemyp <kiyamovtimur01@gmail.com>
+Date:   Wed Nov 25 15:51:20 2020 +0300
+
+    finished work with dal
+
+1	3	DAL/App.config
+14	13	DAL/DAL.csproj
+0	0	DAL/{Models => Entities}/Category.cs
+0	0	DAL/{Models => Entities}/City.cs
+0	0	DAL/{Models => Entities}/Country.cs
+0	0	DAL/{Models => Entities}/Event.cs
+0	0	DAL/{Models => Entities}/EventsOrganizers.cs
+0	0	DAL/{Models => Entities}/Organizer.cs
+0	0	DAL/{Models => Entities}/Place.cs
+0	0	DAL/{Models => Entities}/RestrictionsByAges.cs
+0	0	DAL/{Models => Entities}/Session.cs
+0	0	DAL/{Models => Entities}/Type.cs
+0	0	DAL/{Models => Entities}/User.cs
+0	0	DAL/{Models => Entities}/sysdiagrams.cs
+1	1	DAL/{Models => }/EventFinderContext.cs
+33	0	DAL/TransactionManager.cs
+9	7	WpfApp1/App.config
+8	15	WpfApp1/EventFinderApp.csproj
+0	26	WpfApp1/Models/Category.cs
+0	27	WpfApp1/Models/City.cs
+0	27	WpfApp1/Models/Country.cs
+0	52	WpfApp1/Models/Event.cs
+0	130	WpfApp1/Models/EventFinderContext.cs
+0	30	WpfApp1/Models/EventsOrganizers.cs
+0	34	WpfApp1/Models/Organizer.cs
+0	35	WpfApp1/Models/Place.cs
+0	24	WpfApp1/Models/RestrictionsByAges.cs
+0	21	WpfApp1/Models/Session.cs
+0	27	WpfApp1/Models/Type.cs
+0	31	WpfApp1/Models/User.cs
+0	24	WpfApp1/Models/sysdiagrams.cs
+30	38	WpfApp1/Properties/Resources.Designer.cs
+13	17	WpfApp1/Properties/Settings.Designer.cs
+1	0	WpfApp1/ViewModels/ApplicationViewModel.cs
+1	0	WpfApp1/ViewModels/EventViewModel.cs
+1	1	WpfApp1/ViewModels/Interfaces/IPageManager.cs
+4	3	WpfApp1/ViewModels/OverviewViewModel.cs
+
+[33mcommit 100e335c79006b8155b379d75c45f18746b7b1f1[m
+Author: cinemyp <kiyamovtimur01@gmail.com>
+Date:   Wed Nov 25 15:17:37 2020 +0300
+
+    created class library project named DAL
+
+17	0	DAL/App.config
+82	0	DAL/DAL.csproj
+26	0	DAL/Models/Category.cs
+27	0	DAL/Models/City.cs
+27	0	DAL/Models/Country.cs
+52	0	DAL/Models/Event.cs
+130	0	DAL/Models/EventFinderContext.cs
+30	0	DAL/Models/EventsOrganizers.cs
+34	0	DAL/Models/Organizer.cs
+35	0	DAL/Models/Place.cs
+24	0	DAL/Models/RestrictionsByAges.cs
+21	0	DAL/Models/Session.cs
+27	0	DAL/Models/Type.cs
+31	0	DAL/Models/User.cs
+24	0	DAL/Models/sysdiagrams.cs
+36	0	DAL/Properties/AssemblyInfo.cs
+4	0	DAL/packages.config
+6	0	EventFinderApp.sln
+1	3	WpfApp1/App.config
+
+[33mcommit ba6ad7079112587e64a3065c9b015c24923b4816[m
+Author: cinemyp <kiyamovtimur01@gmail.com>
+Date:   Wed Nov 25 15:12:09 2020 +0300
+
+    started thinking about separating my project into parts
+
+14	1	WpfApp1/ViewModels/ApplicationViewModel.cs
+1	1	WpfApp1/Views/MainWindow.xaml
+
+[33mcommit 6fa492d91fabb418333966c27fa52c911444a869[m[33m ([m[1;31morigin/pages[m[33m, [m[1;32mpages[m[33m)[m
+Author: cinemyp <kiyamovtimur01@gmail.com>
+Date:   Wed Nov 25 14:29:44 2020 +0300
+
+    turned all stackpanels into buttons
+
+17	3	WpfApp1/ViewModels/ApplicationViewModel.cs
+30	18	WpfApp1/Views/MainWindow.xaml
+0	10	WpfApp1/Views/MainWindow.xaml.cs
+
+[33mcommit 5abd6ca12a5f4120fa10b296059795e3094ecbf9[m
+Author: cinemyp <kiyamovtimur01@gmail.com>
+Date:   Tue Nov 10 13:15:48 2020 +0300
+
+    Binded opened event to eventviewmodel
+
+4	19	WpfApp1/ViewModels/ApplicationViewModel.cs
+17	1	WpfApp1/ViewModels/EventViewModel.cs
+1	1	WpfApp1/ViewModels/Interfaces/IPageManager.cs
+4	13	WpfApp1/ViewModels/OverviewViewModel.cs
+11	5	WpfApp1/Views/EventPage.xaml
+1	1	WpfApp1/Views/EventPage.xaml.cs
+3	0	WpfApp1/Views/MainWindow.xaml
+1	1	WpfApp1/Views/OverviewPage.xaml
+
+[33mcommit d917fb7fe1f7d04c6c8a6d62027813db0d18cb31[m
+Author: cinemyp <kiyamovtimur01@gmail.com>
+Date:   Tue Nov 10 11:36:00 2020 +0300
+
+    created pages,page's viewmodels, binded command to buttonitem
+
+16	5	WpfApp1/EventFinderApp.csproj
+36	32	WpfApp1/ViewModels/ApplicationViewModel.cs
+22	0	WpfApp1/ViewModels/EventViewModel.cs
+13	0	WpfApp1/ViewModels/Interfaces/IPageManager.cs
+12	0	WpfApp1/ViewModels/Interfaces/IPageViewModel.cs
+61	0	WpfApp1/ViewModels/OverviewViewModel.cs
+32	0	WpfApp1/Views/EventPage.xaml
+28	0	WpfApp1/Views/EventPage.xaml.cs
+0	65	WpfApp1/Views/EventWindow.xaml
+0	41	WpfApp1/Views/EventWindow.xaml.cs
+6	33	WpfApp1/Views/MainWindow.xaml
+1	4	WpfApp1/Views/MainWindow.xaml.cs
+42	0	WpfApp1/Views/OverviewPage.xaml
+30	0	WpfApp1/Views/OverviewPage.xaml.cs
+
+[33mcommit 217163f5fc41cedd8d1140788c955ecd337799eb[m
+Author: cinemyp <kiyamovtimur01@gmail.com>
+Date:   Mon Nov 9 18:22:29 2020 +0300
+
+    some fix
+
+2	1	WpfApp1/ViewModels/ApplicationViewModel.cs
+1	1	WpfApp1/Views/EventWindow.xaml
+0	1	WpfApp1/Views/MainWindow.xaml.cs
+
+[33mcommit 5ffb18dd0d0af9636e888e7c00bcbfdbf8d6d4c4[m
+Author: cinemyp <kiyamovtimur01@gmail.com>
+Date:   Sun Nov 8 18:22:07 2020 +0300
+
+    created RelayCommand, need to open the event by a command, bind event data to forward data into window
+
+1	0	WpfApp1/EventFinderApp.csproj
+27	2	WpfApp1/ViewModels/ApplicationViewModel.cs
+31	0	WpfApp1/ViewModels/RelayCommand.cs
+5	4	WpfApp1/Views/EventWindow.xaml
+1	1	WpfApp1/Views/MainWindow.xaml
+3	0	WpfApp1/Views/MainWindow.xaml.cs
+
+[33mcommit 6e29d10532b469c450a172073a85363ea85d02cb[m
+Author: cinemyp <kiyamovtimur01@gmail.com>
+Date:   Sat Nov 7 18:28:36 2020 +0300
+
+    binded events to cards, need to fix imagesize, bind event information with EventWindow
+
+1	1	WpfApp1/App.xaml
+2	2	WpfApp1/ViewModels/ApplicationViewModel.cs
+4	7	WpfApp1/Views/MainWindow.xaml
+1	0	WpfApp1/Views/MainWindow.xaml.cs
+
+[33mcommit f78810e45d8b7d50575864257fdad378e93f9ef3[m
+Author: cinemyp <kiyamovtimur01@gmail.com>
+Date:   Sat Nov 7 18:09:34 2020 +0300
+
+    changed model's namespaces
+
+2	3	WpfApp1/EventFinderApp.csproj
+1	1	WpfApp1/Models/Category.cs
+1	1	WpfApp1/Models/City.cs
+1	1	WpfApp1/Models/Country.cs
+1	1	WpfApp1/Models/Event.cs
+1	1	WpfApp1/Models/EventFinderContext.cs
+1	1	WpfApp1/Models/EventsOrganizers.cs
+1	1	WpfApp1/Models/Organizer.cs
+1	1	WpfApp1/Models/Place.cs
+1	1	WpfApp1/Models/RestrictionsByAges.cs
+1	1	WpfApp1/Models/Session.cs
+1	1	WpfApp1/Models/Type.cs
+1	1	WpfApp1/Models/User.cs
+1	1	WpfApp1/Models/sysdiagrams.cs
+37	0	WpfApp1/ViewModels/ApplicationViewModel.cs
+
+[33mcommit c02ca50679a7cf1614c39a614b5f19e992070b14[m
+Author: cinemyp <kiyamovtimur01@gmail.com>
+Date:   Sat Nov 7 17:57:58 2020 +0300
+
+    first commit, connected the database
+
+21	4	WpfApp1/App.config
+31	6	WpfApp1/EventFinderApp.csproj
+0	0	WpfApp1/{ => Login}/Login.xaml
+0	0	WpfApp1/{ => Login}/Login.xaml.cs
+26	0	WpfApp1/Models/Category.cs
+27	0	WpfApp1/Models/City.cs
+27	0	WpfApp1/Models/Country.cs
+52	0	WpfApp1/Models/Event.cs
+130	0	WpfApp1/Models/EventFinderContext.cs
+30	0	WpfApp1/Models/EventsOrganizers.cs
+34	0	WpfApp1/Models/Organizer.cs
+35	0	WpfApp1/Models/Place.cs
+24	0	WpfApp1/Models/RestrictionsByAges.cs
+21	0	WpfApp1/Models/Session.cs
+27	0	WpfApp1/Models/Type.cs
+31	0	WpfApp1/Models/User.cs
+24	0	WpfApp1/Models/sysdiagrams.cs
+0	0	WpfApp1/{ => Views}/EventWindow.xaml
+0	0	WpfApp1/{ => Views}/EventWindow.xaml.cs
+0	0	WpfApp1/{ => Views}/MainWindow.xaml
+0	0	WpfApp1/{ => Views}/MainWindow.xaml.cs
+2	0	WpfApp1/packages.config
+
+[33mcommit 49285c7f7cbe6c58e077fab893d88210f4a0be87[m
+Author: cinemyp <kiyamovtimur01@gmail.com>
+Date:   Thu Oct 15 23:28:42 2020 +0300
+
+    Added a Event Window
+
+7	0	WpfApp1/EventFinderApp.csproj
+64	0	WpfApp1/EventWindow.xaml
+41	0	WpfApp1/EventWindow.xaml.cs
+4	2	WpfApp1/MainWindow.xaml
+6	0	WpfApp1/MainWindow.xaml.cs
+
+[33mcommit ead867968b28a21a33c8b5da025447c5c5e36b26[m
+Merge: 45d18f3 c697b2e
+Author: cinemyp <kiyamovtimur01@gmail.com>
+Date:   Thu Oct 15 22:49:13 2020 +0300
+
+    fcuk git
+
+[33mcommit 45d18f3e53cf19cc2b3bc7b09cfb0ea8ff3fb89e[m
+Author: cinemyp <kiyamovtimur01@gmail.com>
+Date:   Thu Oct 15 22:45:16 2020 +0300
+
+    Some fix
+
+2	2	WpfApp1/App.xaml
+0	7	WpfApp1/EventFinderApp.csproj
+0	167	WpfApp1/EventList.xaml
+0	36	WpfApp1/EventList.xaml.cs
+6	6	WpfApp1/Login.xaml
+187	2	WpfApp1/MainWindow.xaml
+6	0	WpfApp1/MainWindow.xaml.cs
+
+[33mcommit 79062cd1ae5ed2f60c4b29fbca6514f72e65604f[m
+Author: cinemyp <kiyamovtimur01@gmail.com>
+Date:   Thu Oct 15 21:08:10 2020 +0300
+
+    Changed element type of menu items
+
+7	0	WpfApp1/EventFinderApp.csproj
+167	0	WpfApp1/EventList.xaml
+36	0	WpfApp1/EventList.xaml.cs
+2	178	WpfApp1/MainWindow.xaml
+1	7	WpfApp1/MainWindow.xaml.cs
+
+[33mcommit c697b2ebf52c324e710ea59f5201d8a28bdc82e0[m
+Author: cinemyp <kiyamovtimur01@gmail.com>
+Date:   Thu Oct 15 21:08:10 2020 +0300
+
+    Changed element type of menu items
+
+26	19	WpfApp1/MainWindow.xaml
+1	0	WpfApp1/MainWindow.xaml.cs
+
+[33mcommit 7055790546fb4da70a32fa26356067249b5f3910[m
+Author: cinemyp <kiyamovtimur01@gmail.com>
+Date:   Thu Oct 15 20:30:09 2020 +0300
+
+    Добавьте файлы проекта.
+
+25	0	EventFinderApp.sln
+6	0	WpfApp1/App.config
+18	0	WpfApp1/App.xaml
+17	0	WpfApp1/App.xaml.cs
+121	0	WpfApp1/EventFinderApp.csproj
+76	0	WpfApp1/Login.xaml
+42	0	WpfApp1/Login.xaml.cs
+195	0	WpfApp1/MainWindow.xaml
+49	0	WpfApp1/MainWindow.xaml.cs
+55	0	WpfApp1/Properties/AssemblyInfo.cs
+71	0	WpfApp1/Properties/Resources.Designer.cs
+117	0	WpfApp1/Properties/Resources.resx
+30	0	WpfApp1/Properties/Settings.Designer.cs
+7	0	WpfApp1/Properties/Settings.settings
+5	0	WpfApp1/packages.config
+
+[33mcommit 3d526c03b0c9b9e732fd2590b108a8c364ae3595[m
+Author: cinemyp <kiyamovtimur01@gmail.com>
+Date:   Thu Oct 15 20:30:03 2020 +0300
+
+    Добавьте GITIGNORE- и GITATTRIBUTES-файлы.
+
+63	0	.gitattributes
+340	0	.gitignore

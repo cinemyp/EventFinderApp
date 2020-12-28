@@ -18,7 +18,7 @@ namespace DAL.Repositories
         }
         public ReportData MonthlyReport(int userId, int month)
         {
-            List<DAL.Session> sessions = db.User.Find(userId).Session.Where(i => i.Date < DateTime.Today && i.Date.Month == month).ToList();
+            List<DAL.Session> sessions = db.User.Find(userId).Session.Where(i => i.Date < DateTime.Now && i.Date.Month == month).ToList();
             int count = sessions.Count;
             if (count == 0)
                 return null;
@@ -38,7 +38,7 @@ namespace DAL.Repositories
             string type = db.Type.Find(typeId).Name;
 
             List<Session> events = db.User.Find(userId).Session
-                .Where(i => i.Date.DayOfYear < DateTime.Now.DayOfYear && i.Date.Month == month)
+                .Where(i => i.Date < DateTime.Now && i.Date.Month == month)
                 .ToList();
 
             ReportData result = new ReportData()

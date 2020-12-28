@@ -31,7 +31,7 @@
                 </Grid.RowDefinitions>
                 <!-- Header -->
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Style="{StaticResource MaterialDesignHeadline2TextBlock}" Text="Отчет за "/>
+                    <TextBlock Style="{StaticResource MaterialDesignHeadline2TextBlock}" Text="Статистика мероприятий за "/>
                     <ComboBox VerticalAlignment="Stretch" Margin="0 30 0 15" Width="200" SelectedIndex="{Binding SelectedMonth}">
                         <ComboBoxItem>
                             <TextBlock Style="{StaticResource MaterialDesignBody2TextBlock}" Text="Январь"/>
@@ -92,7 +92,7 @@
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
                                         <TextBlock Style="{StaticResource MaterialDesignBody1TextBlock}" Text="{Binding Title}"/>
-                                        <TextBlock Style="{StaticResource MaterialDesignBody1TextBlock}" Margin="100 0 0 0" Text="{Binding CurrentSession.Date, Converter={StaticResource dateConverter}}"/>
+                                        <TextBlock Margin="100 0 0 0" Style="{StaticResource MaterialDesignBody1TextBlock}" Text="{Binding CurrentSession.Date, Converter={StaticResource dateConverter}}"/>
                                     </StackPanel>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
